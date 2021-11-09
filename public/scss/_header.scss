@@ -1,0 +1,106 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    .menu-icon {
+        display: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin: 10px;
+        font-size: 12px;
+        background-color: $primary-color;
+        color: #fff;
+        cursor: pointer;
+    }
+    .logo {
+        img {
+            height: 50px;
+        }
+    }
+    ul {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        li {
+            a {
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0;
+                color: #08c;
+                text-transform: uppercase;
+                text-decoration: none;
+                padding: 8px;
+            }
+        }
+    }
+    .auth {
+        display: flex;
+        align-items: center;
+        a {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #08c;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0 8px;
+        }
+        .cart-icon {
+            font-size: 26px;
+        }
+        img {
+            width: auto;
+            height: 40px;
+            border-radius: 50%;
+        }
+        span {
+            padding: 0 12px;
+        }
+        .dropdown-toggle {
+            display: block;
+            padding: 10px 0;
+        }
+    }
+}
+.active {
+    display: block !important;
+}
+.menu {
+    display: none;
+    ul {
+        list-style: none;
+        align-items: center;
+        margin: 0;
+        padding: 0 20px;
+        li {
+            padding: 9px 14px;
+            border-bottom: 1px solid rgb(180, 202, 212);
+            a {
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0;
+                color: $primary-color;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+        }
+    }
+}
+@media (min-width: 992px) {
+    .menu,
+    .menu.active {
+        display: none !important;
+    }
+}
+@media (max-width: 992px) {
+    header {
+        ul {
+            display: none;
+        }
+        .menu-icon {
+            display: unset;
+        }
+    }
+}
