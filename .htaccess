@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^(.+)$ index.php?url=$1 code nhu cai dau buoi dm cai tutorial
+RewriteRule ^(.*)$ index.php?url=/$1 [QSA,L]
+Options +FollowSymLinks -MultiViews
+# RewriteRule ^(.*)$ index.php?params=$1 [NC, QSA]
