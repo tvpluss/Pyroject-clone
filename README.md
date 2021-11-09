@@ -1,7 +1,6 @@
-# HƯỚNG DẪN SET UP PROJECT PHP THEO MÔ HÌNH MVC
+# Mọi người code trên nhánh Dev nha
 
-Hướng dẫn từng bước set up một project PHP theo mô hình MVC.
-Bạn có thể sử dụng source này để tiết kiệm thời gian set up cho project của mình.
+# TUTORIAL NẾU CẦN THIẾT
 
 - Buổi 1: Giới thiệu mô hình MVC
   https://www.youtube.com/watch?v=CasgqSBvOMY
@@ -20,7 +19,3 @@ Bạn có thể sử dụng source này để tiết kiệm thời gian set up c
 
 - Buổi 6: Các vấn đề khác (Ajax, Route...)
   https://www.youtube.com/watch?v=TutBjMexFE4
-
-* Khóa học lập trình PHP tại Khoa Phạm: https://khoapham.vn/lap-trinh-php.html
-* Group học lập trình: https://www.facebook.com/groups/khoaphamonline
-* Website học lập trình online: http://online.khoapham.vn
