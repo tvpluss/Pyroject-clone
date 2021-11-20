@@ -20,16 +20,7 @@
     // require_once './mvc/views/Layouts/Header.php';
     require_once __DIR__ . "./Layouts/Header.php";
     ?>
-    <?php
-    if (isset($_SESSION['sessionUser'])) {
-        // echo print_r($_SESSION);
-        echo $_SESSION['sessionUser'];
-    }
-    echo "<br/>";
-    if (isset($_GET['success'])) {
-        echo $_GET['success'];
-    }
-    ?>
+
     <div class="intro">
         <h3>Phan INTRO LAM SAU, HTML TINH</h3>
     </div>

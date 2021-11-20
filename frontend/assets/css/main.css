@@ -118,7 +118,7 @@ header .auth .dropdown-toggle {
 
 @media (min-width: 992px) {
   .menu,
-.menu.active {
+  .menu.active {
     display: none !important;
   }
 }

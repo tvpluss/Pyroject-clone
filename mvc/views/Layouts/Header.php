@@ -70,7 +70,7 @@
     <?php
     if (isset($_SESSION['sessionUser'])) {
         // echo print_r($_SESSION);
-        echo $_SESSION['sessionUser'];
+        print_r($_SESSION);
     }
     echo "<br/>";
     if (isset($_GET['success'])) {

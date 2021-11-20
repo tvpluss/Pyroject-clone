@@ -16,13 +16,16 @@
 
 <body>
     <div class="register container-sm">
-        <form method="post">
+        <form method="post" action="./Register/Sayhi">
             <img src="./public/assets/image/logo-png2.png" alt="">
             <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="confirmPassword" placeholder="Confirm Password">
-            <!-- <input type="text"> -->
+            <input type="text" name="firstname" placeholder="First name">
+            <input type="text" name="lastname" placeholder="Last name">
+            <input type="email" name="email" placeholder="Email">
+            <input type="text" name="telephone" placeholder="Telephone">
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="signup">Sign up</button>
         </form>
     </div>

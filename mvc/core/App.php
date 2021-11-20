@@ -5,7 +5,7 @@ class App
     // Đại diện cho địa chỉ, mặc định là Home
     protected $controller = "Error";
     // // Đại diện cho hoạt động, Mặc định là default
-    // protected $action = "default";
+    protected $action = "default";
     // // Đối số truyền vào 
     // protected $params = [];
 
@@ -16,6 +16,7 @@ class App
         if (empty($arr)) {
             $arr[0] = "Index";
         }
+        print_r($arr);
         // Controller
         if (file_exists("./mvc/controllers/" . $arr[0] . ".php")) {
             $this->controller = $arr[0];
@@ -26,17 +27,16 @@ class App
         $this->controller = new $this->controller;
 
         // Xử lý Action
-        // if (isset($arr[1])) {
-        //     //Kiểm tra nếu có tồn tại action
-        //     if (method_exists($this->controller, $arr[1])) {
-        //         $this->action = $arr[1];
-        //     }
-        //     unset($arr[1]);
-        // }
-
-        // // Params
-        // $this->params = $arr ? array_values($arr) : [];
-        // call_user_func_array([$this->controller, $this->action], $this->params);
+        if (isset($arr[1])) {
+            //Kiểm tra nếu có tồn tại action
+            if (method_exists($this->controller, $arr[1])) {
+                $this->action = $arr[1];
+            }
+            unset($arr[1]);
+            // Params
+            $this->params = $arr ? array_values($arr) : [];
+            call_user_func_array([$this->controller, $this->action], $this->params);
+        }
     }
     // Lấy Url dưới dạng mảng
     function UrlProcess()
