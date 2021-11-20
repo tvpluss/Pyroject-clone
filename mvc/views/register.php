@@ -22,6 +22,7 @@
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="confirmPassword" placeholder="Confirm Password">
+            <!-- <input type="text"> -->
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="signup">Sign up</button>
         </form>
     </div>
