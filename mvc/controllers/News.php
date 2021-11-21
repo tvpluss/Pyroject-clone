@@ -1,9 +1,9 @@
 
 <?php
-class News
+class News extends Controller
 {
-    public function SayHi()
+    function __construct()
     {
-        echo "News - SayHi";
+        $this->view("news");
     }
 }

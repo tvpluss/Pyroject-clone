@@ -118,7 +118,7 @@ header .auth .dropdown-toggle {
 
 @media (min-width: 992px) {
   .menu,
-.menu.active {
+  .menu.active {
     display: none !important;
   }
 }
@@ -168,7 +168,7 @@ header .auth .dropdown-toggle {
 .register form {
   padding: 40px 60px;
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
   border: 1px solid #e7e7e7;
 }
 .login form img,
@@ -194,7 +194,7 @@ header .auth .dropdown-toggle {
 .register form {
   padding: 40px 60px;
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
   border: 1px solid #e7e7e7;
 }
 .login form img,
@@ -544,6 +544,88 @@ header .auth .dropdown-toggle {
   font-size: 24px;
   padding-left: 10px;
   height: 46px;
+}
+
+.news h1 {
+  text-transform: uppercase;
+  font-size: 36px;
+  border-bottom: 1px solid #01a2e4;
+  color: #01a2e4;
+}
+.news .post {
+  display: block;
+  overflow: auto;
+  padding: 20px;
+  text-decoration: none;
+}
+.news .post:hover {
+  filter: brightness(0.9);
+  background-color: rgba(238, 240, 241, 0.212);
+}
+.news .post img {
+  float: left;
+  height: 180px;
+  width: 180px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+.news .post h3 {
+  color: #01a2e4;
+}
+
+#toast {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 1000000;
+}
+#toast .toast {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 6px 0;
+  min-width: 400px;
+  max-width: 450px;
+  border-left: 5px solid green;
+  box-shadow: 7px 3px 10px 2px #726a6ac4;
+  transition: all 0.3s linear;
+  border-radius: 5px;
+}
+@keyframes slideInleft {
+  from {
+    transform: translateX(calc(100% + 32px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+#toast .toast + .toast {
+  margin-top: 10px;
+}
+#toast .toast__icon,
+#toast .toast__close {
+  padding: 0 18px;
+  font-size: 20px;
+}
+#toast .toast__body {
+  flex-grow: 1;
+}
+#toast .toast__close {
+  color: rgba(0, 0, 0, 0.3);
+}
+#toast .toast--success .toast__icon {
+  color: green;
+}
+#toast .toast--error {
+  border-color: red;
+}
+#toast .toast--error .toast__icon {
+  color: red;
 }
 
 /*# sourceMappingURL=main.css.map */
