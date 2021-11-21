@@ -11,4 +11,8 @@ class Register extends Controller
         $model = $this->model("Authentication");
         $model->Register($_POST);
     }
+    function CheckID()
+    {
+        return "ID";
+    }
 }

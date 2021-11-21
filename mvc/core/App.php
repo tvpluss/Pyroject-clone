@@ -16,7 +16,7 @@ class App
         if (empty($arr)) {
             $arr[0] = "Index";
         }
-        print_r($arr);
+        // print_r($arr);
         // Controller
         if (file_exists("./mvc/controllers/" . $arr[0] . ".php")) {
             $this->controller = $arr[0];

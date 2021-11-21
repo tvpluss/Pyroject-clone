@@ -1,6 +1,19 @@
 <?php
 class Authentication extends DB
 {
+    public function CheckUsename($Usename)
+    {
+        $query = "SELECT * FROM user WHERE Usename=? LIMIT 1";
+        $stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_bind_param($stmt, "s", $Usename);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        if ($row != false) {
+            return true;
+        } else return false;
+    }
     public function Login($username, $password)
     {
         if (empty($username) || empty($password)) {
