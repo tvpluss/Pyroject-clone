@@ -29,6 +29,12 @@ class Authentication extends DB
                         //create Session
                         $_SESSION['sessionId'] = $row['ID'];
                         $_SESSION['sessionUser'] = $row['Usename'];
+                        $_SESSION['sessionFirstName'] = $row['First_Name'];
+                        $_SESSION['sessionLastName'] = $row['Last_Name'];
+                        $_SESSION['sessionUser'] = $row['Usename'];
+                        $_SESSION['sessionEmail'] = $row['Email'];
+                        $_SESSION['sessionTelephone'] = $row['Telephone'];
+                        $_SESSION['sessionUser'] = $row['Usename'];
                         //redirect user to homepage
                         header("Location: ../Intro?success=loggedin");
                         exit();
@@ -82,7 +88,7 @@ class Authentication extends DB
                     exit();
                 } else {
                     //Finally, after all check, we insert into database
-                    $sql = "INSERT INTO user (ID, Last_Name, First_Name, Usename ,Password, Email, Telephone, Street_Address, Town_City, Postcode_ZIP, Account, Bank_Name, User_Type ) VALUES (20 ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'member' )";
+                    $sql = "INSERT INTO user (Last_Name, First_Name, Usename ,Password, Email, Telephone, Street_Address, Town_City, Postcode_ZIP, Account, Bank_Name, User_Type ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'member' )";
                     $stmt = mysqli_stmt_init($this->con);
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                         header("Location: ../Register?error=stmterror");

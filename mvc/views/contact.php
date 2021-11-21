@@ -1,7 +1,25 @@
 <?php
 require_once __DIR__ . './Layouts/Header.php';
 ?>
-
+<?php
+if (isset($_SESSION['sessionId'])) {
+    $User = $_SESSION['sessionUser'];
+    $Telephone = $_SESSION['sessionTelephone'];
+    $Email = $_SESSION['sessionEmail'];
+    $Id = $_SESSION['sessionId'];
+} else {
+    $Id = -1;
+}
+?>
+<script type="text/javascript">
+    window.onload = function() {
+        if ('<?php echo $Id ?>' != -1) {
+            document.getElementById('name').value = '<?php echo $User ?>';
+            document.getElementById('phonenumber').value = '<?php echo $Telephone ?>';
+            document.getElementById('email').value = '<?php echo $Email ?>';
+        }
+    }
+</script>
 <div class="contact">
     <div class="container-md">
         <div class="row">
@@ -28,7 +46,7 @@ require_once __DIR__ . './Layouts/Header.php';
                 <div class="item">
                     <form action="">
                         <label for="name">Họ và tên</label>
-                        <input type="text" name="name" id="name">
+                        <input type="text" name="name" id="name" value>
                         <label for="phonenumber">Số điện thoại liên hệ</label>
                         <input type="text" name="phonenumber" id="phonenumber">
                         <label for="email">Email</label>
