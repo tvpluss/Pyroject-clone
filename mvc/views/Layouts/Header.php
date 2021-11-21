@@ -30,13 +30,13 @@
                     <a href="">Sản Phẩm</a>
                 </li>
                 <li>
-                    <a href="">Dịch Vụ</a>
+                    <a href="./Service">Dịch Vụ</a>
                 </li>
                 <li>
                     <a href="./Intro">Giới thiệu</a>
                 </li>
                 <li>
-                    <a href="">Liên hệ</a>
+                    <a href="./Contact">Liên hệ</a>
                 </li>
             </ul>
             <div class="auth">
@@ -62,7 +62,7 @@
                     <a href="./Intro">Giới thiệu</a>
                 </li>
                 <li>
-                    <a href="">Liên hệ</a>
+                    <a href="./Contact">Liên hệ</a>
                 </li>
             </ul>
         </div>

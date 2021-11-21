@@ -7,7 +7,7 @@ class DB
     protected $servername = "localhost";
     protected $username = "root";
     protected $password = "";
-    protected $dbname = "user_register";
+    protected $dbname = "web2-db-v1.sql";
 
     function __construct()
     {

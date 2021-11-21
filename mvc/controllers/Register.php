@@ -5,14 +5,10 @@ class Register extends Controller
     {
         $this->view("register");
     }
-    function post()
+    function Process()
     {
+        // print_r($_POST);
         $model = $this->model("Authentication");
-        $model->Register($_POST['username'], $_POST['password'], $_POST['confirmPassword']);
-    }
-
-    function Sayhi()
-    {
-        print_r($_POST);
+        $model->Register($_POST);
     }
 }

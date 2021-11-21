@@ -1,11 +1,11 @@
 <?php
-class Login extends Controller
+class Service extends Controller
 {
     function __construct()
     {
-        $this->view("login");
+        $this->view("service");
     }
-    function Process()
+    function Sayhi()
     {
         // print_r($_POST);
         $model = $this->model("Authentication");

@@ -7,7 +7,7 @@ class Authentication extends DB
             header("Location: ../Login?error=emptyfields");
             exit();
         } else {
-            $sql = "SELECT * FROM user WHERE username = ?";
+            $sql = "SELECT * FROM user WHERE Usename = ?";
             $stmt = mysqli_stmt_init($this->con);
             //check if query can be perform
             if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -20,15 +20,15 @@ class Authentication extends DB
                 //check if result is empty or not
                 if ($row = mysqli_fetch_assoc($result)) {
                     //hash password to check if password is correct
-                    $passCheck = password_verify($password, $row['password']);
+                    $passCheck = password_verify($password, $row['Password']);
                     if ($passCheck == false) {
                         header("Location: ../Login?error=wrongpassword");
                         exit();
                     } else if ($passCheck == true) {
                         //password is correct
                         //create Session
-                        $_SESSION['sessionId'] = $row['id'];
-                        $_SESSION['sessionUser'] = $row['username'];
+                        $_SESSION['sessionId'] = $row['ID'];
+                        $_SESSION['sessionUser'] = $row['Usename'];
                         //redirect user to homepage
                         header("Location: ../Intro?success=loggedin");
                         exit();
@@ -44,55 +44,70 @@ class Authentication extends DB
         }
     }
 
-    public function Register($username, $password, $confirmPassword)
+    public function Register($array)
     {
-
+        // print_r($array);
         //check if any varible is empty
-        if (empty($username) || empty($password) || empty($confirmPassword)) {
-            header("Location: ./Register?error=emptyfields&username=" . $username);
+        if (empty($array['username']) || empty($array['password']) || empty($array['confirmPassword'])) {
+            header("Location: ../Register?error=emptyfields&username=" . $array['username']);
             exit();
         }
         // check if username have any invalid character
-        else if (!preg_match("/^[a-zA-Z0-9]*/", $username)) {
-            header("Location: ./Register?error=invalidusername&username=" . $username);
+        else if (!preg_match("/^[a-zA-Z0-9]*/", $array['username'])) {
+            header("Location: ../Register?error=invalidusername&username=" . $array['username']);
             exit();
         }
         //check if the confirm password matched
-        else if ($password !== $confirmPassword) {
-            header("Location: ./Register?error=passwordsdonotmatch&username=" . $username);
+        else if ($array['password'] !== $array['confirmPassword']) {
+            header("Location: ../Register?error=passwordsdonotmatch&username=" . $array['username']);
             exit();
         }
         // check if username is already taken
         else {
             //prepared statement increased security in our database
 
-            $sql = "SELECT username FROM user WHERE username =?";
+            $sql = "SELECT Usename FROM user WHERE Usename =?";
             $stmt = mysqli_stmt_init($this->con);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("Location: ./Register?error=sqlerror");
+                header("Location: ../Register?error=sqlerror");
                 exit();
             } else {
-                mysqli_stmt_bind_param($stmt, "s", $username);
+                mysqli_stmt_bind_param($stmt, "s", $array['username']);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_store_result($stmt);
                 $rowCount = mysqli_stmt_num_rows($stmt);
 
                 if ($rowCount > 0) {
-                    header("Location: ./Register?error=usernametaken");
+                    header("Location: ../Register?error=usernametaken");
                     exit();
                 } else {
                     //Finally, after all check, we insert into database
-                    $sql = "INSERT INTO user (username, password) VALUES (?, ?)";
+                    $sql = "INSERT INTO user (ID, Last_Name, First_Name, Usename ,Password, Email, Telephone, Street_Address, Town_City, Postcode_ZIP, Account, Bank_Name, User_Type ) VALUES (20 ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'member' )";
                     $stmt = mysqli_stmt_init($this->con);
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        header("Location: ./Register?error=sqlerror");
+                        header("Location: ../Register?error=stmterror");
                         exit();
                     } else {
                         //hash password
-                        $hashPass = password_hash($password, PASSWORD_DEFAULT);
-                        mysqli_stmt_bind_param($stmt, "ss", $username, $hashPass);
+                        $hashPass = password_hash($array['password'], PASSWORD_DEFAULT);
+                        mysqli_stmt_bind_param(
+                            $stmt,
+                            "sssssssssss",
+                            $array['lastname'],
+                            $array['firstname'],
+                            $array['username'],
+                            $hashPass,
+                            $array['email'],
+                            $array['telephone'],
+                            $array['streetAddress'],
+                            $array['townCity'],
+                            $array['postcode'],
+                            $array['account'],
+                            $array['bankName']
+
+                        );
                         mysqli_stmt_execute($stmt);
-                        header("Location: ./Register?success=registered");
+                        header("Location: ../Register?success=registered");
                         exit();
                     }
                 }
