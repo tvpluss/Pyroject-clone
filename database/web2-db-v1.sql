@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 15, 2021 at 04:47 PM
+-- Generation Time: Nov 23, 2021 at 03:38 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -63,7 +63,8 @@ INSERT INTO `cart` (`ID`, `User_ID`) VALUES
 (8, 3),
 (9, 4),
 (10, 5),
-(11, 6);
+(11, 6),
+(12, 7);
 
 -- --------------------------------------------------------
 
@@ -113,6 +114,20 @@ INSERT INTO `catalog` (`ID`, `Name`, `Product_ID`) VALUES
 (7, 'IOT GATEWAY', 6),
 (8, 'DIGITAL INPUT OUTPUT MODULE', 7),
 (9, 'ANALOG ACQUISITION MODULE', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Telephone` int(11) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Message_content` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -280,7 +295,16 @@ INSERT INTO `user` (`ID`, `Last_Name`, `First_Name`, `Usename`, `Password`, `Ema
 (3, 'Đào Quốc', 'Bảo', 'bao', '123', 'baoquoc30', 334226326, '192/2, Trần Hưng Đạo, phường 1, quận 9', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
 (4, 'Trương Vĩnh', 'Phước', 'phuoc', '123', 'phuocvinh@gmail.com', 963459999, '62, Cộng Hòa, phường 13, quận Tân Bình', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
 (5, 'Thành', 'Đạt', 'dat', '123', 'dat.thanh@gmail.com', 986159489, '256, Trường Chinh, phường 9, quận Tân Phú', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
-(6, 'Tô', 'Hòa', 'hoa', '123', 'hoa.to@gmail.com', 953678593, '105, Lý Thường Kiệt, phường 5, quận 10', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin');
+(6, 'Tô', 'Hòa', 'hoa', '123', 'hoa.to@gmail.com', 953678593, '105, Lý Thường Kiệt, phường 5, quận 10', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
+(7, 'asfsfasfasf', 'sdhgdhdhdh', 'aaaaaaasfsdsf', 'qweas', 'adasfsdgs@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'member');
+
+--
+-- Triggers `user`
+--
+DELIMITER $$
+CREATE TRIGGER `after_user_insert` AFTER INSERT ON `user` FOR EACH ROW INSERT INTO cart SET cart.User_ID = NEW.ID
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -314,6 +338,12 @@ ALTER TABLE `cart_item_list`
 ALTER TABLE `catalog`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Product_ID` (`Product_ID`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `news`
@@ -369,13 +399,19 @@ ALTER TABLE `buying_history`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `catalog`
 --
 ALTER TABLE `catalog`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -405,7 +441,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
