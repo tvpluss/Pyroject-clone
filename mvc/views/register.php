@@ -21,7 +21,6 @@
             } else {
                 document.getElementById('warningPassword').innerHTML = 'Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number:';
             }
-
         }
 
         function checkUsename(str) {
@@ -39,28 +38,24 @@
                         }
                     }
                 }
-                xmlhttp.open("GET", "./Api/CheckUsename?Usename=" + str, true);
+                xmlhttp.open("GET", "./Register/CheckUsename?Usename=" + str, true);
                 xmlhttp.send();
 
             }
         }
-        $(document).ready(function() {
-            console.log("ajax");
-            $('#checkID').click((e) => {
-                console.log("clicked");
-                $.ajax({
-                    url: './Api/CheckUsename',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
-                        Usename: $('#username').val()
-                    }
-                }).done((data_response) => {
-                    console.log(data_response);
-                    document.getElementById("bankName").value = "check";
-                })
-            })
-        })
+
+        function checkConfirmPassword(str) {
+            if (str.length == 0) {
+                document.getElementById('warningConfirmPassword').innerHTML = '';
+            } else {
+                const Password = document.getElementById('Password').value;
+                if (str != Password) {
+                    document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password do not match password';
+                } else {
+                    document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password match password';
+                }
+            }
+        }
     </script>
 </head>
 
@@ -72,9 +67,10 @@
             <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
             <input type="text" name="username" id="username" placeholder="Username" onkeyup="checkUsename(this.value)">
             <span id="warningUsername"></span>
-            <input type="password" name="password" placeholder="Password" onkeyup="checkPassword(this.value)">
+            <input type="password" name="password" id="Password" placeholder="Password" onkeyup="checkPassword(this.value)">
             <span id="warningPassword"></span>
-            <input type="password" name="confirmPassword" placeholder="Confirm Password">
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" onkeyup="checkConfirmPassword(this.value)">
+            <span id="warningConfirmPassword"></span>
             <input type="text" name="firstname" placeholder="First name">
             <input type="text" name="lastname" placeholder="Last name">
             <input type="email" name="email" placeholder="Email">
@@ -87,7 +83,6 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="signup">Sign up</button>
 
         </form>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" id="checkID" name="checkID" value="checkID">checkID</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>

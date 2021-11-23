@@ -1,7 +1,7 @@
 <?php
 class Intro extends Controller
 {
-    function __construct()
+    function Default()
     {
 
         // echo $_SESSION['sessionId'];

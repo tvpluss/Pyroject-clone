@@ -1,7 +1,7 @@
 <?php
 class Contact extends Controller
 {
-    function __construct()
+    function Default()
     {
         $this->view("contact");
     }

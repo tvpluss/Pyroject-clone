@@ -5,9 +5,9 @@ class App
     // Đại diện cho địa chỉ, mặc định là Home
     protected $controller = "Error";
     // // Đại diện cho hoạt động, Mặc định là default
-    protected $action = "default";
+    protected $action = "Default";
     // // Đối số truyền vào 
-    // protected $params = [];
+    protected $params = [];
 
     function __construct()
     {
@@ -36,6 +36,8 @@ class App
             // Params
             $this->params = $arr ? array_values($arr) : [];
             call_user_func_array([$this->controller, $this->action], $this->params);
+        } else {
+            call_user_func([$this->controller, $this->action]);
         }
     }
     // Lấy Url dưới dạng mảng

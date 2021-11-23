@@ -1,7 +1,7 @@
 <?php
 class Register extends Controller
 {
-    function __construct()
+    function Default()
     {
         $this->view("register");
     }
@@ -11,8 +11,11 @@ class Register extends Controller
         $model = $this->model("Authentication");
         $model->Register($_POST);
     }
-    function CheckID()
+    function CheckUsename()
     {
-        return "ID";
+        $array = [];
+        $model = $this->model("Authentication");
+        $array["result"] = $model->CheckUsename($_GET['Usename']);
+        echo json_encode($array);
     }
 }
