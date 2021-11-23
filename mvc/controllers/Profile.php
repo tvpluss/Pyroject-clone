@@ -1,6 +1,14 @@
 <?php
 class Profile extends Controller
 {
+    function __construct()
+    {
+        if (!isset($_SESSION['sessionId'])) {
+            require_once "./mvc/controllers/Errors.php";
+            $error = new Errors;
+            $error->Default("No profile");
+        }
+    }
     public function Default()
     {
         require_once "./mvc/controllers/Errors.php";
@@ -11,8 +19,9 @@ class Profile extends Controller
     {
         // Initialize the session.
         // If you are using session_name("something"), don't forget it now!
-        session_start();
-
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         // Unset all of the session variables.
         $_SESSION = array();
 

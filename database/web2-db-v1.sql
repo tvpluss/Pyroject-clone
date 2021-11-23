@@ -290,13 +290,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `Last_Name`, `First_Name`, `Usename`, `Password`, `Email`, `Telephone`, `Street_Address`, `Town_City`, `Postcode_ZIP`, `Account`, `Bank_Name`, `User_Type`) VALUES
-(1, 'Nguyễn Thị', 'Trang', 'trang123', '123', 'ntrang123@gmail.com', 123456789, '58, Phạm Văn Đồng, quận Bình Thạnh', 'Thành phố Hồ Chí Minh', 700000, 111222444666888, 'OCB', 'member'),
-(2, 'Đỗ Nhật', 'Hoàng', 'hoang2', '123', 'hoangdo7789@gmail.com', 326789562, '125/26/8, Lương Định Của, phường 2, quận 4', 'Thành phố Hồ Chí Minh', 700000, NULL, NULL, 'member'),
-(3, 'Đào Quốc', 'Bảo', 'bao', '123', 'baoquoc30', 334226326, '192/2, Trần Hưng Đạo, phường 1, quận 9', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
-(4, 'Trương Vĩnh', 'Phước', 'phuoc', '123', 'phuocvinh@gmail.com', 963459999, '62, Cộng Hòa, phường 13, quận Tân Bình', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
-(5, 'Thành', 'Đạt', 'dat', '123', 'dat.thanh@gmail.com', 986159489, '256, Trường Chinh, phường 9, quận Tân Phú', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
-(6, 'Tô', 'Hòa', 'hoa', '123', 'hoa.to@gmail.com', 953678593, '105, Lý Thường Kiệt, phường 5, quận 10', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
-(7, 'asfsfasfasf', 'sdhgdhdhdh', 'aaaaaaasfsdsf', 'qweas', 'adasfsdgs@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'member');
+(1, 'Nguyễn Thị', 'Trang', 'trang123', '$2y$10$XUpPZZVtTPo8uGAqKSPNVe7yIjC6QR67xAoSJ84x5TYApSV7.hv0.', 'ntrang123@gmail.com', 123456789, '58, Phạm Văn Đồng, quận Bình Thạnh', 'Thành phố Hồ Chí Minh', 700000, 111222444666888, 'OCB', 'member'),
+(2, 'Đỗ Nhật', 'Hoàng', 'hoang2', '$2y$10$XUpPZZVtTPo8uGAqKSPNVe7yIjC6QR67xAoSJ84x5TYApSV7.hv0.', 'hoangdo7789@gmail.com', 326789562, '125/26/8, Lương Định Của, phường 2, quận 4', 'Thành phố Hồ Chí Minh', 700000, NULL, NULL, 'member'),
+(3, 'Đào Quốc', 'Bảo', 'bao', '$2y$10$XUpPZZVtTPo8uGAqKSPNVe7yIjC6QR67xAoSJ84x5TYApSV7.hv0.', 'baoquoc30', 334226326, '192/2, Trần Hưng Đạo, phường 1, quận 9', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
+(4, 'Trương Vĩnh', 'Phước', 'phuoc', '$2y$10$XUpPZZVtTPo8uGAqKSPNVe7yIjC6QR67xAoSJ84x5TYApSV7.hv0.', 'phuocvinh@gmail.com', 963459999, '62, Cộng Hòa, phường 13, quận Tân Bình', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
+(5, 'Thành', 'Đạt', 'dat', '$2y$10$XUpPZZVtTPo8uGAqKSPNVe7yIjC6QR67xAoSJ84x5TYApSV7.hv0.', 'dat.thanh@gmail.com', 986159489, '256, Trường Chinh, phường 9, quận Tân Phú', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
+(6, 'Tô', 'Hòa', 'hoa', '$2y$10$XUpPZZVtTPo8uGAqKSPNVe7yIjC6QR67xAoSJ84x5TYApSV7.hv0.', 'hoa.to@gmail.com', 953678593, '105, Lý Thường Kiệt, phường 5, quận 10', 'Thành phố Hồ Chí Minh', NULL, NULL, NULL, 'admin'),
+(7, 'asfsfasfasf', 'sdhgdhdhdh', 'aaaaaaasfsdsf', '$2y$10$XUpPZZVtTPo8uGAqKSPNVe7yIjC6QR67xAoSJ84x5TYApSV7.hv0.', 'adasfsdgs@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'member');
 
 --
 -- Triggers `user`
