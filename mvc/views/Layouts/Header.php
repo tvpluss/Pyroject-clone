@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pryject</title>
+    <title>Pyroject</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="./public/assets/css/main.css">
@@ -54,7 +54,7 @@
                     echo ("
                     <div class=\"dropdown\">
                         <a class=\"dropdown-toggle\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                        <img src=\"./public/assets/image/avatar.jpg\" alt=\"\"><span>Name customer</span></a>
+                        <img src=\"./public/assets/image/avatar.jpg\" alt=\"\"><span>" . $_SESSION['sessionUser'] . "</span></a>
                         <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">
                             <li><a class=\"dropdown-item\" href=\"#\">Chỉnh sửa thông tin</a></li>
                             <li><a class=\"dropdown-item\" href=\"#\">Lịch sử mua hàng</a></li>

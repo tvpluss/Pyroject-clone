@@ -3,7 +3,9 @@ require_once __DIR__ . "./Layouts/Header.php";
 ?>
 <div class="login container-sm">
     <form method="post" action="./Login/Process">
-        <img src="./public/assets/image/logo-png2.png" alt="">
+        <a href="./Index">
+            <img src="./public/assets/image/logo-png2.png" alt="">
+        </a>
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>

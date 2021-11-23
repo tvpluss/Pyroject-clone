@@ -62,7 +62,9 @@
 <body>
     <div class="register container-sm">
         <form method="post" action="./Register/Process">
-            <img src="./public/assets/image/logo-png2.png" alt="">
+            <a href="./Index">
+                <img src="./public/assets/image/logo-png2.png" alt="">
+            </a>
             <br>
             <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
             <input type="text" name="username" id="username" placeholder="Username" onkeyup="checkUsename(this.value)">
