@@ -11,6 +11,25 @@ if (isset($_SESSION['sessionId'])) {
     $Id = -1;
 }
 ?>
+<script>
+    $(document).ready(function() {
+        $('#submit').click((e) => {
+            console.log("submit");
+            $.post("./Contact/Submit", {
+                name: $('#name').val(),
+                phonenumber: $('#phonenumber').val(),
+                email: $('#email').val(),
+                message: $('#message').val()
+            }, function(data, status) {
+                if (data) {
+                    alert("Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp");
+                } else {
+                    alert("Gửi lời nhắn thất bại");
+                }
+            })
+        })
+    })
+</script>
 <script type="text/javascript">
     window.onload = function() {
         if ('<?php echo $Id ?>' != -1) {
@@ -44,7 +63,7 @@ if (isset($_SESSION['sessionId'])) {
             </div>
             <div class="col-12 col-lg-7">
                 <div class="item">
-                    <form action="./Contact/Submit">
+                    <form method="post">
                         <label for="name">Họ và tên</label>
                         <input type="text" name="name" id="name" value>
                         <label for="phonenumber">Số điện thoại liên hệ</label>
@@ -53,7 +72,7 @@ if (isset($_SESSION['sessionId'])) {
                         <input type="email" name="email" id="email">
                         <label for="message">Tin nhắn</label>
                         <textarea name="message" id="message" rows="6"></textarea>
-                        <button type="submit">Gửi tin nhắn</button>
+                        <button type="button" id="submit">Gửi tin nhắn</button>
                     </form>
                 </div>
             </div>

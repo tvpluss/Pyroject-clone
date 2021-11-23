@@ -5,14 +5,15 @@ class Contact extends Controller
     {
         $this->view("contact");
     }
-    function Sayhi()
-    {
-        // print_r($_POST);
-        $model = $this->model("Authentication");
-        $model->Login($_POST['username'], $_POST['password']);
-    }
     function Submit()
     {
-        echo "Submit";
+        // echo $_POST;
+        $name = $_POST['name'];
+        $phonenumber = $_POST['phonenumber'];
+        $email = $_POST['email'];
+        $content = $_POST['message'];
+        $model = $this->model('Message');
+        $result = $model->Submit($name, $phonenumber, $email, $content);
+        echo $result;
     }
 }
