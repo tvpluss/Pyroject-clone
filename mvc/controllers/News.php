@@ -6,8 +6,24 @@ class News extends Controller
     {
         // $this->view("news");
     }
+    function GetAllArticles()
+    {
+        $model = $this->model("Article");
+        $Articles = $model->getAllArticles();
+        return $Articles;
+    }
     function Default()
     {
-        $this->view("news");
+        $Articles = $this->GetAllArticles();
+        $this->view("news", $Articles);
+    }
+    function Article($data)
+    {
+        // echo ($data);
+        $model = $this->model("Article");
+        $Article = $model->getArticle($data);
+        if ($Article == false) {
+            echo "No Article Found";
+        } else echo $Article;
     }
 }

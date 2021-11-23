@@ -11,4 +11,8 @@ class Contact extends Controller
         $model = $this->model("Authentication");
         $model->Login($_POST['username'], $_POST['password']);
     }
+    function Submit()
+    {
+        echo "Submit";
+    }
 }

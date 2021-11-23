@@ -21,47 +21,20 @@ require_once __DIR__ . './Layouts/Header.php';
   </ul>
 </div>
 </div>
-
 <div class="news">
   <div class="container-md">
     <h1>Trang tin tức</h1>
-    <a href="" class="post">
-      <img src="./public/assets/image/avatar.jpg" alt="img">
-      <h3>title cua tin tuc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-        Architecto ipsam beatae porro nulla suscipit. Ipsa consequatur soluta delectus. Nostrum suscipit delectus
-        sint obcaecati odit quos quaerat.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-      </p>
-    </a>
-    <a href="" class="post">
-      <img src="./public/assets/image/avatar.jpg" alt="img">
-      <h3>title cua tin tuc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-        Architecto ipsam beatae porro nulla suscipit. Ipsa consequatur soluta delectus. Nostrum suscipit delectus
-        sint obcaecati odit quos quaerat.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-      </p>
-    </a>
-    <a href="" class="post">
-      <img src="./public/assets/image/avatar.jpg" alt="img">
-      <h3>title cua tin tuc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-        Architecto ipsam beatae porro nulla suscipit. Ipsa consequatur soluta delectus. Nostrum suscipit delectus
-        sint obcaecati odit quos quaerat.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-      </p>
-    </a>
-    <a href="" class="post">
-      <img src="./public/assets/image/avatar.jpg" alt="img">
-      <h3>title cua tin tuc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-        Architecto ipsam beatae porro nulla suscipit. Ipsa consequatur soluta delectus. Nostrum suscipit delectus
-        sint obcaecati odit quos quaerat.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti praesentium voluptatibus repudiandae.
-      </p>
-    </a>
-
+    <?php
+    foreach ($data as $article) {
+      $str = "<a href=\"./News/Article/" . $article['ID'] . "\" class=\"post\">" . PHP_EOL;
+      $str = $str . "<img src=\"./public/assets/image/avatar.jpg\" alt=\"img\">";
+      $str = $str . "<h3>" . $article['Title'] . "</h3>";
+      $str = $str . "<p>" . $article['Author'] . "</p>";
+      $str = $str . "<p> Post Date: " . $article['Post_Date'] . "</p>";
+      $str = $str . "</a>";
+      echo $str;
+    }
+    ?>
   </div>
 </div>
 

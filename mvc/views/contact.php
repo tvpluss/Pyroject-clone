@@ -44,7 +44,7 @@ if (isset($_SESSION['sessionId'])) {
             </div>
             <div class="col-12 col-lg-7">
                 <div class="item">
-                    <form action="">
+                    <form action="./Contact/Submit">
                         <label for="name">Họ và tên</label>
                         <input type="text" name="name" id="name" value>
                         <label for="phonenumber">Số điện thoại liên hệ</label>

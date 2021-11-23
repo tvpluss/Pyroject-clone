@@ -20,7 +20,11 @@ class App
         // Controller
         if (file_exists("./mvc/controllers/" . $arr[0] . ".php")) {
             $this->controller = $arr[0];
+            unset($arr[0]);
+        } else {
+            $this->controller = "Errors";
         }
+        // print_r($this->controller);
         // Nếu không thay đổi giá trị, controller mặc định là home -> lấy controller phù hợp
         require_once "./mvc/controllers/" . $this->controller . ".php";
         // Controller chỉ mới là kiểu string, phải đưa nó về lại 1 cái controller đúng nghĩa
@@ -35,6 +39,7 @@ class App
             unset($arr[1]);
             // Params
             $this->params = $arr ? array_values($arr) : [];
+            // print_r($this->params);
             call_user_func_array([$this->controller, $this->action], $this->params);
         } else {
             call_user_func([$this->controller, $this->action]);
