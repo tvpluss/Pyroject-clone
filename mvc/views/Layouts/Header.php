@@ -28,7 +28,7 @@
                     <a href="./Index">Trang chủ</a>
                 </li>
                 <li>
-                    <a href="">Sản Phẩm</a>
+                    <a href="./Product">Sản Phẩm</a>
                 </li>
                 <li>
                     <a href="./Service">Dịch Vụ</a>
