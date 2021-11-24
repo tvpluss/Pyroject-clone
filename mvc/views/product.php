@@ -55,7 +55,7 @@ require_once __DIR__ . './Layouts/Header.php';
                 ?>
                         <div class="col-6 col-sm-4 col-md-3 col-md-2">
                             <div class="item">
-                                <a href="">
+                                <a href="./Details?proid=<?php echo $result['ID'] ?>">
                                     <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
 
                                     </div>
