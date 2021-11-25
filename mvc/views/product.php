@@ -28,28 +28,27 @@ require_once __DIR__ . './Layouts/Header.php';
             <div class="row">
                 <a href="./Product/Details/1">Bâms</a>
                 <?php
-                $product = new ProductModel();
+                /*$product = new ProductModel();*/
                 $fm = new Format();
-                $all_product = $product->get_all_product();
-                if ($all_product) {
-                    while ($result = $all_product->fetch_assoc()) {
+                //$all_product = $product->get_all_product();
+                    foreach ($data as $result) {
                 ?>
                         <div class="col-6 col-sm-4 col-md-3 col-md-2">
                             <div class="item">
-                                <a href="./Details?proid=<?php echo $result['ID'] ?>">
+                                <a href="./Details/Default/<?php echo $result['ID'] ?>">
                                     <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
 
                                     </div>
                                 </a>
                                 <div class="tag">
                                     <?php
-                                    $productt = new ProductModel();
+                                    /*$productt = new ProductModel();
                                     $get_product_details = $productt->get_details_catalog($result['ID']);
                                     if ($get_product_details) {
                                         while ($result_details = $get_product_details->fetch_assoc()) {
                                             echo $result_details['Name'];
                                         }
-                                    }
+                                    }*/
                                     ?>
                                 </div>
                                 <div>
@@ -62,7 +61,6 @@ require_once __DIR__ . './Layouts/Header.php';
                             </div>
                         </div>
                 <?php
-                    }
                 }
                 ?>
             </div>

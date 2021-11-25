@@ -12,8 +12,10 @@ class Details extends Controller
         
 
     }
-    public function Default(){
-        $this->model("DetailsModel");
-        $this->view("Details");
+    public function Default($id){
+        $model = $this->model("ProductModel");
+        $data = $model->get_details_catalog($id);
+        $data2= $model->get_details_catalog($id);
+        $this->view("Details",$data,$data2);
     }
 }
