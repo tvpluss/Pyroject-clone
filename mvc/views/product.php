@@ -18,7 +18,7 @@ require_once __DIR__ . './Layouts/Header.php';
                     </p>
                 </div>
                 <div class="col-12 col-lg-7">
-                    <img src="./assets/image/image-48-1.webp" alt="">
+                    <img src="./public/assets/image/image-48-1.webp" alt="">
                 </div>
             </div>
         </div>
