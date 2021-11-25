@@ -15,6 +15,7 @@ class News extends Controller
     function Default()
     {
         $Articles = $this->GetAllArticles();
+        // print_r($Articles);
         $this->view("news", $Articles);
     }
     function Article($data)

@@ -2,26 +2,6 @@
 require_once __DIR__ . './Layouts/Header.php';
 ?>
 
-<div class="menu">
-    <ul>
-        <li>
-            <a href="">Trang chủ</a>
-        </li>
-        <li>
-            <a href="">Sản Phẩm</a>
-        </li>
-        <li>
-            <a href="">Dịch Vụ</a>
-        </li>
-        <li>
-            <a href="">Giới thiệu</a>
-        </li>
-        <li>
-            <a href="">Liên hệ</a>
-        </li>
-    </ul>
-</div>
-</div>
 
 <div class="products">
     <div class="top">
@@ -46,6 +26,7 @@ require_once __DIR__ . './Layouts/Header.php';
     <div class="list">
         <div class="container-md">
             <div class="row">
+                <a href="./Product/Details/1">Bâms</a>
                 <?php
                 $product = new ProductModel();
                 $fm = new Format();
