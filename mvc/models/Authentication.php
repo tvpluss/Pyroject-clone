@@ -14,6 +14,7 @@ class Authentication extends DB
             return true;
         } else return false;
     }
+
     public function Login($username, $password)
     {
         if (empty($username) || empty($password)) {

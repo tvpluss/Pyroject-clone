@@ -1,3 +1,8 @@
+<?php
+print_r($_SESSION);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,28 +19,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="./public/assets/css/main.css">
     <link rel="stylesheet" href="./public/assets/css/register.css">
+    <script>
+
+    </script>
 </head>
 
 <body>
     <div class="register container-sm">
-        <form method="post" action="./Register/Process">
+        <form method="post">
             <a href="./Index">
                 <img src="./public/assets/image/logo-png2.png" alt="">
             </a>
             <br>
-            <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
-            <label for="username">Username*:</label>
-            <input type="text" name="username" id="username" placeholder="Username" onkeyup="checkUsename(this.value)">
-            <br><span id="warningUsername" class="warning"></span>
-            <label for="password">Password*:</label>
-            <input type="password" name="password" id="Password" placeholder="Password" onkeyup="checkPassword(this.value)">
-            <span id="warningPassword" class="warning"></span>
-            <label for="confirmPassword">Confirm password*:</label>
-            <input type="password" name="confirmPassword" placeholder="Confirm Password" onkeyup="checkConfirmPassword(this.value)">
-            <span id="warningConfirmPassword" class="warning"></span>
-            <label for="firstname">First Name*:</label>
+            <h1 class="h3 mb-3 font-weight-normal">Your Profile</h1>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="<?php echo $_SESSION['sessionUser'] ?>" disabled>
+            <label for="firstname">First Name:</label>
             <input type="text" name="firstname" placeholder="First name">
-            <label for="lastname">Last Name*:</label>
+            <label for="lastname">Last Name:</label>
             <input type="text" name="lastname" placeholder="Last name">
             <label for="email">Email:</label>
             <input type="email" name="email" placeholder="Email">
@@ -51,7 +52,7 @@
             <input type="text" name="account" placeholder="Optional">
             <label for="bankName">Bank Name:</label>
             <input type="text" name="bankName" id="bankName" placeholder="Optional">
-            <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="signup">Sign up</button>
+            <button class="btn btn-lg btn-primary btn-block" type="button" name="submit" value="signup">Save</button>
 
         </form>
     </div>

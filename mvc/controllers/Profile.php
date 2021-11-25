@@ -11,9 +11,7 @@ class Profile extends Controller
     }
     public function Default()
     {
-        require_once "./mvc/controllers/Errors.php";
-        $error = new Errors;
-        $error->Default("No profile");
+        $this->view("profile");
     }
     public function Logout()
     {
