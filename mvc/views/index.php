@@ -126,7 +126,7 @@ require_once __DIR__ . "./Layouts/Header.php";
                 </div>
             </div>
         </div>
-        <a href="#" class="btn">Tìm hiểu sản phẩm</a>
+        <a href="./Product" class="btn">Tìm hiểu sản phẩm</a>
     </div>
     <div class="architecture">
         <h2>KIẾN TRÚC PHẦN MỀM PYRIOT M2C</h2>
