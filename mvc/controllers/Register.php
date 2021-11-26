@@ -7,7 +7,7 @@ class Register extends Controller
     }
     function Process()
     {
-        // print_r($_POST);
+        print_r($_POST);
         $model = $this->model("Authentication");
         $model->Register($_POST);
     }

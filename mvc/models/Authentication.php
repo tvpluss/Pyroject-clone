@@ -127,7 +127,7 @@ class Authentication extends DB
 
                         );
                         mysqli_stmt_execute($stmt);
-                        header("Location: ../Register?success=registered");
+                        header("Location: ../Login?success=registered");
                         exit();
                     }
                 }
