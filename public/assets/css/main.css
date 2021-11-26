@@ -587,6 +587,24 @@ header .auth .dropdown-toggle {
   color: #01a2e4;
 }
 
+.profile {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.profile input {
+  margin-bottom: 10px;
+}
+.profile h1 {
+  display: inline-block;
+  margin-right: 50px;
+}
+.profile button {
+  display: inline-block;
+}
+.profile input {
+  outline: none;
+}
+
 #toast {
   position: fixed;
   top: 25px;

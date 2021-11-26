@@ -40,10 +40,11 @@ class Profile extends Controller
 
         // Finally, destroy the session.
         session_destroy();
-        echo ("
-            <div>
-            <h1>You have logged out</h1>
-            <a href=\"../Index\">Go back to home</a>
-            </div>");
+        header("Location: ../Index.php");
+    }
+    public function Edit()
+    {
+        // Luu thong tin vao database
+        header("Location: ../Profile");
     }
 }
