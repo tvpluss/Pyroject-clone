@@ -54,6 +54,27 @@ function checkConfirmPassword(str) {
     }
 }
 
+function checkBuyPrice(num) {
+    if (num < 0) {
+        document.getElementById('warningBuyPrice').innerHTML = 'This value is not be less than 0';
+    
+    }
+}
+function checkSellPrice(num) {
+    if (num < 0) {
+        
+        document.getElementById('warningSellPrice').innerHTML = 'This value is not be less than 0';
+        
+    }
+}
+function checkQuantity(num) {
+    if (num < 0) {
+        
+        document.getElementById('warningQuantity').innerHTML = 'This value is not be less than 0';
+    }
+}
+
+
 function toast({
     type = "",
     title = "",
