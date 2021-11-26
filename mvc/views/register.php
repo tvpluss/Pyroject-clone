@@ -27,7 +27,6 @@ require_once __DIR__ . "./Layouts/Header.php";
     <input type="email" class="form-control" name="email" placeholder="Email">
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="signup">Sign up</button>
   </form>
-  <button onclick="showSuccess()">Test</button>
 </div>
 
 <?php

@@ -28,7 +28,7 @@
     <header>
       <div class="logo">
         <i class="fas fa-bars menu-icon"></i>
-        <img src="./public/assets/image/logo-png2.png" alt="logo">
+        <a href="Index.php"><img src="./public/assets/image/logo-png2.png" alt="logo"></a>
       </div>
       <ul>
         <li>

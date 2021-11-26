@@ -102,7 +102,7 @@ function showSuccess() {
     });
 }
 
-if (window.location.search.includes("success")) {
+if (window.location.search.includes("success=registered")) {
     toast({
         type: "toast--success",
         title: "Success",

@@ -118,7 +118,7 @@ header .auth .dropdown-toggle {
 
 @media (min-width: 992px) {
   .menu,
-.menu.active {
+  .menu.active {
     display: none !important;
   }
 }
@@ -622,10 +622,10 @@ header .auth .dropdown-toggle {
   color: green;
 }
 #toast .toast--error {
-  border-color: red;
+  border-color: rgb(167, 185, 0);
 }
 #toast .toast--error .toast__icon {
-  color: red;
+  color: rgb(176, 216, 0);
 }
 
 /*# sourceMappingURL=main.css.map */
