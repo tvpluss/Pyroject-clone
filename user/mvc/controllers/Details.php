@@ -14,11 +14,17 @@ class Details extends Controller
     }
     public function Default()
     {
-        $id = isset($_GET['ID']) ? $_GET['ID'] : 0;
-        $model = $this->model("ProductModel");
-        $data = $model->get_details_catalog($id);
-        // $data2 = $model->get_details_catalog($id);
-        $this->view("details", $data);
+        if (isset($_GET['ID'])) {
+            $id = $_GET['ID'];
+            $model = $this->model("ProductModel");
+            $data = $model->get_details_catalog($id);
+            // $data2 = $model->get_details_catalog($id);
+            $this->view("details", $data);
+        } else {
+            require_once "./mvc/controllers/Errors.php";
+            $error = new Errors;
+            $error->Default("No Product ID");
+        }
     }
     public function addToCart()
     {

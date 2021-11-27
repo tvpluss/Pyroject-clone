@@ -27,7 +27,6 @@ class Product extends Controller
         $result = $model->addToCart($productId, $cartId, $quantity);
         echo $result;
     }
-
     public function Details()
     {
         $id = $_GET['ID'];

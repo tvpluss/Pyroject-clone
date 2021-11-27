@@ -1,0 +1,19 @@
+.profile {
+  // display: flex;
+  margin: 0 auto;
+  max-width: 1200px;
+  // width: 100%;
+  input {
+    margin-bottom: 10px;
+  }
+  h1 {
+    display: inline-block;
+    margin-right: 50px;
+  }
+  button {
+    display: inline-block;
+  }
+  input {
+    outline: none;
+  }
+}
