@@ -1,5 +1,5 @@
 <?php
-class Article extends DB
+class ArticleModel extends DB
 {
     public function getAllArticles()
     {

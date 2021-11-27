@@ -8,7 +8,7 @@ class News extends Controller
     }
     function GetAllArticles()
     {
-        $model = $this->model("Article");
+        $model = $this->model("ArticleModel");
         $Articles = $model->getAllArticles();
         return $Articles;
     }
@@ -21,7 +21,7 @@ class News extends Controller
     function Article($data)
     {
         // echo ($data);
-        $model = $this->model("Article");
+        $model = $this->model("ArticleModel");
         $Article = $model->getArticle($data);
         if ($Article == false) {
             echo "No Article Found";
