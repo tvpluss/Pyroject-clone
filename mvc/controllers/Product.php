@@ -1,5 +1,5 @@
 <?php
-class product extends Controller
+class Product extends Controller
 {
     // function __construct()
     // {
@@ -23,5 +23,28 @@ class product extends Controller
     public function Details($data)
     {
         echo "Details" . $data;
+    }
+
+
+    public function getCartItemQuantity($productId, $cartId)
+    {
+        $model = $this->model("CartModel");
+        $result = $model->getCartItemQuantity($productId, $cartId);
+        return $result;
+    }
+    public function addToCart()
+    {
+        $productId = $_POST['productId'];
+        $cartId = intval($_POST['cartId']);
+        $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
+        $model = $this->model("CartModel");
+        $result = $model->addToCart($productId, $cartId, $quantity);
+        echo $result;
+        // echo 1 . " " . $result;
+        // // echo gettype($_POST['cartId']);
+        // // echo $_POST['cartId'] . " " . $_POST['productId'];
+        // $result = $model->addToCart($_POST['productId'], $_POST['cartId']);
+        // // $ID = $_POST['productID'];
+        // echo $result;
     }
 }

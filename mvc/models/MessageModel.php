@@ -1,5 +1,5 @@
 <?php
-class Message extends DB
+class MessageModel extends DB
 {
     public function Submit($Name, $Telephone, $Email, $Message_content)
     {

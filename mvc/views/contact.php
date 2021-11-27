@@ -12,43 +12,43 @@ if (isset($_SESSION['sessionId'])) {
 }
 ?>
 <script>
-$(document).ready(function() {
-  $('#submit').click((e) => {
-    console.log("submit");
-    $.post("./Contact/Submit", {
-      name: $('#name').val(),
-      phonenumber: $('#phonenumber').val(),
-      email: $('#email').val(),
-      message: $('#message').val()
-    }, function(data, status) {
-      if (data) {
-        toast({
-          type: "toast--success",
-          title: "Success",
-          msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
-          icon: "far fa-bell"
-        });
+  $(document).ready(function() {
+    $('#submit').click((e) => {
+      // console.log("submit");
+      $.post("./Contact/Submit", {
+        name: $('#name').val(),
+        phonenumber: $('#phonenumber').val(),
+        email: $('#email').val(),
+        message: $('#message').val()
+      }, function(data, status) {
+        if (data) {
+          toast({
+            type: "toast--success",
+            title: "Success",
+            msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
+            icon: "far fa-bell"
+          });
 
-      } else {
-        toast({
-          type: "toast--error",
-          title: "Error",
-          msg: "Gửi lời nhắn thất bại",
-          icon: "far fa-bell"
-        });
-      }
+        } else {
+          toast({
+            type: "toast--error",
+            title: "Error",
+            msg: "Gửi lời nhắn thất bại",
+            icon: "far fa-bell"
+          });
+        }
+      })
     })
   })
-})
 </script>
 <script type="text/javascript">
-window.onload = function() {
-  if ('<?php echo $Id ?>' != -1) {
-    document.getElementById('name').value = '<?php echo $User ?>';
-    document.getElementById('phonenumber').value = '<?php echo $Telephone ?>';
-    document.getElementById('email').value = '<?php echo $Email ?>';
+  window.onload = function() {
+    if ('<?php echo $Id ?>' != -1) {
+      document.getElementById('name').value = '<?php echo $User ?>';
+      document.getElementById('phonenumber').value = '<?php echo $Telephone ?>';
+      document.getElementById('email').value = '<?php echo $Email ?>';
+    }
   }
-}
 </script>
 <div class="contact">
   <div class="container-md">

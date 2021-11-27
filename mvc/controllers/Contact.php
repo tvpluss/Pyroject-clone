@@ -12,7 +12,7 @@ class Contact extends Controller
         $phonenumber = $_POST['phonenumber'];
         $email = $_POST['email'];
         $content = $_POST['message'];
-        $model = $this->model('Message');
+        $model = $this->model('MessageModel');
         $result = $model->Submit($name, $phonenumber, $email, $content);
         echo $result;
     }

@@ -39,8 +39,11 @@ class Authentication extends DB
                         header("Location: ../Login?error=wrongpassword");
                         exit();
                     } else if ($passCheck == true) {
+                        $record = $this->select("SELECT ID FROM cart WHERE User_ID = " . $row['ID']);
+                        $cartId = mysqli_fetch_assoc($record)['ID'];
                         //password is correct
                         //create Session
+                        $_SESSION['cartId'] = $cartId;
                         $_SESSION['sessionId'] = $row['ID'];
                         $_SESSION['sessionUser'] = $row['Usename'];
                         $_SESSION['sessionFirstName'] = $row['First_Name'];
