@@ -26,7 +26,6 @@ require_once __DIR__ . './Layouts/Header.php';
     <div class="list">
         <div class="container-md">
             <div class="row">
-                <a href="./Product/Details/1">Bâms</a>
                 <?php
                 /*$product = new ProductModel();*/
                 $fm = new Format();
@@ -35,7 +34,7 @@ require_once __DIR__ . './Layouts/Header.php';
                 ?>
                     <div class="col-6 col-sm-4 col-md-3 col-md-2">
                         <div class="item">
-                            <a href="./Details/Default/<?php echo $result['ID'] ?>">
+                            <a href="./Details?ID=<?php echo $result['ID'] ?>">
                                 <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
 
                                 </div>

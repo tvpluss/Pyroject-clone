@@ -9,21 +9,7 @@ class Product extends Controller
     //     // $this->view("product");
 
     // }
-    public function Default()
-    {
-        $model = $this->model("ProductModel");
-        $data = $model->getAllProducts();
-        // echo json_encode($result);
 
-        // print_r($result);
-        $this->view("product", $data);
-        // $this->model("ProductModel");
-        // $this->view("product");
-    }
-    public function Details($data)
-    {
-        echo "Details" . $data;
-    }
 
 
     public function getCartItemQuantity($productId, $cartId)
@@ -40,11 +26,25 @@ class Product extends Controller
         $model = $this->model("CartModel");
         $result = $model->addToCart($productId, $cartId, $quantity);
         echo $result;
-        // echo 1 . " " . $result;
-        // // echo gettype($_POST['cartId']);
-        // // echo $_POST['cartId'] . " " . $_POST['productId'];
-        // $result = $model->addToCart($_POST['productId'], $_POST['cartId']);
-        // // $ID = $_POST['productID'];
-        // echo $result;
+    }
+
+    public function Details()
+    {
+        $id = $_GET['ID'];
+        $model = $this->model("ProductModel");
+        $data = $model->get_details_catalog($id);
+        // $data2 = $model->get_details_catalog($id);
+        $this->view("details", $data);
+    }
+    public function Default()
+    {
+        $model = $this->model("ProductModel");
+        $data = $model->getAllProducts();
+        // echo json_encode($result);
+
+        // print_r($result);
+        $this->view("product", $data);
+        // $this->model("ProductModel");
+        // $this->view("product");
     }
 }

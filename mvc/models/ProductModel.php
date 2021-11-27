@@ -78,40 +78,41 @@ class ProductModel extends DB
         return $items;
     }
 
-    public function insert_product($data){
+    public function insert_product($data)
+    {
 
-		$this->db = new DB();
-        if (empty($data['Name']) || empty($data['Category']) || empty($data['Description']) || empty($data['Quantity']) || empty($data['Sell_price']) || empty($data['Buy_price']) || empty($data['Picture']) || $data['Buy_price'] <0 || $data['Sell_price'] <0 || $data['Quantity'] <0  ) {
+        $this->db = new DB();
+        if (empty($data['Name']) || empty($data['Category']) || empty($data['Description']) || empty($data['Quantity']) || empty($data['Sell_price']) || empty($data['Buy_price']) || empty($data['Picture']) || $data['Buy_price'] < 0 || $data['Sell_price'] < 0 || $data['Quantity'] < 0) {
             header("Location: ../addProduct?error=emptyfieldsOrinvalidvalue&Name=" . $data['Name']);
             exit();
         }
 
         // check if username is already taken
         else {
-        $Name = mysqli_real_escape_string($this->db->con, $data['Name']);
-        $Category = mysqli_real_escape_string($this->db->con, $data['Category']);
-        $Description = mysqli_real_escape_string($this->db->con, $data['Description']);
-        $Quantity = mysqli_real_escape_string($this->db->con, $data['Quantity']);
-        $Sell_price = mysqli_real_escape_string($this->db->con, $data['Sell_price']);
-        $Buy_price = mysqli_real_escape_string($this->db->con, $data['Buy_price']);
-        $Picture = mysqli_real_escape_string($this->db->con, $data['Picture']);
-        
-        
-        if(empty($data['Name']) || empty($data['Category']) || empty($data['Description']) || empty($data['Quantity']) || empty($data['Sell_price']) || empty($data['Buy_price']) || empty($data['Picture'])){
-            $alert = "<span class='error'>Fields must be not empty</span>";
-            return $alert;
-            //cho chắc =]]
-        }else{
-            $query = "INSERT INTO product(Nane,Description,Quantity,Sell_price,Buy_price,Picture) VALUES('$Name','$Description','$Quantity','$Sell_price','$Buy_price','$Picture')";
-            $result = $this->db->insert($query);
-            if($result){
-                $alert = "<span class='success'>Insert Product Successfully</span>";
+            $Name = mysqli_real_escape_string($this->db->con, $data['Name']);
+            $Category = mysqli_real_escape_string($this->db->con, $data['Category']);
+            $Description = mysqli_real_escape_string($this->db->con, $data['Description']);
+            $Quantity = mysqli_real_escape_string($this->db->con, $data['Quantity']);
+            $Sell_price = mysqli_real_escape_string($this->db->con, $data['Sell_price']);
+            $Buy_price = mysqli_real_escape_string($this->db->con, $data['Buy_price']);
+            $Picture = mysqli_real_escape_string($this->db->con, $data['Picture']);
+
+
+            if (empty($data['Name']) || empty($data['Category']) || empty($data['Description']) || empty($data['Quantity']) || empty($data['Sell_price']) || empty($data['Buy_price']) || empty($data['Picture'])) {
+                $alert = "<span class='error'>Fields must be not empty</span>";
                 return $alert;
-            }else{
-                $alert = "<span class='error'>Insert Product Not Success</span>";
-                return $alert;
+                //cho chắc =]]
+            } else {
+                $query = "INSERT INTO product(Nane,Description,Quantity,Sell_price,Buy_price,Picture) VALUES('$Name','$Description','$Quantity','$Sell_price','$Buy_price','$Picture')";
+                $result = $this->db->insert($query);
+                if ($result) {
+                    $alert = "<span class='success'>Insert Product Successfully</span>";
+                    return $alert;
+                } else {
+                    $alert = "<span class='error'>Insert Product Not Success</span>";
+                    return $alert;
+                }
             }
-        }
         }
     }
 }

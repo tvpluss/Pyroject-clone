@@ -62,7 +62,7 @@
                             <li><a class=\"dropdown-item\" href=\"./Profile/Logout\">Đăng xuất</a></li>
                         </ul>
                     </div>
-                    <a href=''>
+                    <a href='./Cart'>
                       <i class='fas fa-cart-plus cart-icon'></i>
                     </a>
                 ");
@@ -74,13 +74,13 @@
     <div class="menu">
       <ul>
         <li>
-          <a href="">Trang chủ</a>
+          <a href="./Index">Trang chủ</a>
         </li>
         <li>
-          <a href="">Sản Phẩm</a>
+          <a href="./Product">Sản Phẩm</a>
         </li>
         <li>
-          <a href="">Dịch Vụ</a>
+          <a href="./Service">Dịch Vụ</a>
         </li>
         <li>
           <a href="./Intro">Giới thiệu</a>
