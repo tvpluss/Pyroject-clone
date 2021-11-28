@@ -24,27 +24,29 @@ class OrderModel extends DB
     }
     public function insertAnOrder($UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $TownCity, $Account, $BankName, $Note = "", $PostcodeZIP = "", $Status = "Đang chờ")
     {
-        $Created = "2021-11-28";
+        $Created = date("Y-m-d");
         if (
             empty($Status) || empty($UserID) || empty($LastName) || empty($FirstName) || empty($Email) || empty($Telephone) || empty($StreetAddress) ||
             empty($TownCity) || empty($Account) || empty($BankName)
         ) {
             return false;
         } else {
+            $rst = 'Begin';
             $query = "INSERT INTO order_details(Status, User_ID, Last_Name, First_name, Email, Telephone, Street_address, Postcode_ZIP,Created ,Town_City, Account, Bank_Name, Note) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = mysqli_stmt_init($this->con);
             if (!mysqli_stmt_prepare($stmt, $query)) {
-                return "false";
+                // return "false";
                 return false;
             }
             mysqli_stmt_bind_param($stmt, "sssssssssssss", $Status, $UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $PostcodeZIP, $Created, $TownCity, $Account, $BankName, $Note);
             mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
+            // $result = mysqli_stmt_get_result($stmt);
             $last_id = mysqli_insert_id($this->con);
             // return $last_id;
             // return $last_id;
             if ($last_id) {
                 // return "Here";
+                $rst .= '-> get cart_ID';
                 $query1 = "SELECT cart.ID FROM cart WHERE cart.User_ID = ?";
                 mysqli_stmt_prepare($stmt, $query1);
                 mysqli_stmt_bind_param($stmt, "s", $UserID);
@@ -52,6 +54,7 @@ class OrderModel extends DB
                 $result1 = mysqli_stmt_get_result($stmt);
                 $row = mysqli_fetch_row($result1);
 
+                $rst .= '-> get item_list';
                 $query2 = "SELECT cart_item_list.product_ID, cart_item_list.quantity, product.Sell_price FROM cart_item_list, product WHERE cart_item_list.cart_ID = ? AND cart_item_list.product_ID = product.ID";
                 mysqli_stmt_prepare($stmt, $query2);
                 mysqli_stmt_bind_param($stmt, "s", $row[0]);    //row[0] = cart_item_list.cart.ID
@@ -68,33 +71,38 @@ class OrderModel extends DB
                             'total_amount_of_each_product' => $total  //total_amount_of_each_product = quantity * Sell_price
                         );
                         array_push($item_list, $item);
+
                     }
                 } else {  //neu gio hang trong, xoa don hang vua tao
-                    $query3 = "DELETE FROM order_details WHERE ordder_details.ID = ?";
+                    $query3 = "DELETE FROM order_details WHERE order_details.ID = ?";
                     mysqli_stmt_prepare($stmt, $query3);
                     mysqli_stmt_bind_param($stmt, "s", $last_id);
                     mysqli_stmt_execute($stmt);
-                    // echo '<script>alert("Lỗi: Giỏ hàng trống, không thể tạo đơn hàng.")</script>';
                     return "giỏ hàng trống";
                 }
+                
                 $query4 = "INSERT INTO transaction(Order_ID, Product_ID, Quantity, Total_amount_of_each_product) VALUES (?,?,?,?)";
                 mysqli_stmt_prepare($stmt, $query4);
-                foreach ($item_list as $data) {
-                    mysqli_stmt_bind_param($stmt, "ssss", $data[0], $data[1], $data[2], $data[3]);
+                foreach ($item_list as $key => $value) {
+                    mysqli_stmt_bind_param($stmt, "ssss", $value['order_ID'], $value['product_ID'], $value['quantity'], $value['total_amount_of_each_product']);
                     mysqli_stmt_execute($stmt);
+                    echo 'order_ID: ' . $value['order_ID'] .", product_ID: ". $value['product_ID'] .", quantity: ". $value['quantity'] .", total: ". $value['total_amount_of_each_product'] . PHP_EOL;
                 }
+                $rst = $rst . '-> insert product to transaction ' . count($item_list);
                 //tinh: Total_amount_of_each_product = Total_amount_of_each_product * Quantity
 
                 //xoa tat ca item trong cart_item_list sau khi tao don hang thanh cong
+                $rst .= '-> delete item from cart_item_list';
                 $query5 = "DELETE FROM cart_item_list WHERE cart_item_list.cart_ID = ?";
                 mysqli_stmt_prepare($stmt, $query5);
                 mysqli_stmt_bind_param($stmt, "s", $row[0]);    //row[0] = cart_item_list.cart.ID
                 mysqli_stmt_execute($stmt);
                 // echo '<script>alert("Tạo đơn hàng thành công.")</script>';
+                // echo $rst;
                 return true;
             } else {
                 // echo '<script>alert("Lỗi: Hệ thống bận, không thể tạo đơn hàng lúc này.")</script>';
-                return "here";
+                // return "here";
                 return false;
             }
         }
