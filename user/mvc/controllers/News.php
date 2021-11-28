@@ -25,6 +25,8 @@ class News extends Controller
         $Article = $model->getArticle($data);
         if ($Article == false) {
             echo "No Article Found";
-        } else echo $Article;
+        } else {
+            $this->view("article", $Article);
+        };
     }
 }

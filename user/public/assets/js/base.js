@@ -139,3 +139,11 @@ if (window.location.search.includes("success=checkout")) {
         icon: "fas fa-check-circle"
     });
 }
+if (window.location.search.includes("success=order")) {
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Đã đặt hàng thành công",
+        icon: "fas fa-check-circle"
+    });
+}

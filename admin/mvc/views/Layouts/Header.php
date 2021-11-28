@@ -25,13 +25,13 @@
       </div>
       <ul>
         <li>
-          <a href="./Index">Trang chủ</a>
+          <a href="./Contact">Liên hệ</a>
         </li>
         <li>
           <a href="./ShowProduct">Quản Lý Sản Phẩm</a>
         </li>
         <li>
-          <a href=".">Blog</a>
+          <a href="">Blog</a>
         </li>
         <li>
           <a href="">Orders</a>

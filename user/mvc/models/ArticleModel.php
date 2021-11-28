@@ -3,7 +3,7 @@ class ArticleModel extends DB
 {
     public function getAllArticles()
     {
-        $query = "SELECT ID, Title, Author, Post_Date FROM news";
+        $query = "SELECT ID, Title, Author, Post_Date, Picture FROM news";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
         mysqli_stmt_execute($stmt);
@@ -15,7 +15,8 @@ class ArticleModel extends DB
                     'ID' => $row['ID'],
                     'Title' => $row['Title'],
                     'Author' => $row['Author'],
-                    'Post_Date' => $row['Post_Date']
+                    'Post_Date' => $row['Post_Date'],
+                    'Picture' => $row['Picture']
                 );
                 array_push($articles, $article);
             }
@@ -24,7 +25,7 @@ class ArticleModel extends DB
     }
     public function getArticle($ID)
     {
-        $query = "SELECT Content FROM news WHERE ID=? LIMIT 1";
+        $query = "SELECT Content, Title, Author, Post_Date, Picture FROM news WHERE ID=? LIMIT 1";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
         mysqli_stmt_bind_param($stmt, "s", $ID);
@@ -34,7 +35,7 @@ class ArticleModel extends DB
         if ($row == false) {
             return false;
         } else {
-            return $row['Content'];
+            return $row;
         }
     }
 }

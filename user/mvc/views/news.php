@@ -26,13 +26,16 @@ require_once __DIR__ . './Layouts/Header.php';
     <h1>Trang tin tức</h1>
     <?php
     foreach ($data as $article) {
-      $str = "<a href=\"./News/Article/" . $article['ID'] . "\" class=\"post\">" . PHP_EOL;
-      $str = $str . "<img src=\"./public/assets/image/avatar.jpg\" alt=\"img\">";
-      $str = $str . "<h3>" . $article['Title'] . "</h3>";
-      $str = $str . "<p>" . $article['Author'] . "</p>";
-      $str = $str . "<p> Post Date: " . $article['Post_Date'] . "</p>";
-      $str = $str . "</a>";
-      echo $str;
+    ?>
+      <div class="item">
+        <a href="./Article?articleId=<?php echo $article['ID'] ?>" class="post">
+          <img src='<?php echo $article['Picture'] ?>'>
+          <h3> <?php echo $article['Title'] ?></h3>
+          <p> <?php echo $article['Author'] ?></p>
+          <p> Post Date: <?php echo $article['Post_Date'] ?></p>
+        </a>
+      </div>
+    <?php
     }
     ?>
   </div>
