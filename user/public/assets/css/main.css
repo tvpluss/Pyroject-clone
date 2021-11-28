@@ -413,7 +413,7 @@ header .auth .dropdown-toggle {
   position: relative;
 }
 .service .top img {
-  width: 100%;
+  width: 60%;
 }
 .service h3 {
   color: #1c3e56;
@@ -606,6 +606,96 @@ header .auth .dropdown-toggle {
   outline: none;
 }
 
+.intro .top {
+  background-image: url("https://pyroject.com/wp-content/uploads/2021/09/Group-131-1024x417-2.webp");
+  padding-top: 40%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.intro .top .wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 700px;
+  min-height: 150px;
+  width: 100%;
+  color: #fff;
+}
+.intro .top .wrap h1 {
+  font-size: 50px;
+}
+.intro .top .wrap p {
+  font-size: 20px;
+}
+.intro .img img {
+  height: auto;
+  width: 100%;
+  padding: 40px;
+}
+
+.checkout .bill {
+  padding: 50px;
+}
+.checkout .order {
+  padding: 50px 0;
+  padding-right: 50px;
+}
+.checkout .order .body {
+  padding: 50px;
+  border: 1px solid #ececec;
+}
+.checkout .order .body h3 {
+  color: #00b4d8;
+}
+.checkout .order .body .product {
+  margin-bottom: 10px;
+}
+.checkout .order .body .product .name {
+  font-weight: 500;
+  word-break: break-word;
+  font-size: 20px;
+}
+.checkout .order .body .product .quantity {
+  margin-left: 6px;
+  font-weight: 500;
+  word-break: break-word;
+  font-size: 16px;
+}
+.checkout .order .body .product .price {
+  float: right;
+  font-weight: 300;
+  font-size: 20px;
+}
+.checkout .order .body .total {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e7e7e7;
+}
+.checkout .order .body .total h6 {
+  font-size: 24px;
+  border: none;
+  position: relative;
+  top: 5px;
+}
+.checkout .order .body .total span {
+  font-size: 24px;
+}
+.checkout .order .body h6 {
+  letter-spacing: -0.01em;
+  font-size: 16px;
+  font-weight: 600;
+  color: #90e0ef;
+  border-bottom: 1px solid #e7e7e7;
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+.checkout .order button {
+  margin-top: 20px;
+}
+
 #toast {
   position: fixed;
   top: 25px;
@@ -663,6 +753,25 @@ header .auth .dropdown-toggle {
 }
 #toast .toast--error .toast__icon {
   color: #01a2e4;
+}
+
+.scrolltop {
+  position: fixed;
+  bottom: 0px;
+  right: 10px;
+  background-color: #f4f5f5;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scrolltop a {
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 30px;
+  position: relative;
+  top: 3px;
 }
 
 /*# sourceMappingURL=main.css.map */

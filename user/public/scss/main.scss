@@ -12,7 +12,8 @@
 @import "product";
 @import "news";
 @import "profile";
-
+@import "intro";
+@import "checkout";
 #toast {
   position: fixed;
   top: 25px;
@@ -78,5 +79,24 @@
 
   .toast--error .toast__icon {
     color: #01a2e4;
+  }
+}
+
+.scrolltop {
+  position: fixed;
+  bottom: 0px;
+  right: 10px;
+  background-color: #f4f5f5;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 30px;
+    position: relative;
+    top: 3px;
   }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 23, 2021 at 03:38 PM
+-- Generation Time: Nov 28, 2021 at 08:27 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `web2-db-v1`
 --
+CREATE DATABASE IF NOT EXISTS `web2-db-v1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `web2-db-v1`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `buying_history`
 --
 
+DROP TABLE IF EXISTS `buying_history`;
 CREATE TABLE `buying_history` (
   `ID` int(11) NOT NULL,
   `User_ID` int(11) NOT NULL,
@@ -48,6 +51,7 @@ INSERT INTO `buying_history` (`ID`, `User_ID`, `Order_ID`) VALUES
 -- Table structure for table `cart`
 --
 
+DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `ID` int(11) NOT NULL,
   `User_ID` int(11) NOT NULL
@@ -72,6 +76,7 @@ INSERT INTO `cart` (`ID`, `User_ID`) VALUES
 -- Table structure for table `cart_item_list`
 --
 
+DROP TABLE IF EXISTS `cart_item_list`;
 CREATE TABLE `cart_item_list` (
   `cart_ID` int(11) NOT NULL,
   `product_ID` int(11) NOT NULL,
@@ -94,6 +99,7 @@ INSERT INTO `cart_item_list` (`cart_ID`, `product_ID`, `quantity`) VALUES
 -- Table structure for table `catalog`
 --
 
+DROP TABLE IF EXISTS `catalog`;
 CREATE TABLE `catalog` (
   `ID` int(11) NOT NULL,
   `Name` varchar(255) DEFAULT NULL,
@@ -121,6 +127,7 @@ INSERT INTO `catalog` (`ID`, `Name`, `Product_ID`) VALUES
 -- Table structure for table `contact`
 --
 
+DROP TABLE IF EXISTS `contact`;
 CREATE TABLE `contact` (
   `ID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -135,6 +142,7 @@ CREATE TABLE `contact` (
 -- Table structure for table `news`
 --
 
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `ID` int(11) NOT NULL,
   `Title` mediumtext NOT NULL,
@@ -149,6 +157,7 @@ CREATE TABLE `news` (
 -- Table structure for table `order_details`
 --
 
+DROP TABLE IF EXISTS `order_details`;
 CREATE TABLE `order_details` (
   `ID` int(11) NOT NULL,
   `Status` varchar(255) NOT NULL,
@@ -175,12 +184,22 @@ INSERT INTO `order_details` (`ID`, `Status`, `User_ID`, `Last_Name`, `First_name
 (2, 'Chờ xác nhận', 2, 'Đỗ Nhật', 'Hoàng', 'hoangdo7789@gmail.com', 326789562, '125/26/8, Lương Định Của, Phường 2, Quận 4', NULL, 'Hồ Chí Minh', '2021-11-15', 225303569503256, 'ACB', NULL),
 (4, 'Đã xác nhận', 2, 'Đỗ Nhật', 'Hoàng', 'hoangdo7789@gmail.com', 326789562, '125/26/8, Lương Định Của, phường 2, quận 4', NULL, 'Thành phố Hồ Chí Minh', '2021-11-07', 332659783236, 'BIDV', NULL);
 
+--
+-- Triggers `order_details`
+--
+DROP TRIGGER IF EXISTS `after_order_details_insert`;
+DELIMITER $$
+CREATE TRIGGER `after_order_details_insert` AFTER INSERT ON `order_details` FOR EACH ROW INSERT INTO buying_history(buying_history.User_ID, buying_history.Order_ID) VALUES (NEW.User_ID, NEW.ID)
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `ID` int(11) NOT NULL,
   `Nane` varchar(1000) DEFAULT NULL,
@@ -212,6 +231,7 @@ INSERT INTO `product` (`ID`, `Nane`, `Picture`, `Quantity`, `Buy_price`, `Sell_p
 -- Table structure for table `tag`
 --
 
+DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `ID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -241,6 +261,7 @@ INSERT INTO `tag` (`ID`, `Name`, `Product_ID`) VALUES
 -- Table structure for table `transaction`
 --
 
+DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE `transaction` (
   `Order_ID` int(11) NOT NULL,
   `Product_ID` int(11) NOT NULL,
@@ -269,6 +290,7 @@ INSERT INTO `transaction` (`Order_ID`, `Product_ID`, `Quantity`, `Total_amount_o
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
   `Last_Name` varchar(255) NOT NULL,
@@ -301,6 +323,7 @@ INSERT INTO `user` (`ID`, `Last_Name`, `First_Name`, `Usename`, `Password`, `Ema
 --
 -- Triggers `user`
 --
+DROP TRIGGER IF EXISTS `after_user_insert`;
 DELIMITER $$
 CREATE TRIGGER `after_user_insert` AFTER INSERT ON `user` FOR EACH ROW INSERT INTO cart SET cart.User_ID = NEW.ID
 $$
