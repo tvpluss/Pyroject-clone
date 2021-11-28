@@ -1,11 +1,28 @@
 <?php
+require_once "Errors.php";
 
 class Cart extends Controller
 {
 
     public function Default()
     {
-        echo "This is the cart page";
+        $this->pageError = new Errors;
+        if (isset($_SESSION['cartId'])) {
+            if (isset($_GET['cartId'])) {
+                if ($_GET['cartId'] != $_SESSION['cartId']) {
+                    $this->pageError->Default("You don't have permision to view this cart");
+                } else {
+                    $model = $this->model("CartModel");
+                    $result = $model->viewCart($_GET['cartId']);
+                    $this->view("cart", $result);
+                }
+            } else {
+                $this->pageError->Default("Please specify which cart to view");
+            }
+        } else {
+            $this->pageError->Default("No permision to view cart");
+        }
+        // echo "This is the cart page";
     }
     public function getCartItemQuantity($productId, $cartId)
     {

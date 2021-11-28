@@ -62,7 +62,7 @@
                             <li><a class=\"dropdown-item\" href=\"./Profile/Logout\">Đăng xuất</a></li>
                         </ul>
                     </div>
-                    <a href='./Cart'>
+                    <a href='./Cart?cartId=" . $_SESSION['cartId'] . "'>
                       <i class='fas fa-cart-plus cart-icon'></i>
                     </a>
                 ");
@@ -92,6 +92,6 @@
     </div>
   </div>
 
-  <?php
-  print_r($_SESSION);
-  ?>
+  <!-- <?php
+        print_r($_SESSION);
+        ?> -->

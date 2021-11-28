@@ -1,4 +1,5 @@
 <?php
+require_once "./mvc/core/Format.php";
 
 class CartModel extends DB
 {
@@ -35,7 +36,7 @@ class CartModel extends DB
 				return 0;
 			} else {
 				mysqli_stmt_bind_param($stmt, "sss", $cartId, $productId, $quantity);
-				mysqli_stmt_execute(($stmt));
+				mysqli_stmt_execute($stmt);
 				return 1;
 			}
 		} else {
@@ -46,12 +47,39 @@ class CartModel extends DB
 				return 0;
 			} else {
 				mysqli_stmt_bind_param($stmt, "sss", $quantity, $cartId, $productId);
-				mysqli_stmt_execute(($stmt));
+				mysqli_stmt_execute($stmt);
 				return 1;
 			}
 			// return $currentQuantity;
 		}
 		// $query = "INSERT "
+	}
+	public function viewCart($cartId)
+	{
+		$query = "SELECT * FROM cart_item_list, product WHERE cart_item_list.product_ID = product.ID AND cart_item_list.cart_ID = ?";
+		$stmt = mysqli_stmt_init($this->con);
+		if (!mysqli_stmt_prepare($stmt, $query)) {
+			return 0;
+		} else {
+			mysqli_stmt_bind_param($stmt, "s", $cartId);
+			mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+			$items = [];
+			$fm = new Format();
+			if ($result->num_rows > 0) {
+				while ($row = $result->fetch_assoc()) {
+					$item = array(
+						'ID' => $row['product_ID'],
+						'Nane' => $row['Nane'],
+						'Picture' => $row['Picture'],
+						'quantity' => $row['quantity'],
+						'Sell_price' => $row['Sell_price'],
+					);
+					array_push($items, $item);
+				}
+			}
+			return $items;
+		}
 	}
 	// public function add_to_cart($quantity, $id){
 	//     //CÁI NÀY H LÀM TRONG DB CŨ, CHƯA FIX CHO VỪA VỚI DB NÀY, DB CŨ THÌ TRONG CART CÓ PRODUCT

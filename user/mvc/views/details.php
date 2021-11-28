@@ -31,13 +31,11 @@ include_once __DIR__ . "../Layouts/Header.php";
                                 ?>
                             </strong>
                         </span>
-                        <form>
-                            <div class="quantity">
-                                <button id="subtractQuantity"><span>-</span></button>
-                                <input id="quantity" type="text" readonly value="1">
-                                <button id="addQuantity"><span>+</span></button>
-                            </div>
-                        </form>
+                        <div class="quantity">
+                            <button id="subtractQuantity"><span>-</span></button>
+                            <input id="quantity" type="text" readonly value="1">
+                            <button id="addQuantity"><span>+</span></button>
+                        </div>
                         <button class="btn" type="button" onclick="addProduct(<?php echo $result_details['ID'] ?>)">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
