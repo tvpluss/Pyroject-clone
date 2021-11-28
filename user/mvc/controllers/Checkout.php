@@ -14,14 +14,6 @@ class Checkout extends Controller
         // echo $_POST['ID'];
         $model = $this->model("OrderModel");
         $result = $model->insertAnOrder($_POST['ID'], $_POST['LastName'], $_POST['FirstName'], $_POST['Email'], $_POST['Telephone'], $_POST['StreetAddress'], $_POST['TownCity'], $_POST['Account'], $_POST['BankName']);
-        // print_r($result);
         echo $result;
-        // echo $result;
-        // if ($result) {
-        //     echo $result;
-        //     // echo "Process SQL Success";
-        // } else {
-        //     echo "God dammit";
-        // }
     }
 }

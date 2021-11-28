@@ -12,6 +12,5 @@ class ShowProduct extends Controller
     }
     function Process()
     {
-        
     }
 }

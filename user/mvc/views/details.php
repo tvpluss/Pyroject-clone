@@ -85,7 +85,7 @@ include_once __DIR__ . "../Layouts/Header.php";
   var subtractQuantity = document.querySelector('#subtractQuantity');
   var addQuantity = document.querySelector('#addQuantity');
   var quantity = document.querySelector('#quantity');
-
+  console.log(subtractQuantity, addQuantity, quantity);
   subtractQuantity.addEventListener('click', (e) => {
     e.preventDefault();
     if (quantity.value > 0) {
@@ -138,32 +138,47 @@ include_once __DIR__ . "../Layouts/Header.php";
   };
 
   function addProduct(productID) {
-    let cartId = '<?php echo $_SESSION['cartId']; ?>';
-    let quantity = document.getElementById("quantity").value;
-    console.log(productID, cartId, quantity);
-    $.post("./Product/addToCart", {
-      productId: productID,
-      cartId: cartId,
-      quantity: quantity
-    }, function(data, status) {
-      if (data) {
-        console.log(cartId, productID);
-        toast({
-          type: "toast--success",
-          title: "Success",
-          msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
-          icon: "far fa-bell"
-        });
+    let cartId = '<?php
+                  if (isset($_SESSION['cartId'])) {
+                    echo ($_SESSION['cartId']);
+                  } else {
+                    echo "false";
+                  }
+                  ?>';
+    if (cartId == "false") {
+      toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Vui lòng đăng nhập",
+        icon: "far fa-bell"
+      });
+    } else {
+      let quantity = document.getElementById("quantity").value;
+      console.log(productID, cartId, quantity);
+      $.post("./Product/addToCart", {
+        productId: productID,
+        cartId: cartId,
+        quantity: quantity
+      }, function(data, status) {
+        if (data) {
+          console.log(cartId, productID);
+          toast({
+            type: "toast--success",
+            title: "Success",
+            msg: "Thêm vào giỏ hàng thành công",
+            icon: "far fa-bell"
+          });
 
-      } else {
-        toast({
-          type: "toast--error",
-          title: "Error",
-          msg: "Gửi lời nhắn thất bại",
-          icon: "far fa-bell"
-        });
-      }
-    })
+        } else {
+          toast({
+            type: "toast--error",
+            title: "Error",
+            msg: "Thêm vào giỏ hàng thất bại",
+            icon: "far fa-bell"
+          });
+        }
+      })
+    }
   }
 </script>
 <?php

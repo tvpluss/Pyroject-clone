@@ -39,4 +39,12 @@ class Cart extends Controller
         $result = $model->addToCart($productId, $cartId, $quantity);
         echo $result;
     }
+    public function substractOnCart()
+    {
+        $productId = $_POST['productId'];
+        $cartId = $_POST['cartId'];
+        $model = $this->model("CartModel");
+        $result = $model->substractOnCart($productId, $cartId);
+        echo $result;
+    }
 }

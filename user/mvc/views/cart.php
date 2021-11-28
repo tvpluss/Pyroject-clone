@@ -29,8 +29,9 @@ include_once __DIR__ . "./Layouts/Header.php";
                         ?>
                             <?php
                             $total_price += $result['Sell_price'] * $result['quantity'];
-                            $total_quantity += $result['quantity']
+                            $total_quantity += $result['quantity'];
                             ?>
+
                             <tr>
                                 <td style="width: 100px">
                                     <a href="./Details?ID=<?php echo $result['ID'] ?>">
@@ -47,9 +48,9 @@ include_once __DIR__ . "./Layouts/Header.php";
                                 </td>
                                 <td>
                                     <div class="quantity">
-                                        <button id="subtractQuantity"><span>-</span></button>
-                                        <input id="quantity" type="text" readonly value=<?php echo $result['quantity'] ?>>
-                                        <button id="addQuantity"><span>+</span></button>
+                                        <button id="subtractQuantity<?php echo $result['ID'] ?>"><span>-</span></button>
+                                        <input id="quantity<?php echo $result['ID'] ?>" type="text" readonly value=<?php echo $result['quantity'] ?>>
+                                        <button id="addQuantity<?php echo $result['ID'] ?>"><span>+</span></button>
                                     </div>
                                 </td>
                                 <td>
@@ -58,7 +59,38 @@ include_once __DIR__ . "./Layouts/Header.php";
                                     </div>
                                 </td>
                             </tr>
+                            <script>
+                                var subtractQuantity<?php echo $result['ID'] ?> = document.querySelector('#subtractQuantity<?php echo $result['ID'] ?>');
+                                var addQuantity<?php echo $result['ID'] ?> = document.querySelector('#addQuantity<?php echo $result['ID'] ?>');
+                                var quantity<?php echo $result['ID'] ?> = document.querySelector('#quantity<?php echo $result['ID'] ?>');
+                                // console.log(subtractQuantity, addQuantity, quantity);
+                                subtractQuantity<?php echo $result['ID'] ?>.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    if (quantity<?php echo $result['ID'] ?>.value > 0) {
+                                        $.post("./Cart/substractOnCart", {
+                                            cartId: <?php echo $_SESSION['cartId'] ?>,
+                                            productId: <?php echo $result['ID'] ?>
+                                        }, function(data, status) {
+                                            if (data) {
+                                                window.location.reload();
+                                            }
+                                        })
+                                    }
+                                })
 
+                                addQuantity<?php echo $result['ID'] ?>.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    quantity<?php echo $result['ID'] ?>.value++;
+                                    $.post("./Cart/addToCart", {
+                                        cartId: <?php echo $_SESSION['cartId'] ?>,
+                                        productId: <?php echo $result['ID'] ?>
+                                    }, function(data, status) {
+                                        if (data) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                })
+                            </script>
                         <?php
                         }
                         ?>
@@ -96,5 +128,46 @@ include_once __DIR__ . "./Layouts/Header.php";
         </div>
     </div>
 </div>
+
+<script>
+    function toast({
+        type = "",
+        title = "",
+        msg = "",
+        icon = ""
+    }) {
+        var main = document.querySelector('#toast');
+        if (main) {
+            const toast = document.createElement('div');
+            toast.classList.add('toast', `${type}`);
+            toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 3s forwards";
+            const ex = setTimeout(() => main.removeChild(toast), 4000);
+            toast.onclick = function(e) {
+                if (e.target.closest('.toast__close')) {
+                    main.removeChild(toast);
+                    clearTimeout(ex);
+                };
+            }
+            toast.innerHTML = `
+                    <div class="toast__icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="toast__body">
+                        <h3 class="toast__title">${title}</h3>
+                        <p class="toast__msg">${msg}</p>
+                    </div>
+                    <div class="toast__close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                `
+            // var m = toast.getElementsByClassName('toast__close')[0];
+            // m.addEventListener('click', () => {
+            // main.removeChild(toast);
+            // clearTimeout(ex);
+            // })
+            main.appendChild(toast);
+        };
+    };
+</script>
 <?php
 include_once __DIR__ . "./Layouts/Footer.php";

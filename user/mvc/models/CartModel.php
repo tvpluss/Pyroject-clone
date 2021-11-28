@@ -26,6 +26,20 @@ class CartModel extends DB
 			}
 		}
 	}
+	public function substractOnCart($productId, $cartId)
+	{
+		$currentQuantity = $this->getCartItemQuantity($productId, $cartId);
+		$quantity = $currentQuantity - 1;
+		$sql = "UPDATE cart_item_list SET quantity = ? WHERE cart_ID = ? AND product_ID = ?";
+		$stmt = mysqli_stmt_init($this->con);
+		if (!mysqli_stmt_prepare($stmt, $sql)) {
+			return 0;
+		} else {
+			mysqli_stmt_bind_param($stmt, "sss", $quantity, $cartId, $productId);
+			mysqli_stmt_execute($stmt);
+			return 1;
+		}
+	}
 	public function addToCart($productId, $cartId, $quantity = 1)
 	{
 		$currentQuantity = $this->getCartItemQuantity($productId, $cartId);

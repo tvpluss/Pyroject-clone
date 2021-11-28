@@ -11,68 +11,68 @@ require_once __DIR__ . "./Layouts/Header.php";
           <div class="row">
             <div class="col-sm-6 col-12">
               <label for="exampleFormControlInput1" class="form-label">Họ</label>
-              <input type="text" class="form-control" id="LastName" placeholder="Last Name" value=<?php
-                                                                                                  if (isset($_SESSION['sessionLastName'])) {
-                                                                                                    echo $_SESSION['sessionLastName'];
-                                                                                                  } else {
-                                                                                                    echo "";
-                                                                                                  }; ?>>
+              <input type="text" class="form-control" id="LastName" placeholder="Last Name" value='<?php
+                                                                                                    if (isset($_SESSION['sessionLastName'])) {
+                                                                                                      echo $_SESSION['sessionLastName'];
+                                                                                                    } else {
+                                                                                                      echo "";
+                                                                                                    }; ?>'>
             </div>
             <div class="col-sm-6 c0l-12">
               <label for="exampleFormControlInput1" class="form-label">Tên</label>
-              <input type="text" class="form-control" id="FirstName" placeholder="First Name" value=<?php
-                                                                                                    if (isset($_SESSION['sessionFirstName'])) {
-                                                                                                      echo $_SESSION['sessionFirstName'];
-                                                                                                    } else {
-                                                                                                      echo "";
-                                                                                                    }; ?>>
+              <input type="text" class="form-control" id="FirstName" placeholder="First Name" value='<?php
+                                                                                                      if (isset($_SESSION['sessionFirstName'])) {
+                                                                                                        echo $_SESSION['sessionFirstName'];
+                                                                                                      } else {
+                                                                                                        echo "";
+                                                                                                      }; ?>'>
             </div>
           </div>
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Street Address</label>
-          <input type="email" class="form-control" id="StreetAddress" placeholder="Street Address" value=<?php
+          <input type="email" class="form-control" id="StreetAddress" placeholder="Street Address" value='<?php
                                                                                                           if (isset($_SESSION['sessionStreetAddress'])) {
                                                                                                             echo $_SESSION['sessionStreetAddress'];
                                                                                                           } else {
                                                                                                             echo "";
-                                                                                                          }; ?>>
+                                                                                                          }; ?>'>
         </div>
         <div class="mb-3">
           <label for="TownCity" class="form-label">Town/City</label>
-          <input type="email" class="form-control" id="TownCity" placeholder="Town/City" value=<?php
+          <input type="email" class="form-control" id="TownCity" placeholder="Town/City" value='<?php
                                                                                                 if (isset($_SESSION['sessionTownCity'])) {
                                                                                                   echo $_SESSION['sessionTownCity'];
                                                                                                 } else {
                                                                                                   echo "";
-                                                                                                }; ?>>
+                                                                                                }; ?>'>
         </div>
         <div class="mb-3">
           <label for="Postcode" class="form-label">Postcode (optional)</label>
-          <input type="email" class="form-control" id="Postcode" placeholder="Postcode" value=<?php
-                                                                                              if (isset($_SESSION['sessionPostcode'])) {
-                                                                                                echo $_SESSION['sessionPostcode'];
-                                                                                              } else {
-                                                                                                echo "";
-                                                                                              }; ?>>
+          <input type="email" class="form-control" id="Postcode" placeholder="Postcode" value='<?php
+                                                                                                if (isset($_SESSION['sessionPostcode'])) {
+                                                                                                  echo $_SESSION['sessionPostcode'];
+                                                                                                } else {
+                                                                                                  echo "";
+                                                                                                }; ?>'>
         </div>
         <div class="mb-3">
           <label for="Account" class="form-label">Account</label>
-          <input type="email" class="form-control" id="Account" placeholder="Account" value=<?php
-                                                                                            if (isset($_SESSION['sessionAccount'])) {
-                                                                                              echo $_SESSION['sessionPostcode'];
-                                                                                            } else {
-                                                                                              echo "";
-                                                                                            }; ?>>
+          <input type="email" class="form-control" id="Account" placeholder="Account" value='<?php
+                                                                                              if (isset($_SESSION['sessionAccount'])) {
+                                                                                                echo $_SESSION['sessionPostcode'];
+                                                                                              } else {
+                                                                                                echo "";
+                                                                                              }; ?>'>
         </div>
         <div class="mb-3">
           <label for="BankName" class="form-label">Bank Name</label>
-          <input type="email" class="form-control" id="BankName" placeholder="Postcode" value=<?php
-                                                                                              if (isset($_SESSION['sessionBankName'])) {
-                                                                                                echo $_SESSION['sessionBankName'];
-                                                                                              } else {
-                                                                                                echo "";
-                                                                                              }; ?>>
+          <input type="email" class="form-control" id="BankName" placeholder="Postcode" value='<?php
+                                                                                                if (isset($_SESSION['sessionBankName'])) {
+                                                                                                  echo $_SESSION['sessionBankName'];
+                                                                                                } else {
+                                                                                                  echo "";
+                                                                                                }; ?>'>
         </div>
       </div>
     </div>
@@ -103,12 +103,12 @@ require_once __DIR__ . "./Layouts/Header.php";
             <span> <?php echo $fm->format_currency($total_price)  ?> đ</span>
           </div>
           <h6>Hình thức thanh toán</h6>
-          <div class="form-check">
+          <!-- <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
             <label class="form-check-label" for="flexRadioDefault1">
               Trả tiền mặt
             </label>
-          </div>
+          </div> -->
           <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
             <label class="form-check-label" for="flexRadioDefault2">

@@ -85,8 +85,8 @@ function toast({
     if (main) {
         const toast = document.createElement('div');
         toast.classList.add('toast', `${type}`);
-        toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 3s forwards";
-        const ex = setTimeout(() => main.removeChild(toast), 4000);
+        toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 1s forwards";
+        const ex = setTimeout(() => main.removeChild(toast), 2000);
         toast.onclick = function (e) {
             if (e.target.closest('.toast__close')) {
                 main.removeChild(toast);
