@@ -45,13 +45,18 @@ class Authentication extends DB
                         //create Session
                         $_SESSION['cartId'] = $cartId;
                         $_SESSION['sessionId'] = $row['ID'];
-                        $_SESSION['sessionUser'] = $row['Usename'];
+                        // $_SESSION['sessionUser'] = $row['Usename'];
                         $_SESSION['sessionFirstName'] = $row['First_Name'];
                         $_SESSION['sessionLastName'] = $row['Last_Name'];
                         $_SESSION['sessionUser'] = $row['Usename'];
                         $_SESSION['sessionEmail'] = $row['Email'];
                         $_SESSION['sessionTelephone'] = $row['Telephone'];
-                        $_SESSION['sessionUser'] = $row['Usename'];
+                        $_SESSION['sessionStreetAddress'] = $row['Street_Address'];
+                        $_SESSION['sessionTownCity'] = $row['Town_City'];
+                        $_SESSION['sessionPostcode'] = $row['Postcode'];
+                        $_SESSION['sessionAccount'] = $row['Account'];
+                        $_SESSION['sessionBankName'] = $row['Bank_Name'];
+                        // $_SESSION['sessionUser'] = $row['Usename'];
                         header("Location: ../Intro?success=loggedin");
                         exit();
                     } else {

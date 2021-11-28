@@ -96,20 +96,5 @@ include_once __DIR__ . "./Layouts/Header.php";
         </div>
     </div>
 </div>
-<script>
-    function processCheckout() {
-        window.location.href("./Checkout");
-        // let data = '<?php echo json_encode($data) ?>'
-        // // console.log(data);
-        // $.post("./Checkout", {
-        //     data: data
-        // }, function(data, status) {
-        //     if (data) {
-        //         window.location.href = './Checkout';
-        //         // console.log(data);
-        //     }
-        // })
-    }
-</script>
 <?php
 include_once __DIR__ . "./Layouts/Footer.php";
