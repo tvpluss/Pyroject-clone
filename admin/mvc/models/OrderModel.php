@@ -49,16 +49,15 @@ class Order extends DB
     }
     public function updateOrderStatus($Status, $ID)
     {
-        if(empty($Status) || empty($ID)){
+        if (empty($Status) || empty($ID)) {
             return false;
-        }
-        else{
+        } else {
             $query = "UPDATE order_details SET Status=? WHERE ID=?";
             $stmt = mysqli_stmt_init($this->con);
             mysqli_stmt_prepare($stmt, $query);
             mysqli_stmt_bind_param($stmt, "ss", $Status, $ID);
             mysqli_stmt_execute($stmt);
-            if (mysqli_affected_row($this->con) > 0) {
+            if (mysqli_affected_rows($this->con) > 0) {
                 return true;
             } else {
                 return false;
@@ -86,20 +85,21 @@ class Order extends DB
         }
         return $BuyingHistory;
     }
-    public function insertAnOrder($Status, $UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $TownCity, $Created, $Account, $BankName, $Note="", $PostcodeZIP="")
+    public function insertAnOrder($Status, $UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $TownCity, $Created, $Account, $BankName, $Note = "", $PostcodeZIP = "")
     {
-        if(empty($Status) || empty($UserID) || empty($LastName) || empty($FirstName) || empty($Email) || empty($Telephone) || empty($StreetAddress) ||
-        empty($TownCity) || empty($Created) || empty($Account) || empty($BankName)) {
+        if (
+            empty($Status) || empty($UserID) || empty($LastName) || empty($FirstName) || empty($Email) || empty($Telephone) || empty($StreetAddress) ||
+            empty($TownCity) || empty($Created) || empty($Account) || empty($BankName)
+        ) {
             return false;
-        }
-        else{
+        } else {
             $query = "INSERT INTO ordder_details(Status, User_ID, Last_Name, First_name, Email, Telephone, Street_address, Postcode_ZIP, Town_City, Created, Account, Bank_Name, Note) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = mysqli_stmt_init($this->con);
             mysqli_stmt_prepare($stmt, $query);
             mysqli_stmt_bind_param($stmt, "sssssssssssss", $Status, $UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $PostcodeZIP, $TownCity, $Created, $Account, $BankName, $Note);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
-            $last_id = mysqli_insert_id($this->$con);
+            $last_id = mysqli_insert_id($this->con);
 
             if ($result->num_rows > 0) {
                 $query1 = "SELECT cart.ID FROM cart WHERE cart.User_ID = ?";
@@ -115,7 +115,7 @@ class Order extends DB
                 mysqli_stmt_execute($stmt);
                 $result2 = mysqli_stmt_get_result($stmt);
                 $item_list = array();
-                if($result2->num_rows > 0) {
+                if ($result2->num_rows > 0) {
                     while ($row2 = $result2->fetch_assoc()) {
                         $total = $row[1] * $row[2];
                         $item = array(
@@ -126,8 +126,7 @@ class Order extends DB
                         );
                         array_push($item_list, $item);
                     }
-                }
-                else {  //neu gio hang trong, xoa don hang vua tao
+                } else {  //neu gio hang trong, xoa don hang vua tao
                     $query3 = "DELETE FROM ordder_details WHERE ordder_details.ID = ?";
                     mysqli_stmt_prepare($stmt, $query3);
                     mysqli_stmt_bind_param($stmt, "s", $last_id);
@@ -137,7 +136,7 @@ class Order extends DB
                 }
                 $query4 = "INSERT INTO transaction(Order_ID, Product_ID, Quantity, Total_amount_of_each_product) VALUES (?,?,?,?)";
                 mysqli_stmt_prepare($stmt, $query4);
-                foreach($item_list as $data) {
+                foreach ($item_list as $data) {
                     mysqli_stmt_bind_param($stmt, "ssss", $data[0], $data[1], $data[2], $data[3]);
                     mysqli_stmt_execute($stmt);
                 }
