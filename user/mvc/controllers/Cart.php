@@ -6,6 +6,7 @@ class Cart extends Controller
     public function Default()
     {
         echo "This is the cart page";
+        $this->view("checkout");
     }
     public function getCartItemQuantity($productId, $cartId)
     {

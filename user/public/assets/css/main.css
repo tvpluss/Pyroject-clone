@@ -635,6 +635,53 @@ header .auth .dropdown-toggle {
   padding: 40px;
 }
 
+.checkout .bill {
+  padding: 50px;
+}
+.checkout .order {
+  padding: 50px 0;
+  padding-right: 50px;
+}
+.checkout .order .body {
+  padding: 50px;
+  border: 1px solid #ececec;
+}
+.checkout .order .body h3 {
+  color: #00b4d8;
+}
+.checkout .order .body .product {
+  margin-bottom: 10px;
+}
+.checkout .order .body .product .name {
+  font-weight: 500;
+  word-break: break-word;
+  font-size: 20px;
+}
+.checkout .order .body .product .quantity {
+  margin-left: 6px;
+  font-weight: 500;
+  word-break: break-word;
+  font-size: 16px;
+}
+.checkout .order .body .product .price {
+  float: right;
+  font-weight: 500;
+  word-break: break-word;
+  font-size: 20px;
+}
+.checkout .order .body h6 {
+  letter-spacing: -0.01em;
+  font-size: 16px;
+  font-weight: 600;
+  color: #90e0ef;
+  border-bottom: 1px solid #e7e7e7;
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+.checkout .order button {
+  margin-top: 20px;
+}
+
 #toast {
   position: fixed;
   top: 25px;
