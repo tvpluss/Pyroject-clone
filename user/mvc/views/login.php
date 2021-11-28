@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<div class="login container-sm">
+<div class="login">
   <form method="post" action="./Login/Process">
     <a href="./Index">
       <img src="./public/assets/image/logo-png2.png" alt="">

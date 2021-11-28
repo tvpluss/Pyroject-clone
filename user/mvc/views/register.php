@@ -2,7 +2,7 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<div class="register container-sm">
+<div class="register">
   <form method="post" action="./Register/Process">
     <a href="./Index">
       <img src="./public/assets/image/logo-png2.png" alt="">
