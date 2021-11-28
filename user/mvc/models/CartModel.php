@@ -30,6 +30,17 @@ class CartModel extends DB
 	{
 		$currentQuantity = $this->getCartItemQuantity($productId, $cartId);
 		$quantity = $currentQuantity - 1;
+		if ($quantity == 0) {
+			$sql = "DELETE FROM cart_item_list  WHERE cart_ID = ? AND product_ID = ?";
+			$stmt = mysqli_stmt_init($this->con);
+			if (!mysqli_stmt_prepare($stmt, $sql)) {
+				return 0;
+			} else {
+				mysqli_stmt_bind_param($stmt, "ss", $cartId, $productId);
+				mysqli_stmt_execute($stmt);
+				return 1;
+			}
+		}
 		$sql = "UPDATE cart_item_list SET quantity = ? WHERE cart_ID = ? AND product_ID = ?";
 		$stmt = mysqli_stmt_init($this->con);
 		if (!mysqli_stmt_prepare($stmt, $sql)) {
