@@ -58,7 +58,10 @@ require_once __DIR__ . "./Layouts/Header.php";
             <span class="quantity">x 1</span>
             <span class="price"> 800.000</span>
           </div>
-          <h6>Total <span class="price"> 800.000</span></h6>
+          <div class="total">
+            <h6>Total </h6>
+            <span> 800.000</span>
+          </div>
           <h6>Hình thức thanh toán</h6>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">

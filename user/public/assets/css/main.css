@@ -665,9 +665,22 @@ header .auth .dropdown-toggle {
 }
 .checkout .order .body .product .price {
   float: right;
-  font-weight: 500;
-  word-break: break-word;
+  font-weight: 300;
   font-size: 20px;
+}
+.checkout .order .body .total {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e7e7e7;
+}
+.checkout .order .body .total h6 {
+  font-size: 24px;
+  border: none;
+  position: relative;
+  top: 5px;
+}
+.checkout .order .body .total span {
+  font-size: 24px;
 }
 .checkout .order .body h6 {
   letter-spacing: -0.01em;
