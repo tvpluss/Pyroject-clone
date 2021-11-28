@@ -28,7 +28,7 @@
           <a href="./Index">Trang chủ</a>
         </li>
         <li>
-          <a href=".">Sản Phẩm</a>
+          <a href="./ShowProduct">Quản Lý Sản Phẩm</a>
         </li>
         <li>
           <a href=".">Blog</a>
@@ -36,9 +36,7 @@
         <li>
           <a href="">Orders</a>
         </li>
-        <li>
-          <a href=".">Liên hệ</a>
-        </li>
+
       </ul>
       <div class="auth">
         <?php
