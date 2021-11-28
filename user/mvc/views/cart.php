@@ -84,11 +84,32 @@ include_once __DIR__ . "./Layouts/Header.php";
                             </div>
                         </div>
                     </h3>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Process to checkout</button>
+                    <form action="./Checkout?success=checkout" method="POST">
+                        <?php
+                        $json_encode = json_encode($data);
+                        echo '<input type="hidden" name="data" value="' . htmlentities($json_encode) . '">';
+                        ?>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Process to checkout</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function processCheckout() {
+        window.location.href("./Checkout");
+        // let data = '<?php echo json_encode($data) ?>'
+        // // console.log(data);
+        // $.post("./Checkout", {
+        //     data: data
+        // }, function(data, status) {
+        //     if (data) {
+        //         window.location.href = './Checkout';
+        //         // console.log(data);
+        //     }
+        // })
+    }
+</script>
 <?php
 include_once __DIR__ . "./Layouts/Footer.php";

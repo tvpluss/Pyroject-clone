@@ -131,3 +131,11 @@ if (window.location.search.includes("success=registered")) {
         icon: "fas fa-check-circle"
     });
 }
+if (window.location.search.includes("success=checkout")) {
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Chuyển sang checkout",
+        icon: "fas fa-check-circle"
+    });
+}

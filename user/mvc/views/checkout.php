@@ -38,41 +38,38 @@ require_once __DIR__ . "./Layouts/Header.php";
         <div class="body">
           <h3>Đơn hàng của bạn</h3>
           <h6>Sản phẩm</h6>
-          <div class="product">
-            <span class="name">Pyriot AD Module</span>
-            <span class="quantity">x 1</span>
-            <span class="price"> 800.000</span>
-          </div>
-          <div class="product">
-            <span class="name">Pyriot AD Module</span>
-            <span class="quantity">x 1</span>
-            <span class="price"> 800.000</span>
-          </div>
-          <div class="product">
-            <span class="name">Pyriot AD Module</span>
-            <span class="quantity">x 1</span>
-            <span class="price"> 800.000</span>
-          </div>
-          <div class="product">
-            <span class="name">Pyriot AD Module</span>
-            <span class="quantity">x 1</span>
-            <span class="price"> 800.000</span>
-          </div>
+          <?php
+          // $newdata = json_decode($data);
+          $fm = new Format();
+          $total_price = 0;
+          foreach ($data as $product) {
+            $total_price += $product['Sell_price'] * $product['quantity'];
+          ?>
+
+            <div class="product">
+              <span class="name"><?php echo $product['Nane'] ?></span>
+              <span class="quantity">x <?php echo $product['quantity'] ?></span>
+              <span class="price"><?php echo $fm->format_currency($product['Sell_price']) ?> đ</span>
+            </div>
+
+          <?php
+          }
+          ?>
           <div class="total">
             <h6>Total </h6>
-            <span> 800.000</span>
+            <span> <?php echo $fm->format_currency($total_price)  ?> đ</span>
           </div>
           <h6>Hình thức thanh toán</h6>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
             <label class="form-check-label" for="flexRadioDefault1">
-              Default radio
+              Trả tiền mặt
             </label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
             <label class="form-check-label" for="flexRadioDefault2">
-              Default checked radio
+              Qua tài khoản ngân hàng
             </label>
           </div>
           <button class="btn btn-lg"> Thanh toán</button>
