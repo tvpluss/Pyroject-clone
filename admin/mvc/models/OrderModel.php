@@ -117,11 +117,12 @@ class Order extends DB
                 $item_list = array();
                 if($result2->num_rows > 0) {
                     while ($row2 = $result2->fetch_assoc()) {
+                        $total = $row[1] * $row[2];
                         $item = array(
                             'order_ID' => $last_id,
                             'product_ID' => $row2[0],
                             'quantity' => $row2[1],
-                            'total_amount_of_each_product' => $row2[2]  //total_amount_of_each_product = Sell_price
+                            'total_amount_of_each_product' => $total  //total_amount_of_each_product = quantity * Sell_price
                         );
                         array_push($item_list, $item);
                     }
@@ -140,9 +141,7 @@ class Order extends DB
                     mysqli_stmt_bind_param($stmt, "ssss", $data[0], $data[1], $data[2], $data[3]);
                     mysqli_stmt_execute($stmt);
                 }
-                //truoc khi INSERT vao bang transaction thi trigger(trong database) duoc kich hoat 
-                //de tinh: Total_amount_of_each_product = Total_amount_of_each_product * Quantity
-                //nen chung ta khong can tinh Total_amount_of_each_product, trigger thuc hien viec nay
+                //tinh: Total_amount_of_each_product = Total_amount_of_each_product * Quantity
 
                 //xoa tat ca item trong cart_item_list sau khi tao don hang thanh cong
                 $query5 = "DELETE FROM cart_item_list WHERE cart_item_list.cart_ID = ?";
