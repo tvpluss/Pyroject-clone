@@ -105,6 +105,9 @@ class ProductModel extends DB
             } else {
                 $query = "INSERT INTO product(Nane,Description,Quantity,Sell_price,Buy_price,Picture) VALUES('$Name','$Description','$Quantity','$Sell_price','$Buy_price','$Picture')";
                 $result = $this->db->insert($query);
+                $id = mysqli_insert_id($this->db->con);
+                $sql = "INSERT INTO catalog(Name, product_ID) VALUES ('$Category','$id')";
+                $result2 = $this->db->insert($sql);
                 if ($result) {
                     $alert = "<span class='success'>Insert Product Successfully</span>";
                     return $alert;
