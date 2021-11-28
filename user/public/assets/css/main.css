@@ -413,7 +413,7 @@ header .auth .dropdown-toggle {
   position: relative;
 }
 .service .top img {
-  width: 100%;
+  width: 60%;
 }
 .service h3 {
   color: #1c3e56;
@@ -605,6 +605,36 @@ header .auth .dropdown-toggle {
   outline: none;
 }
 
+.intro .top {
+  background-image: url("https://pyroject.com/wp-content/uploads/2021/09/Group-131-1024x417-2.webp");
+  padding-top: 40%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.intro .top .wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 700px;
+  min-height: 150px;
+  width: 100%;
+  color: #fff;
+}
+.intro .top .wrap h1 {
+  font-size: 50px;
+}
+.intro .top .wrap p {
+  font-size: 20px;
+}
+.intro .img img {
+  height: auto;
+  width: 100%;
+  padding: 40px;
+}
+
 #toast {
   position: fixed;
   top: 25px;
@@ -662,6 +692,25 @@ header .auth .dropdown-toggle {
 }
 #toast .toast--error .toast__icon {
   color: #01a2e4;
+}
+
+.scrolltop {
+  position: fixed;
+  bottom: 0px;
+  right: 10px;
+  background-color: #f4f5f5;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scrolltop a {
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 30px;
+  position: relative;
+  top: 3px;
 }
 
 /*# sourceMappingURL=main.css.map */
