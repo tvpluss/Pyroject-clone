@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `web2-db-v1`
 --
-
+CREATE DATABASE IF NOT EXISTS `web2-db-v1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `web2-db-v1`;
 -- --------------------------------------------------------
 
 --
