@@ -105,14 +105,16 @@ class Authentication extends DB
                 $rowCount = mysqli_stmt_num_rows($stmt);
 
                 if ($rowCount > 0) {
-                    header("Location: ../Register?error=usernametaken");
+                    // header("Location: ../Register?error=usernametaken");
+                    return "usernametaken";
                     exit();
                 } else {
                     //Finally, after all check, we insert into database
                     $sql = "INSERT INTO user (Last_Name, First_Name, Usename ,Password, Email, Telephone, Street_Address, Town_City, Postcode_ZIP, Account, Bank_Name, User_Type ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'member' )";
                     $stmt = mysqli_stmt_init($this->con);
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        header("Location: ../Register?error=stmterror");
+                        // header("Location: ../Register?error=stmterror");
+                        return "sqlerror";
                         exit();
                     } else {
                         //hash password
@@ -134,7 +136,9 @@ class Authentication extends DB
 
                         );
                         mysqli_stmt_execute($stmt);
-                        header("Location: ../Login?success=registered");
+                        return "registered";
+                        // header("Location: ../Login?success=registered");
+                        // return true;
                         exit();
                     }
                 }

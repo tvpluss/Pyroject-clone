@@ -33,7 +33,7 @@ class News extends Controller
             $data['Article'] = $Article;
             $data['Articles'] = $this->GetAllArticles();
             print_r($data);
-            // $this->view("article", $data);
+            $this->view("article", $data);
         };
     }
 }

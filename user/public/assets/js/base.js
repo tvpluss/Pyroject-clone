@@ -15,8 +15,10 @@ function checkPassword(str) {
     var Regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (str.match(Regex)) {
         document.getElementById('warningPassword').innerHTML = 'This password can be used';
+        return true;
     } else {
         document.getElementById('warningPassword').innerHTML = 'Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
+        return false;   
     }
 }
 
@@ -41,19 +43,46 @@ function checkUsename(str) {
     }
 }
 
-function checkConfirmPassword(str) {
+function checkConfirmPassword(str, password) {
     if (str.length == 0) {
         document.getElementById('warningConfirmPassword').innerHTML = '';
+        return false;
     } else {
-        const Password = document.getElementById('Password').value;
-        if (str != Password) {
+        if (str != password) {
             document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password do not match password';
+            return false;
         } else {
             document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password match password';
+            return true;
         }
     }
 }
+function checkLength(str, length, id, type, minlength = 0){
+    if (str.length > length){
+        document.getElementById(id).innerHTML =`${type} limit excess`;
+        return false;
+    } else if(str.length < minlength){
+        document.getElementById(id).innerHTML =`${type} minimum ${minlength} characters`;
+        return false;
+    }
+    else{
+        document.getElementById(id).innerHTML ="";
+        return true;
+    }
 
+}
+function checkEmail(str){
+    const re =
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  if (str.match(re)){
+      document.getElementById('warningEmail').innerHTML = 'This is a valid Email';
+      return true;
+    }
+    else{
+      document.getElementById('warningEmail').innerHTML = 'This is not a valid Email';
+      return false;
+  }
+}
 function checkBuyPrice(num) {
     if (num < 0) {
         document.getElementById('warningBuyPrice').innerHTML = 'This value is not be less than 0';

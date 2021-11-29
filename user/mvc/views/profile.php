@@ -10,20 +10,15 @@ require_once __DIR__ . "./Layouts/Header.php";
     <div class="row">
       <div class="col-sm-6 col-12">
         <label for="username">Username:</label>
-        <input class="form-control" type="text" name="username" id="username"
-          value="<?php echo $_SESSION['sessionUser'] ?>">
+        <input disabled class="form-control" type="text" name="username" id="username" value="<?php echo $_SESSION['sessionUser'] ?>">
         <label for="firstname">First Name:</label>
-        <input class="form-control" type="text" value='<?php echo $_SESSION["sessionFirstName"] ?>' name="firstname"
-          placeholder="First name">
+        <input class="form-control" type="text" value='<?php echo $_SESSION["sessionFirstName"] ?>' name="firstname" placeholder="First name">
         <label for="lastname">Last Name:</label>
-        <input value='<?php echo $_SESSION["sessionUser"] ?>' value='<?php echo $_SESSION["sessionLastName"] ?>'
-          class="form-control" type="text" name="lastname" placeholder="Last name">
+        <input value='<?php echo $_SESSION["sessionUser"] ?>' value='<?php echo $_SESSION["sessionLastName"] ?>' class="form-control" type="text" name="lastname" placeholder="Last name">
         <label for="email">Email:</label>
-        <input value='<?php echo $_SESSION["sessionEmail"] ?>' class="form-control" type="email" name="email"
-          placeholder="Email">
+        <input value='<?php echo $_SESSION["sessionEmail"] ?>' class="form-control" type="email" name="email" placeholder="Email">
         <label for="telephone">Telephone:</label>
-        <input value='<?php echo $_SESSION["sessionTelephone"] ?>' class="form-control" type="text" name="telephone"
-          placeholder="Optional">
+        <input value='<?php echo $_SESSION["sessionTelephone"] ?>' class="form-control" type="text" name="telephone" placeholder="Optional">
       </div>
       <div class="col-sm-6 col-12">
         <label for="streetAddress">Address:</label>
