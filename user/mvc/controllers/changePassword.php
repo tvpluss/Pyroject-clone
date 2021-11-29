@@ -5,4 +5,8 @@ class changePassword extends Controller
     {
         $this->view("changePassword");
     }
+    public function Process()
+    {
+        echo "change";
+    }
 }

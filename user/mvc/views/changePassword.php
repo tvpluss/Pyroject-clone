@@ -19,10 +19,11 @@ require_once __DIR__ . "./Layouts/Header.php";
   change.addEventListener('click', (e) => {
     e.preventDefault();
     const oldPassword = document.getElementById("oldPassword").value;
-    const Password = document.getElementById("Password").value;
-    $.post("./Login/Process", {
-      username: Username,
-      password: Password
+    const newPassword = document.getElementById("newPassword").value;
+    console.log(oldPassword, newPassword);
+    $.post("./changePassword/Process", {
+      oldPassword: oldPassword,
+      newPassword: newPassword
     }, function(data, status) {
       if (data) {
         console.log(data);
