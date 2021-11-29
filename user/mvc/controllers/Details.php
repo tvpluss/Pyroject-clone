@@ -18,7 +18,7 @@ class Details extends Controller
             $id = $_GET['ID'];
             $model = $this->model("ProductModel");
             $data = $model->getProductsBetter($id);
-            print_r($data);
+            // print_r($data);
             // $data = $model->get_details_catalog($id);
             // $data2 = $model->get_details_tag($id);
             // print_r($data);

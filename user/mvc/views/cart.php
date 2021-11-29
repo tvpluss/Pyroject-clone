@@ -118,7 +118,7 @@ include_once __DIR__ . "./Layouts/Header.php";
                             </div>
                         </div>
                     </h3>
-                    <form action="./Checkout?success=checkout" method="POST">
+                    <form action="./Checkout" method="POST">
                         <?php
                         $json_encode = json_encode($data);
                         echo '<input type="hidden" name="data" value="' . htmlentities($json_encode) . '">';
