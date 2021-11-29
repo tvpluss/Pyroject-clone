@@ -1,6 +1,30 @@
 <?php
 class OrderModel extends DB
 {
+    public function getOrder($id)
+    {
+        $query = "SELECT ID, Sell_price, nane, transaction.Quantity as quantity, Total_amount_of_each_product
+        FROM product, transaction
+        WHERE ID = Product_ID AND Order_ID = " . $id . " ";
+        $stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $orders = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $order = array(
+                    'ID' => $row['ID'],
+                    'Sell_price' => $row['Sell_price'],
+                    'nane' => $row['nane'],
+                    'quantity' => $row['quantity'],
+                    'Total_amount_of_each_product' => $row['Total_amount_of_each_product'],
+                );
+                array_push($orders, $order);
+            }
+        }
+        return $orders;
+    }
     public function getAllOrders()
     {
         $query = "SELECT * FROM order_details";
