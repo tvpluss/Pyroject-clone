@@ -48,6 +48,14 @@ require_once __DIR__ . './Layouts/Header.php';
               </a>
               <div class="tag">
                 <?php
+                echo '<h5>Catalog</h5>';
+                foreach ($result['Catalog'] as $item) {
+                  echo "<p> $item</p>";
+                }
+                echo '<h5>Tag</h5>';
+                foreach ($result['Tag'] as $item) {
+                  echo "<p> $item </p>";
+                }
                 /*$productt = new ProductModel();
                                     $get_product_details = $productt->get_details_catalog($result['ID']);
                                     if ($get_product_details) {

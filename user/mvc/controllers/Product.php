@@ -38,10 +38,10 @@ class Product extends Controller
     public function Default()
     {
         $model = $this->model("ProductModel");
-        $data = $model->getAllProducts();
+        $data = $model->getAllProductsBetter();
         // echo json_encode($result);
 
-        // print_r($result);
+        // print_r($data);
         $this->view("product", $data);
         // $this->model("ProductModel");
         // $this->view("product");

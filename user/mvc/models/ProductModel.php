@@ -11,6 +11,60 @@ class ProductModel extends DB
         // $this->db = new DB();
         // $this->fm = new Format();
     }*/
+    public function getProductsBetter($ID)
+    {
+        $this->db = new DB();
+        $this->fm = new Format();
+        $query = "SELECT ID, Nane, Picture, Quantity, Buy_price, Sell_price, Description, Last_modified_day FROM product WHERE ID = ?";
+        $stmt = mysqli_stmt_init($this->con);
+
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_bind_param($stmt, "s", $ID);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        $catalog_query = "SELECT Name FROM catalog WHERE catalog.Product_ID = ?";
+        $catalog_stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($catalog_stmt, $catalog_query);
+        mysqli_stmt_bind_param($catalog_stmt, "s", $row['ID']);
+        mysqli_stmt_execute($catalog_stmt);
+        $catalog_result = mysqli_stmt_get_result($catalog_stmt);
+        $catalog = [];
+        if ($catalog_result->num_rows) {
+            while ($catalog_row = $catalog_result->fetch_assoc()) {
+                array_push($catalog, $catalog_row['Name']);
+            }
+        }
+        $tag_query = "SELECT Name FROM tag WHERE tag.Product_ID = ?";
+        $tag_stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($tag_stmt, $tag_query);
+        mysqli_stmt_bind_param(
+            $tag_stmt,
+            "s",
+            $row['ID']
+        );
+        mysqli_stmt_execute($tag_stmt);
+        $tag_result = mysqli_stmt_get_result($tag_stmt);
+        $tag = [];
+        if ($tag_result->num_rows) {
+            while ($tag_row = $tag_result->fetch_assoc()) {
+                array_push($tag, $tag_row['Name']);
+            }
+        }
+        $item = array(
+            'ID' => $row['ID'],
+            'Nane' => $row['Nane'],
+            'Picture' => $row['Picture'],
+            'Quantity' => $row['Quantity'],
+            'Buy_price' => $row['Buy_price'],
+            'Sell_price' => $row['Sell_price'],
+            'Description' => $row['Description'],
+            'Last_modified_day' => $row['Last_modified_day'],
+            'Catalog' => $catalog,
+            'Tag' => $tag
+        );
+        return $item;
+    }
     public function getAllProductsBetter()
     {
         $this->db = new DB();
@@ -26,6 +80,27 @@ class ProductModel extends DB
                 $catalog_query = "SELECT Name FROM catalog WHERE catalog.Product_ID = ?";
                 $catalog_stmt = mysqli_stmt_init($this->con);
                 mysqli_stmt_prepare($catalog_stmt, $catalog_query);
+                mysqli_stmt_bind_param($catalog_stmt, "s", $row['ID']);
+                mysqli_stmt_execute($catalog_stmt);
+                $catalog_result = mysqli_stmt_get_result($catalog_stmt);
+                $catalog = [];
+                if ($catalog_result->num_rows) {
+                    while ($catalog_row = $catalog_result->fetch_assoc()) {
+                        array_push($catalog, $catalog_row['Name']);
+                    }
+                }
+                $tag_query = "SELECT Name FROM tag WHERE tag.Product_ID = ?";
+                $tag_stmt = mysqli_stmt_init($this->con);
+                mysqli_stmt_prepare($tag_stmt, $tag_query);
+                mysqli_stmt_bind_param($tag_stmt, "s", $row['ID']);
+                mysqli_stmt_execute($tag_stmt);
+                $tag_result = mysqli_stmt_get_result($tag_stmt);
+                $tag = [];
+                if ($tag_result->num_rows) {
+                    while ($tag_row = $tag_result->fetch_assoc()) {
+                        array_push($tag, $tag_row['Name']);
+                    }
+                }
                 $item = array(
                     'ID' => $row['ID'],
                     'Nane' => $row['Nane'],
@@ -35,6 +110,8 @@ class ProductModel extends DB
                     'Sell_price' => $row['Sell_price'],
                     'Description' => $row['Description'],
                     'Last_modified_day' => $row['Last_modified_day'],
+                    'Catalog' => $catalog,
+                    'Tag' => $tag
                 );
                 array_push($items, $item);
             }

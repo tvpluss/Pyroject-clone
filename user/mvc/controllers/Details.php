@@ -17,11 +17,13 @@ class Details extends Controller
         if (isset($_GET['ID'])) {
             $id = $_GET['ID'];
             $model = $this->model("ProductModel");
-            $data = $model->get_details_catalog($id);
-            $data2 = $model->get_details_tag($id);
+            $data = $model->getProductsBetter($id);
             print_r($data);
-            print_r($data2);
-            $this->view("details", $data, $data2);
+            // $data = $model->get_details_catalog($id);
+            // $data2 = $model->get_details_tag($id);
+            // print_r($data);
+            // print_r($data2);
+            $this->view("details", $data);
         } else {
             require_once "./mvc/controllers/Errors.php";
             $error = new Errors;

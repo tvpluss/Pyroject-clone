@@ -7,87 +7,78 @@ include_once __DIR__ . "../Layouts/Header.php";
     <?php
     $fm = new Format();
 
-    foreach ($data as $result_details) {
-
     ?>
-      <div class="row">
-        <div class="col-12 col-sm-5">
-          <img class='product-img' src="<?php echo $result_details['Picture'] ?>" alt="">
-        </div>
-        <div class="col-12 col-sm-7">
-          <div class="item">
-            <h1><?php echo $result_details['Nane'] ?></h1>
-            <h5>
-              TAG: <?php echo ' ';
-                    foreach ($data2 as $result_tag) {
-                      if ($result_tag['Name']) {
-                        echo $result_tag['Name'] . ', ';
-                      } else {
-                        echo ' ';
-                      }
-                    } ?>
-            </h5>
-            <div class="price"><?php echo $fm->format_currency($result_details['Sell_price']) . " " . "VNĐ" ?></div>
-            <span>Danh mục:
-              <strong>
-                <?php
-                foreach ($data as $result_detailss) {
-                  echo $result_detailss['Name'];
-                }
-                ?>
-              </strong>
-            </span>
-            <form>
-              <div class="quantity">
-                <button id="subtractQuantity"><span>-</span></button>
-                <input id="quantity" type="text" readonly value="1">
-                <button id="addQuantity"><span>+</span></button>
-              </div>
-            </form>
-            <button class="btn" type="button" onclick="addProduct(<?php echo $result_details['ID'] ?>)">Thêm vào giỏ
-              hàng</button>
-          </div>
+    <div class="row">
+      <div class="col-12 col-sm-5">
+        <img class='product-img' src="<?php echo $data['Picture'] ?>" alt="">
+      </div>
+      <div class="col-12 col-sm-7">
+        <div class="item">
+          <h1><?php echo $data['Nane'] ?></h1>
+          <span> Tag:</span>
+          <strong>
+            <?php echo ' ';
+            foreach ($data['Tag'] as $item) {
+              echo "<span>$item, </span>";
+            } ?>
+          </strong>
+          <div class="price"><?php echo $fm->format_currency($data['Sell_price']) . " " . "VNĐ" ?></div>
+          <span>Danh mục:
+            <strong>
+              <?php
+              foreach ($data['Catalog'] as $item) {
+                echo "<span>$item, </span>";
+              }
+              ?>
+            </strong>
+          </span>
+          <form>
+            <div class="quantity">
+              <button id="subtractQuantity"><span>-</span></button>
+              <input id="quantity" type="text" readonly value="1">
+              <button id="addQuantity"><span>+</span></button>
+            </div>
+          </form>
+          <button class="btn" type="button" onclick="addProduct(<?php echo $data['ID'] ?>)">Thêm vào giỏ
+            hàng</button>
         </div>
       </div>
-      <div class="description">
-        <h2>Mô tả</h2>
-        <?php
-        echo $result_details['Description']
-        ?>
-        <h3>Thông số kỹ thuật</h3>
-        <p>Nguồn cấp: <strong>10~30 VDC – 0.5W</strong></p>
-        <p>Truyền thông: <strong>Ethernet / Wifi</strong></p>
-        <p>Giao thức: <strong>Modbus TCP/IP</strong></p>
-        <p>Tốc độ: <strong>1,200bps to 115,200 bps</strong></p>
-        <p>Kết nối: Terminal screw block</p>
-        <p>Watchdog Timer: Có</p>
-        <p>Ngõ vào Analog: <strong>4 kênh</strong>, có khả năng chuyển đổi giữa dòng ngõ vào và điện áp ngõ
-          vào.</p>
-        <p>Độ phân giải: <strong>16-bit</strong></p>
-        <p>Dòng điện ngõ vào<br>
-          <strong>Ngõ vào: mA</strong><br>
-          Giá trị ngõ vào: 0-20mA, 4-20mA<br>
-          Sai số: 0.1%
-        </p>
-        <p>Điện áp ngõ vào<br>
-          <strong>Ngõ vào: V</strong><br>
-          Giá trị ngõ vào: 0-5V, 0-10V<br>
-          Sai số: 0.2%
-        </p>
-        <p><strong>Khác</strong></p>
-        <p>Đèn LED báo: Trạng thái nguồn</p>
-        <p>Lắp đặt DIN Ray</p>
-        <p>Khối lượng 0.5Kg</p>
-        <p>Kích thước 120x100x20mm</p>
-        <p>Điều kiện môi trường</p>
-        <p>Nhiệt độ hoạt động 0 – 70 độ C</p>
-        <p>Nhiệt độ bảo quản -25 – 85 độ C</p>
-        <p>Độ ẩm 15 – 80%</p>
-      </div>
-      <?php break; ?>
-    <?php
-    }
-    ?>
+    </div>
+    <div class="description">
+      <h2>Mô tả</h2>
+      <?php
+      echo $data['Description']
+      ?>
+      <h3>Thông số kỹ thuật</h3>
+      <p>Nguồn cấp: <strong>10~30 VDC – 0.5W</strong></p>
+      <p>Truyền thông: <strong>Ethernet / Wifi</strong></p>
+      <p>Giao thức: <strong>Modbus TCP/IP</strong></p>
+      <p>Tốc độ: <strong>1,200bps to 115,200 bps</strong></p>
+      <p>Kết nối: Terminal screw block</p>
+      <p>Watchdog Timer: Có</p>
+      <p>Ngõ vào Analog: <strong>4 kênh</strong>, có khả năng chuyển đổi giữa dòng ngõ vào và điện áp ngõ
+        vào.</p>
+      <p>Độ phân giải: <strong>16-bit</strong></p>
+      <p>Dòng điện ngõ vào<br>
+        <strong>Ngõ vào: mA</strong><br>
+        Giá trị ngõ vào: 0-20mA, 4-20mA<br>
+        Sai số: 0.1%
+      </p>
+      <p>Điện áp ngõ vào<br>
+        <strong>Ngõ vào: V</strong><br>
+        Giá trị ngõ vào: 0-5V, 0-10V<br>
+        Sai số: 0.2%
+      </p>
+      <p><strong>Khác</strong></p>
+      <p>Đèn LED báo: Trạng thái nguồn</p>
+      <p>Lắp đặt DIN Ray</p>
+      <p>Khối lượng 0.5Kg</p>
+      <p>Kích thước 120x100x20mm</p>
+      <p>Điều kiện môi trường</p>
+      <p>Nhiệt độ hoạt động 0 – 70 độ C</p>
+      <p>Nhiệt độ bảo quản -25 – 85 độ C</p>
+      <p>Độ ẩm 15 – 80%</p>
+    </div>
   </div>
 </div>
 <script>
