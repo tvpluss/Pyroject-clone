@@ -13,8 +13,6 @@ class ProductModel extends DB
     }*/
     public function getAllProducts()
     {
-        $this->db = new DB();
-        $this->fm = new Format();
         $query = "SELECT ID, Nane, Picture, Quantity, Buy_price, Sell_price, Description, Last_modified_day FROM product";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
@@ -154,6 +152,9 @@ class ProductModel extends DB
             }
         }
     }
+<<<<<<< HEAD
+}
+=======
 
     public function update_product($data, $id)
     {   
@@ -220,3 +221,4 @@ class ProductModel extends DB
         
     }
 }
+>>>>>>> 3608b76f276f75ed20ae5c66e77456055ec5bded

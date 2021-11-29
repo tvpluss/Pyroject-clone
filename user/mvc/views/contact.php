@@ -12,43 +12,66 @@ if (isset($_SESSION['sessionId'])) {
 }
 ?>
 <script>
-$(document).ready(function() {
-  $('#submit').click((e) => {
-    // console.log("submit");
-    $.post("./Contact/Submit", {
-      name: $('#name').val(),
-      phonenumber: $('#phonenumber').val(),
-      email: $('#email').val(),
-      message: $('#message').val()
-    }, function(data, status) {
-      if (data) {
+  $(document).ready(function() {
+    $('#submit').click((e) => {
+      if ($('#message').val().length == 0) {
         toast({
-          type: "toast--success",
-          title: "Success",
-          msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
-          icon: "far fa-bell"
+          type: "toast--error",
+          title: "Error",
+          msg: "Vui lòng để lại lời nhắn",
+          icon: "fas fa-exclamation-circle"
         });
-
+        return;
+      }
+      let name = document.getElementById("name").value;
+      let phonenumber = document.getElementById("phonenumber").value;
+      let email = document.getElementById("email").value;
+      if (checkTelephone(phonenumber) && checkEmail(email) && checkLength(name, 30, "warningName", "Name", 1)) {
+        // continue
       } else {
         toast({
           type: "toast--error",
           title: "Error",
-          msg: "Gửi lời nhắn thất bại",
-          icon: "far fa-bell"
+          msg: "Xem lại thông tin đã điền",
+          icon: "fas fa-exclamation-circle"
         });
+        return;
       }
+      // console.log("submit");
+      $.post("./Contact/Submit", {
+        name: $('#name').val(),
+        phonenumber: $('#phonenumber').val(),
+        email: $('#email').val(),
+        message: $('#message').val()
+      }, function(data, status) {
+        if (data) {
+          toast({
+            type: "toast--success",
+            title: "Success",
+            msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
+            icon: "fas fa-check-circle"
+          });
+
+        } else {
+          toast({
+            type: "toast--error",
+            title: "Error",
+            msg: "Gửi lời nhắn thất bại",
+            icon: "fas fa-exclamation-circle"
+          });
+        }
+      })
     })
   })
-})
 </script>
 <script type="text/javascript">
-window.onload = function() {
-  if ('<?php echo $Id ?>' != -1) {
-    document.getElementById('name').value = '<?php echo $User ?>';
-    document.getElementById('phonenumber').value = '<?php echo $Telephone ?>';
-    document.getElementById('email').value = '<?php echo $Email ?>';
+  window.onload = function() {
+    if ('<?php echo $Id ?>' != -1) {
+      document.getElementById('name').value = '<?php echo $User ?>';
+      document.getElementById('phonenumber').value = '<?php echo $Telephone ?>';
+      document.getElementById('email').value = '<?php echo $Email ?>';
+    }
   }
-}
 </script>
 <div class="contact">
   <div class="container-md">
@@ -77,10 +100,13 @@ window.onload = function() {
           <form method="post">
             <label for="name">Họ và tên</label>
             <input type="text" class="form-control" name="name" id="name" value>
+            <span class="warning" id="warningName"></span>
             <label for="phonenumber">Số điện thoại liên hệ</label>
             <input type="text" class="form-control" name="phonenumber" id="phonenumber">
+            <span class="warning" id="warningTelephone"></span>
             <label for="email">Email</label>
             <input type="email" class="form-control" name="email" id="email">
+            <span class="warning" id="warningEmail"></span>
             <label for="message">Tin nhắn</label>
             <textarea name="message" class="form-control" id="message" rows="6"></textarea>
             <div>
