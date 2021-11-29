@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . './Layouts/Header.php';
+print_r($data['currentPage']);
 ?>
 <div class="products">
   <div class="top">
@@ -35,18 +36,8 @@ require_once __DIR__ . './Layouts/Header.php';
         /*$product = new ProductModel();*/
         $fm = new Format();
         //$all_product = $product->get_all_product();
-        foreach ($data as $result) {
+        foreach ($data['products'] as $result) {
         ?>
-<<<<<<< HEAD
-        <div class="col-6 col-sm-4 col-md-3 col-md-2">
-          <div class="item">
-            <a href="./Details?ID=<?php echo $result['ID'] ?>">
-              <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
-              </div>
-            </a>
-            <div class="tag">
-              <?php
-=======
           <div class="col-6 col-sm-4 col-md-3 col-md-2">
             <div class="item">
               <a href="./Details?ID=<?php echo $result['ID'] ?>">
@@ -56,7 +47,6 @@ require_once __DIR__ . './Layouts/Header.php';
               </a>
               <div class="tag">
                 <?php
->>>>>>> b510693c657b7ea646452ff49ac6877c052c5439
                 foreach ($result['Catalog'] as $item) {
                   echo " $item";
                 }
@@ -82,6 +72,15 @@ require_once __DIR__ . './Layouts/Header.php';
         }
         ?>
       </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="./Product?page=1">First</a></li>
+          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['currentPage'] - 1) ?>">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#"><?php echo ($data['currentPage']) ?></a></li>
+          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['currentPage'] + 1) ?>">Next</a></li>
+          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['totalPages']) ?>">Last</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

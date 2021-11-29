@@ -11,6 +11,16 @@ class ProductModel extends DB
         // $this->db = new DB();
         // $this->fm = new Format();
     }*/
+    public function getTotalProducts()
+    {
+        $query = "SELECT COUNT(ID) FROM product WHERE 1";
+        $stmt = mysqli_stmt_init($this->con);
+
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result)['COUNT(ID)'];
+    }
     public function getProductsBetter($ID)
     {
         $this->db = new DB();
@@ -65,13 +75,14 @@ class ProductModel extends DB
         );
         return $item;
     }
-    public function getAllProductsBetter()
+    public function getAllProductsBetter($offset, $limit)
     {
         $this->db = new DB();
         $this->fm = new Format();
-        $query = "SELECT ID, Nane, Picture, Quantity, Buy_price, Sell_price, Description, Last_modified_day FROM product";
+        $query = "SELECT ID, Nane, Picture, Quantity, Buy_price, Sell_price, Description, Last_modified_day FROM product LIMIT ? OFFSET ?";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_bind_param($stmt, "ss", $limit, $offset);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $items = [];

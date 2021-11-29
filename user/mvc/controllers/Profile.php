@@ -20,7 +20,17 @@ class Profile extends Controller
                 $sessionId = $_SESSION['sessionId'];
                 $model = $this->model("OrderModel");
                 $data = $model->getBuyingHistory($sessionId);
-                $this->view("History", $data);
+                $this->view("history", $data);
+            } else if ($_GET['action'] = "vieworder") {
+                $sessionId = $_SESSION['sessionId'];
+                if ($_GET['userId'] != $sessionId) {
+                    header("Location: ./Index?error=nopermission");
+                } else {
+                    $model = $this->model("OrderModel");
+                    $data = $model->getOrder($_GET['orderId']);
+                    // print_r($data);
+                    $this->view("vieworder", $data);
+                }
             }
         } else {
             $this->view("profile");

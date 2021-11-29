@@ -1,46 +1,44 @@
 <?php
 require_once __DIR__ . './Layouts/Header.php';
+print_r($data);
 ?>
-<div class="news">
-    <div class="top">
-        <div class="container-sm">
-            <div class="row">
-                <div class="col-12 col-lg-5">
-                    <h1>
-                        LỊCH SỬ MUA HÀNG
-                    </h1>
-                </div>
-                <div class="col-12 col-lg-7">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-md">
-        <?php
-        foreach ($data as $order) {
-        ?>
-            <div class="card">
-                <h3> Trạng thái: <?php echo $order['Status'] ?></h3>
-                <h3> Ngày tạo: <?php echo $order['Created'] ?></h3>
-                <?php
-                foreach ($order['Products'] as $product) {
-                ?>
-                    <div class="item">
-                        <a href="./Details?ID=<?php echo $product['Product_ID'] ?>" class="post">
-                            <img src='<?php echo $product['Picture'] ?>'>
-                            <h3> <?php echo $product['Name'] ?></h3>
-                            <p> <?php echo $product['Quantity'] ?></p>
-                            <p> Subtotal: <?php echo $product['Price'] ?></p>
-                        </a>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
+<style>
+    td,
+    th {
+        vertical-align: middle;
+    }
+
+    .table {
+        margin-top: 10px;
+    }
+
+    .btnn {
+        max-width: 70px;
+    }
+</style>
+<div class="container-lg">
+    <table class="table table-striped table-hover">
+        <tr>
+            <!-- <th scope="col">ID</th> -->
+            <th scope="col" style="min-width: 100px;">Order ID </th>
+            <th scope="col" style="min-width: 160px;">Trạng thái</th>
+            <th scope="col" style="min-width: 100px;">Tạo vào</th>
+            <th scope="col">Chi tiết đơn hàng</th>
+        </tr>
+
+        <?php foreach ($data as $item) { ?>
+            <tr>
+                <td scope="col"><?php echo $item['Order_ID'] ?></td>
+                <td scope="col"><?php echo $item['Status'] ?></td>
+                <td scope="col"><?php echo $item['Created'] ?></td>
+                <td scope="col" style="min-width: 160px;">
+                    <a class="btn" href="?action=vieworder&userId=<?php echo $_SESSION['sessionId'] ?>&orderId=<?php echo $item["Order_ID"] ?>">Xem chi
+                        tiết
+                    </a>
+                </td>
+            <?php }
+            ?>
+    </table>
 </div>
 
 <?php
