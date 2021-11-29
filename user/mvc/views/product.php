@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . './Layouts/Header.php';
 ?>
-
-
 <div class="products">
   <div class="top">
     <div class="container-sm">
@@ -43,7 +41,6 @@ require_once __DIR__ . './Layouts/Header.php';
           <div class="item">
             <a href="./Details?ID=<?php echo $result['ID'] ?>">
               <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
-
               </div>
             </a>
             <div class="tag">

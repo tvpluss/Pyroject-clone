@@ -1,4 +1,5 @@
 <?php
+require_once "./mvc/core/Format.php";
 class OrderModel extends DB
 {
     public function getOrder($id)
@@ -74,7 +75,7 @@ class OrderModel extends DB
     public function updateOrderStatus($Status, $ID)
     {
         if (empty($Status) || empty($ID)) {
-            return false;
+            return 'empty';
         } else {
             $query = "UPDATE order_details SET Status=? WHERE ID=?";
             $stmt = mysqli_stmt_init($this->con);
@@ -82,9 +83,9 @@ class OrderModel extends DB
             mysqli_stmt_bind_param($stmt, "ss", $Status, $ID);
             mysqli_stmt_execute($stmt);
             if (mysqli_affected_rows($this->con) > 0) {
-                return true;
+                return 'true';
             } else {
-                return false;
+                return 'false';
             }
         }
     }

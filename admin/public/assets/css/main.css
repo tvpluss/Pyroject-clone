@@ -15,7 +15,7 @@ body {
 .btn {
   font-size: 15px;
   font-weight: 600;
-  color: #f7f7fd;
+  color: #f7f7fd !important;
   padding: 8px 26px;
   transition: all 0.3s linear;
   background-color: transparent;

@@ -20,4 +20,12 @@ class Order extends Controller
     $data = $model->getOrder($id);
     $this->view("orderdetails", $data);
   }
+  public function changeStatus()
+  {
+    $orderId = $_POST["orderId"];
+    $status = $_POST["status"];
+    $model = $this->model("OrderModel");
+    $data = $model->updateOrderStatus($status, $orderId);
+    echo $data;
+  }
 }

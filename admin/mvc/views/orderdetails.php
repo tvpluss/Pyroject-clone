@@ -11,13 +11,15 @@ require_once __DIR__ . "./Layouts/Header.php";
       <th scope="col">Số lượng</th>
       <th scope="col">Tổng</th>
     </tr>
-    <?php foreach ($data as $result) { ?>
+    <?php
+    $fm = new Format();
+    foreach ($data as $result) { ?>
     <tr>
       <td scope="col"><?php echo $result['ID'] ?></td>
       <td scope="col"><?php echo $result['nane'] ?></td>
       <td scope="col"><?php echo $result['quantity'] ?></td>
-      <td scope="col"><?php echo $result['Sell_price'] ?></td>
-      <td scope="col"><?php echo $result['Total_amount_of_each_product'] ?></td>
+      <td scope="col"><?php echo $fm->format_currency($result['Sell_price']) ?></td>
+      <td scope="col"><?php echo $fm->format_currency($result['Total_amount_of_each_product']) ?></td>
       <?php }
       ?>
   </table>

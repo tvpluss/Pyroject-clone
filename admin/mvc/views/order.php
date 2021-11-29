@@ -2,29 +2,56 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<div class="container-sm">
+<style>
+td,
+th {
+  vertical-align: middle;
+}
+
+.table {
+  margin-top: 10px;
+}
+
+.btnn {
+  max-width: 70px;
+}
+</style>
+<div class="container-lg">
   <table class="table table-striped table-hover">
     <tr>
       <!-- <th scope="col">ID</th> -->
-      <th scope="col">Họ</th>
+      <th scope="col" style="min-width: 120px;">Họ</th>
       <th scope="col">Tên</th>
-      <th scope="col">Trạng thái</th>
-      <th scope="col">Số điện thoại</th>
-      <th scope="col">Địa chỉ đường</th>
+      <th scope="col" style="min-width: 160px;">Trạng thái</th>
+      <th scope="col" style="min-width: 120px;">Số điện thoại</th>
+      <th scope="col" style="min-width: 200px;">Địa chỉ đường</th>
       <!-- <th scope="col">Postcode_ZIP</th> -->
       <th scope="col">Town_City</th>
-      <th scope="col">Tạo vào</th>
-      <th scope="col">Số TK</th>
+      <th scope="col" style="min-width: 100px;">Tạo vào</th>
+      <th scope="col" style="min-width: 100px;">Số TK</th>
       <th scope="col">Ngân hàng</th>
       <!-- <th scope="col">Ghi chú</th> -->
       <th scope="col">Chi tiết đơn hàng</th>
     </tr>
+
     <?php foreach ($data as $result) { ?>
     <tr>
       <!-- <td scope="col"><?php echo $result['User_ID'] ?></td> -->
-      <td scope="col"><?php echo $result['Status'] ?></td>
       <td scope="col"><?php echo $result['Last_Name'] ?></td>
       <td scope="col"><?php echo $result['First_name'] ?></td>
+      <td scope="col">
+        <select class="form-select" id="<?php echo $result["ID"] ?>">
+          <option value="Thành công" <?php if ($result['Status'] == "Thành công") echo ' selected="selected"'; ?>>Thành
+            công
+          </option>
+          <option value="Chờ xác nhân" <?php if ($result['Status'] == "Chờ xác nhận") echo ' selected="selected"'; ?>>
+            Chờ xác nhận
+          </option>
+
+
+
+        </select>
+      </td>
       <td scope="col"><?php echo $result['Telephone'] ?></td>
       <td scope="col"><?php echo $result['Street_address'] ?></td>
       <!-- <td scope="col"><?php echo $result['Postcode_ZIP'] ?></td> -->
@@ -33,9 +60,35 @@ require_once __DIR__ . "./Layouts/Header.php";
       <td scope="col"><?php echo $result['Account'] ?></td>
       <td scope="col"><?php echo $result['Bank_Name'] ?></td>
       <!-- <td scope="col"><?php echo $result['Note'] ?></td> -->
-      <td scope="col"><a class="btn" href="?orderId=<?php echo $result["ID"] ?>">Xem chi tiết</a></td>
+      <td scope="col" style="min-width: 160px;"><a class="btn" href="?orderId=<?php echo $result["ID"] ?>">Xem chi
+          tiết</a></td>
       <?php }
       ?>
+      <script>
+      var selects = document.querySelectorAll('select');
+      selects.forEach(select => {
+        select.addEventListener('change', (e) => {
+          console.log(select.value, select.id);
+          changeStatus(select.id, select.value);
+        })
+      })
+
+      function changeStatus(orderId, status) {
+        $.post('./Order/changeStatus', {
+          orderId,
+          status
+        }, (data) => {
+          console.log(data);
+          if (data)
+            toast({
+              type: "toast--success",
+              title: "Success",
+              msg: "Thay đổi trạng thái thành công",
+              icon: "fas fa-exclamation-circle"
+            });
+        })
+      }
+      </script>
   </table>
 </div>
 <?php

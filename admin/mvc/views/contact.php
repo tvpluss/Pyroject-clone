@@ -17,7 +17,8 @@ require_once __DIR__ . "./Layouts/Header.php";
       <td scope="col"><?php echo $result['Name'] ?></td>
       <td scope="col"><?php echo $result['Telephone'] ?></td>
       <td scope="col"><?php echo $result['Email'] ?></td>
-      <td scope="col"><?php echo $result['Message_content'] ?></td>
+      <td scope="col"><textarea style="background-color: #fff;" class="form-control"
+          readonly><?php echo $result['Message_content'] ?></textarea></td>
       <?php }
       ?>
   </table>
