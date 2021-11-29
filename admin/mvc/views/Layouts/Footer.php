@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="item">
-          <img src=".public/assets/image/logo-png2.png" alt="">
+          <img src="./public/assets/image/logo-png2.png" alt="">
           <p>Sở hữu Pyriot M2C - Chúng tôi cung cấp dịch vụ số hoá dữ liệu từ thiết bị, máy móc đến Cloud
           </p>
         </div>
