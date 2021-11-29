@@ -25,6 +25,13 @@ require_once __DIR__ . './Layouts/Header.php';
   </div>
   <div class="list">
     <div class="container-md">
+      <div class="row" style="margin-bottom: 20px;">
+        <div class="col-12 col-lg-9">
+        </div>
+        <div class="col-12 col-lg-3">
+          <input class="form-control me-2" id="search" type="text" placeholder="Tìm kiếm sản phẩm">
+        </div>
+      </div>
       <div class="row">
         <?php
         /*$product = new ProductModel();*/
@@ -40,15 +47,6 @@ require_once __DIR__ . './Layouts/Header.php';
               </div>
             </a>
             <div class="tag">
-              <?php
-                /*$productt = new ProductModel();
-                                    $get_product_details = $productt->get_details_catalog($result['ID']);
-                                    if ($get_product_details) {
-                                        while ($result_details = $get_product_details->fetch_assoc()) {
-                                            echo $result_details['Name'];
-                                        }
-                                    }*/
-                ?>
             </div>
             <div>
               <a href="./Details?ID=<?php echo $result['ID'] ?>" class="name">
@@ -110,30 +108,55 @@ function toast({
     main.appendChild(toast);
   };
 };
+var names = document.querySelectorAll('.name');
+var search = document.querySelector('#search');
 
-function addProduct(productID) {
-  let cartId = '<?php echo $_SESSION['cartId']; ?>';
-  $.post("./Product/addToCart", {
-    productId: productID,
-    cartId: cartId
-  }, function(data, status) {
-    if (data) {
-      console.log(cartId, productID);
-      toast({
-        type: "toast--success",
-        title: "Success",
-        msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
-        icon: "far fa-bell"
-      });
+search.addEventListener('keyup', (e) => {
+  console.log(e.target.value);
+  if (e.target.value) {
+    var value = e.target.value.split(" ");
+    names.forEach(name => {
+      if (!name.parentNode.parentNode.parentNode.classList.contains("d-none")) {
+        name.parentNode.parentNode.parentNode.classList.add("d-none")
+      };
+    })
+    names.forEach(name => {
+      value.forEach((item) => {
+        if (name.outerText.toLowerCase().includes(item.toLowerCase())) {
+          name.parentNode.parentNode.parentNode.classList.remove("d-none");
+        }
+      })
+    })
+  } else {
+    names.forEach(name => {
+      name.parentNode.parentNode.parentNode.classList.remove("d-none");
+    })
+  }
+})
 
-    } else {
-      toast({
-        type: "toast--error",
-        title: "Error",
-        msg: "Gửi lời nhắn thất bại",
-        icon: "far fa-bell"
-      });
-    }
-  })
-}
+// function addProduct(productID) {
+//   let cartId = ';
+//   $.post("./Product/addToCart", {
+//     productId: productID,
+//     cartId: cartId
+//   }, function(data, status) {
+//     if (data) {
+//       console.log(cartId, productID);
+//       toast({
+//         type: "toast--success",
+//         title: "Success",
+//         msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
+//         icon: "far fa-bell"
+//       });
+
+//     } else {
+//       toast({
+//         type: "toast--error",
+//         title: "Error",
+//         msg: "Gửi lời nhắn thất bại",
+//         icon: "far fa-bell"
+//       });
+//     }
+//   })
+// }
 </script>
