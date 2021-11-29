@@ -71,6 +71,17 @@ function checkLength(str, length, id, type, minlength = 0){
     }
 
 }
+function checkTelephone(str){
+    const regex = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+    if (str.match(regex) && str.length >= 10 && str.length <= 11){
+        document.getElementById("warningTelephone").innerHTML = "Valid phone number";
+        return true;
+    }
+    else{
+        document.getElementById("warningTelephone").innerHTML = "Invalid phone number";
+        return false;
+    }
+}
 function checkEmail(str){
     const re =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -202,11 +213,23 @@ if (window.location.search.includes("error=noArticle")) {
     let url = window.location.href;
     let newurl = url.split('?')[0];
     history.pushState("","",newurl);
-    console.log(newurl);
+    // console.log(newurl);
     toast({
         type: "toast--error",
         title: "Error",
         msg: "Không tìm thấy bài viết",
+        icon: "fas fa-check-circle"
+    });
+}
+if (window.location.search.includes("success=updateProfile")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Cập nhật thông tin thành công",
         icon: "fas fa-check-circle"
     });
 }

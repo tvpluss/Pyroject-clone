@@ -45,6 +45,22 @@ class Profile extends Controller
     public function Edit()
     {
         // Luu thong tin vao database
-        header("Location: ../Profile");
+        $newProfile = array(
+            'ID' => $_SESSION['sessionId'],
+            'Last_Name' => $_POST['Last_Name'],
+            'First_Name' => $_POST['First_Name'],
+            'Usename' => $_POST['Usename'],
+            'Email' => $_POST['Email'],
+            'Telephone' => $_POST['Telephone'],
+            'Street_Address' => $_POST['Street_Address'],
+            'Town_City' => $_POST['Town_City'],
+            'Postcode_ZIP' => $_POST['Postcode_ZIP'],
+            'Account' => $_POST['Account'],
+            'Bank_Name' => $_POST['Bank_Name'],
+        );
+        // print_r($newProfile);
+        $model = $this->model("Authentication");
+        echo ($model->updateProfile($newProfile));
+        // header("Location: ../Profile");
     }
 }
