@@ -212,8 +212,8 @@ require_once __DIR__ . "./Layouts/Header.php";
     const Account = document.getElementById("Account").value;
     const BankName = document.getElementById("BankName").value;
     const Note = document.getElementById("Note").value;
-    console.log("process");
-    console.log(ID, FirstName, LastName, StreetAddress, TownCity, Postcode, Account, BankName, Email, Telephone);
+    // console.log("process");
+    // console.log(ID, FirstName, LastName, StreetAddress, TownCity, Postcode, Account, BankName, Email, Telephone);
     $.post("./Checkout/Process", {
       Email: Email,
       FirstName: FirstName,

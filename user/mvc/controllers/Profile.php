@@ -11,7 +11,20 @@ class Profile extends Controller
     }
     public function Default()
     {
-        $this->view("profile");
+        if (isset($_GET['action'])) {
+            if ($_GET['action'] == "edit") {
+                $this->view("profile");
+            } else if ($_GET['action'] == "changepassword") {
+                $this->view("changePassword");
+            } else if ($_GET['action'] == "viewhistory") {
+                $sessionId = $_SESSION['sessionId'];
+                $model = $this->model("OrderModel");
+                $data = $model->getBuyingHistory($sessionId);
+                $this->view("History", $data);
+            }
+        } else {
+            $this->view("profile");
+        }
     }
     public function Logout()
     {
@@ -62,5 +75,14 @@ class Profile extends Controller
         $model = $this->model("Authentication");
         echo ($model->updateProfile($newProfile));
         // header("Location: ../Profile");
+    }
+    public function changePassword()
+    {
+        $ID = $_SESSION['sessionId'];
+        $oldPassword = $_POST['oldPassword'];
+        $newPassword = $_POST['newPassword'];
+        $model = $this->model("Authentication");
+        echo $model->changePassword($ID, $oldPassword, $newPassword);
+        // echo "change" . $ID . $oldPassword . $newPassword;
     }
 }
