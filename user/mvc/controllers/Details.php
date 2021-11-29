@@ -18,8 +18,8 @@ class Details extends Controller
             $id = $_GET['ID'];
             $model = $this->model("ProductModel");
             $data = $model->get_details_catalog($id);
-            // $data2 = $model->get_details_catalog($id);
-            $this->view("details", $data);
+            $data2 = $model->get_details_tag($id);
+            $this->view("details", $data, $data2);
         } else {
             require_once "./mvc/controllers/Errors.php";
             $error = new Errors;

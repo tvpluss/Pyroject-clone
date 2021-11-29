@@ -17,7 +17,9 @@ include_once __DIR__ . "../Layouts/Header.php";
         <div class="col-12 col-sm-7">
           <div class="item">
             <h1><?php echo $result_details['Nane'] ?></h1>
-            <h5>Chổ này hông có DB nên hông biết truyền gì vô nữa :'> </h5>
+            <h5>
+              TAG: <?php echo ' '; foreach($data2 as $result_tag){ if($result_tag['Name']){echo $result_tag['Name'] . ', ';}else{echo ' ';}} ?>
+            </h5>
             <div class="price"><?php echo $fm->format_currency($result_details['Sell_price']) . " " . "VNĐ" ?></div>
             <span>Danh mục:
               <strong>

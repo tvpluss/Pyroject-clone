@@ -24,10 +24,18 @@ require_once __DIR__ . "./Layouts/Header.php";
             </td>
             <td><?php echo $fm->format_currency($result['Sell_price']) . " " . "VNĐ" ?></td>
             <td class="">
-                <form action="" method="POST">
+                <form action="EditProduct/Process?del=1" method="POST">
+                <input type="text" value="<?php echo $result['ID']; ?>" name ="ID" hidden>
                     <button name="btnDel" type="submit" class="btn  btn-sm">Xóa</button>
                 </form>
-                <form action="" method="POST">
+                <form action="EditProduct" method="POST">
+                    <input type="text" value="<?php echo $result['ID']; ?>" name ="ID" hidden>
+                    <input type="text" value="<?php echo $result['Nane']; ?>" name ="Nane" hidden>
+                    <input type="text" value="<?php echo $result['Picture']; ?>" name ="Picture" hidden>
+                    <input type="text" value="<?php echo $result['Quantity']; ?>" name ="Quantity" hidden>
+                    <input type="text" value="<?php echo $result['Buy_price']; ?>" name ="Buy_price" hidden>
+                    <input type="text" value="<?php echo $result['Sell_price']; ?>" name ="Sell_price" hidden>
+                    <input type="text" value="<?php echo $result['Description']; ?>" name ="Description" hidden>
                     
                     <button name="btnEdit" type="submit" class="btn  btn-sm">Sửa</button>
                 </form>
