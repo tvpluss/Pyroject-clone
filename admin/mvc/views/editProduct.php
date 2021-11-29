@@ -2,9 +2,8 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<div class="register container-sm">
-  <?php print_r($data); ?>
-  <form method="post" action="./Product/Save">
+<div class="register ">
+  <form method="post" style="max-width: 700px;" action="./Product/Save">
     <a href="./Index">
       <img src="./public/assets/image/logo-png2.png" alt="">
     </a>
