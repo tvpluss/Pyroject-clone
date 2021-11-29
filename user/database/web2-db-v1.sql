@@ -148,7 +148,8 @@ CREATE TABLE `news` (
   `Title` mediumtext NOT NULL,
   `Author` varchar(255) NOT NULL,
   `Post_Date` date NOT NULL,
-  `Content` mediumtext NOT NULL
+  `Content` mediumtext NOT NULL,
+  `Picture` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
