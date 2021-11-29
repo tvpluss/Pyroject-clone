@@ -2,7 +2,7 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<div class="container-sm">
+<div class="container-fluid">
   <table class="table table-striped table-hover">
     <tr>
       <th scope="col">ID</th>

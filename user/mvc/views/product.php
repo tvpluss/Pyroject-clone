@@ -37,26 +37,15 @@ require_once __DIR__ . './Layouts/Header.php';
         //$all_product = $product->get_all_product();
         foreach ($data as $result) {
         ?>
-<<<<<<< HEAD
         <div class="col-6 col-sm-4 col-md-3 col-md-2">
           <div class="item">
             <a href="./Details?ID=<?php echo $result['ID'] ?>">
               <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
+
               </div>
             </a>
             <div class="tag">
               <?php
-=======
-          <div class="col-6 col-sm-4 col-md-3 col-md-2">
-            <div class="item">
-              <a href="./Details?ID=<?php echo $result['ID'] ?>">
-                <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
-
-                </div>
-              </a>
-              <div class="tag">
-                <?php
->>>>>>> b510693c657b7ea646452ff49ac6877c052c5439
                 foreach ($result['Catalog'] as $item) {
                   echo " $item";
                 }
@@ -68,16 +57,16 @@ require_once __DIR__ . './Layouts/Header.php';
                                         }
                                     }*/
                 ?>
-              </div>
-              <div>
-                <a href="./Details?ID=<?php echo $result['ID'] ?>" class="name">
-                  <?php echo $result['Nane'] ?>
-                </a>
-              </div>
-              <div class="price"><?php echo $fm->format_currency($result['Sell_price']) . " " . "VNĐ" ?></div>
-              <button class="btn" onclick="addProduct( <?php echo $result['ID'] ?>)">Thêm vào giỏ hàng</button>
             </div>
+            <div>
+              <a href="./Details?ID=<?php echo $result['ID'] ?>" class="name">
+                <?php echo $result['Nane'] ?>
+              </a>
+            </div>
+            <div class="price"><?php echo $fm->format_currency($result['Sell_price']) . " " . "VNĐ" ?></div>
+            <button class="btn" onclick="addProduct( <?php echo $result['ID'] ?>)">Thêm vào giỏ hàng</button>
           </div>
+        </div>
         <?php
         }
         ?>
@@ -91,71 +80,71 @@ require_once __DIR__ . './Layouts/Footer.php';
 ?>
 
 <script>
-  var names = document.querySelectorAll('.name');
-  var tags = document.querySelectorAll('.tag');
-  var search = document.querySelector('#search');
-  // console.log(tags[1]);
-  search.addEventListener('keyup', (e) => {
-    // console.log(e.target.value);
-    if (e.target.value) {
-      var value = e.target.value.split(" ");
-      names.forEach(name => {
-        if (!name.parentNode.parentNode.parentNode.classList.contains("d-none")) {
-          name.parentNode.parentNode.parentNode.classList.add("d-none")
-        };
+var names = document.querySelectorAll('.name');
+var tags = document.querySelectorAll('.tag');
+var search = document.querySelector('#search');
+// console.log(tags[1]);
+search.addEventListener('keyup', (e) => {
+  // console.log(e.target.value);
+  if (e.target.value) {
+    var value = e.target.value.split(" ");
+    names.forEach(name => {
+      if (!name.parentNode.parentNode.parentNode.classList.contains("d-none")) {
+        name.parentNode.parentNode.parentNode.classList.add("d-none")
+      };
+    })
+    names.forEach(name => {
+      value.forEach((item) => {
+        if (name.outerText.toLowerCase().includes(item.toLowerCase())) {
+          name.parentNode.parentNode.parentNode.classList.remove("d-none");
+        }
       })
-      names.forEach(name => {
-        value.forEach((item) => {
-          if (name.outerText.toLowerCase().includes(item.toLowerCase())) {
-            name.parentNode.parentNode.parentNode.classList.remove("d-none");
-          }
-        })
-      })
-    } else {
-      names.forEach(name => {
-        name.parentNode.parentNode.parentNode.classList.remove("d-none");
-      })
-    }
-  })
+    })
+  } else {
+    names.forEach(name => {
+      name.parentNode.parentNode.parentNode.classList.remove("d-none");
+    })
+  }
+})
 
-  function addProduct(productID) {
-    let cartId = '<?php
+function addProduct(productID) {
+  let cartId = '<?php
                   if (isset($_SESSION['cartId'])) {
                     echo ($_SESSION['cartId']);
                   } else {
                     echo "false";
                   }
                   ?>';
-    if (cartId == "false") {
-      toast({
-        type: "toast--error",
-        title: "Error",
-        msg: "Vui lòng đăng nhập",
-        icon: "far fa-exclamation-circle"
-      });
-    } else {
-      $.post("./Product/addToCart", {
-        productId: productID,
-        cartId: cartId
-      }, function(data, status) {
-        if (data) {
-          // console.log(cartId, productID);
-          toast({
-            type: "toast--success",
-            title: "Success",
-            msg: "Thêm vào giỏ hàng thành công",
-            icon: "far fa-bell"
-          });
+  if (cartId == "false") {
+    toast({
+      type: "toast--error",
+      title: "Error",
+      msg: "Vui lòng đăng nhập",
+      icon: "far fa-exclamation-circle"
+    });
+  } else {
+    $.post("./Product/addToCart", {
+      productId: productID,
+      cartId: cartId
+    }, function(data, status) {
+      if (data) {
+        // console.log(cartId, productID);
+        toast({
+          type: "toast--success",
+          title: "Success",
+          msg: "Thêm vào giỏ hàng thành công",
+          icon: "far fa-bell"
+        });
 
-        } else {
-          toast({
-            type: "toast--error",
-            title: "Error",
-            msg: "Thêm vào giỏ hàng thất bại",
-            icon: "far fa-exclamation-circle"
-          });
-        }
-      })
-    }
+      } else {
+        toast({
+          type: "toast--error",
+          title: "Error",
+          msg: "Thêm vào giỏ hàng thất bại",
+          icon: "far fa-exclamation-circle"
+        });
+      }
+    })
   }
+}
 </script>

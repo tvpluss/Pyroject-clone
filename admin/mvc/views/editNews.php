@@ -2,9 +2,8 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<?php print_r($data) ?>
-<div class="register container-sm">
-  <form method="post" action="EditNews/Process">
+<div class="register">
+  <form method="post" style="max-width: 1000px;" action="EditNews/Process">
     <a href="./Index">
       <img src="./public/assets/image/logo-png2.png" alt="">
     </a>
@@ -27,11 +26,9 @@ require_once __DIR__ . "./Layouts/Header.php";
       value="<?php echo $data['Author'] ?>">
 
     <label for="Content">Nội dung*:</label>
-    <input type="Content" name="Content" id="Content" class="form-control" placeholder="Content" onkeyup=""
-      value="<?php echo $data['Content'] ?>">
-
-
-    <label for="Post_Date">Ngày đăng (YYYY-MM-DD):</label>
+    <textarea style="height: 300px;" type="Content" name="Content" id="Content" class="form-control"
+      placeholder="Content" onkeyup=""><?php echo $data['Content'] ?></textarea>
+    <label for="Post_Date">Ngày cập nhật (YYYY-MM-DD):</label>
     <input type="text" class="form-control" id="Post_Date" name="Post_Date" placeholder="Post Date"
       value="<?php echo date("Y-m-d") ?>" readonly>
 
