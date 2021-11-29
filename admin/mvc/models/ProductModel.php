@@ -152,18 +152,15 @@ class ProductModel extends DB
             }
         }
     }
-<<<<<<< HEAD
-}
-=======
 
     public function update_product($data, $id)
-    {   
+    {
         $this->db = new DB();
         if (empty($data['Name']) || empty($data['Description']) || empty($data['Quantity']) || empty($data['Sell_price']) || empty($data['Buy_price']) || empty($data['Picture']) || $data['Buy_price'] < 0 || $data['Sell_price'] < 0 || $data['Quantity'] < 0) {
             header("Location: ../EditProduct?error=emptyfieldsOrinvalidvalue&Name=" . $data['Name']);
             exit();
         } else {
-            
+
             $Name = mysqli_real_escape_string($this->db->con, $data['Name']);
             $Description = mysqli_real_escape_string($this->db->con, $data['Description']);
             $Quantity = mysqli_real_escape_string($this->db->con, $data['Quantity']);
@@ -177,10 +174,10 @@ class ProductModel extends DB
                 return $alert;
                 //cho chắc =]]
             } else {
-                
-                    //Nếu người dùng chọn ảnh
-                    
-                    $query = "UPDATE product SET
+
+                //Nếu người dùng chọn ảnh
+
+                $query = "UPDATE product SET
 					Nane = '$Name',
 					Description = '$Description',
 					Quantity = '$Quantity', 
@@ -188,7 +185,7 @@ class ProductModel extends DB
 					Buy_price = '$Buy_price',
 					Picture = '$Picture'
 					WHERE ID = '$id'";
-                
+
 
                 $result = $this->db->update($query);
                 print_r($result);
@@ -203,7 +200,8 @@ class ProductModel extends DB
         }
     }
 
-    public function del_product($id){
+    public function del_product($id)
+    {
         $this->db = new DB();
         $query1 = "DELETE FROM catalog where Product_ID = '$id'";
         $query2 = "DELETE FROM tag where Product_ID = '$id'";
@@ -211,14 +209,12 @@ class ProductModel extends DB
         $result1 = $this->db->delete($query1);
         $result2 = $this->db->delete($query2);
         $result3 = $this->db->delete($query3);
-        if($result3){
+        if ($result3) {
             header("Location: ../ShowProduct?success=updateproduct");
-                    exit();
-        }else{
+            exit();
+        } else {
             $alert = "<span class='error'>Product Deleted Not Success</span>";
             return $alert;
         }
-        
     }
 }
->>>>>>> 3608b76f276f75ed20ae5c66e77456055ec5bded
