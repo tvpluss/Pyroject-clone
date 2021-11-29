@@ -33,28 +33,28 @@ require_once __DIR__ . "./Layouts/Header.php";
             type: "toast--error",
             title: "Error",
             msg: "Đăng nhập không thành công",
-            icon: "fas fa-check-circle"
+            icon: "fas fa-exclamation-circle"
           });
         } else if (data == "wrongpassword") {
           toast({
             type: "toast--error",
             title: "Error",
             msg: "Sai mật khẩu",
-            icon: "fas fa-check-circle"
+            icon: "fas fa-exclamation-circle"
           });
         } else if (data == "nouser") {
           toast({
             type: "toast--error",
             title: "Error",
             msg: "Không tìm thấy user",
-            icon: "fas fa-check-circle"
+            icon: "fas fa-exclamation-circle"
           });
         } else if (data == "emptyfields") {
           toast({
             type: "toast--error",
             title: "Error",
             msg: "Vui lòng điền đầy đủ Username và Password",
-            icon: "fas fa-check-circle"
+            icon: "fas fa-exclamation-circle"
           });
         }
         // console.log(data);
