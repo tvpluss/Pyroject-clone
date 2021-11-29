@@ -152,9 +152,6 @@ class ProductModel extends DB
             }
         }
     }
-<<<<<<< HEAD
-}
-=======
 
     public function update_product($data, $id)
     {   
@@ -221,4 +218,3 @@ class ProductModel extends DB
         
     }
 }
->>>>>>> 3608b76f276f75ed20ae5c66e77456055ec5bded
