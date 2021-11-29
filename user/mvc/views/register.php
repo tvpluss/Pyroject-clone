@@ -2,6 +2,31 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
+<<<<<<< HEAD
+=======
+
+<script>
+  function checkValidation() {
+    const email = document.getElementById("email").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const firstname = document.getElementById("firstname").value;
+    const lastname = document.getElementById("lastname").value;
+    // console.log(checkUsename(username));
+    const localCheckUsename = checkUsename(username);
+    const localCheckPassword = checkPassword(password);
+    const localCheckConfirmPassword = checkConfirmPassword(confirmPassword, password);
+    const localCheckFirstname = checkLength(firstname, 20, "warningFirstname", "First name", 1);
+    const localCheckLastname = checkLength(lastname, 20, "warningLastname", "Last name", 1);
+    const localCheckEmail = checkEmail(email);
+    return (localCheckConfirmPassword && localCheckPassword && localCheckFirstname && localCheckLastname && localCheckEmail);
+    // console.log(document.getElementById('warningUsername').classList.contains('true'));
+    // console.log(email, username, password, confirmPassword, firstname, lastname, firstname);
+
+  }
+</script>
+>>>>>>> c6fd16d6f3d1f9c93408a9051818740b9a985ea0
 <div class="register">
   <form onkeyup="checkValidation()">
     <a href="./Index">
