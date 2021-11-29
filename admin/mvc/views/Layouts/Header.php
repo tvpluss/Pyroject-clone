@@ -35,7 +35,7 @@
           <a href="./Contact">Liên hệ</a>
         </li>
         <li>
-          <a href="./ShowProduct">Quản Lý Sản Phẩm</a>
+          <a href="./Product">Quản Lý Sản Phẩm</a>
         </li>
         <li>
           <a href="./ShowNews">Quản Lý Blog</a>

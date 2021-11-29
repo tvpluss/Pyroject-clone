@@ -16,7 +16,7 @@ th {
   max-width: 70px;
 }
 </style>
-<div class="container-lg">
+<div class="container-fluid">
   <table class="table table-striped table-hover">
     <tr>
       <!-- <th scope="col">ID</th> -->

@@ -36,7 +36,7 @@ th {
 }
 </style>
 </style>
-<div class="container-sm">
+<div class="container-fluid">
   <a href="./AddNews" class="btn btn-primary btnAddNew">Thêm mới</a>
   <table class="table table-striped table-hover">
     <tr>
