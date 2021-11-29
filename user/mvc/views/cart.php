@@ -10,7 +10,9 @@ include_once __DIR__ . "./Layouts/Header.php";
         $fm = new Format();
         $total_price = 0;
         $total_quantity = 0;
+        $datalength = count($data);
         ?>
+
         <div class="row">
             <div class="col-sm-7">
                 <table class="table table-image">
@@ -121,7 +123,7 @@ include_once __DIR__ . "./Layouts/Header.php";
                         $json_encode = json_encode($data);
                         echo '<input type="hidden" name="data" value="' . htmlentities($json_encode) . '">';
                         ?>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Process to checkout</button>
+                        <button type="submit" id="checkout" class="btn btn-primary btn-lg btn-block">Process to checkout</button>
                     </form>
                 </div>
             </div>
@@ -130,6 +132,12 @@ include_once __DIR__ . "./Layouts/Header.php";
 </div>
 
 <script>
+    let cnt = <?php echo $datalength ?>;
+    console.log(cnt);
+    if (cnt == 0) {
+        document.getElementById("checkout").hidden = true;
+    }
+
     function toast({
         type = "",
         title = "",
@@ -149,17 +157,17 @@ include_once __DIR__ . "./Layouts/Header.php";
                 };
             }
             toast.innerHTML = `
-                    <div class="toast__icon">
-                        <i class="${icon}"></i>
-                    </div>
-                    <div class="toast__body">
-                        <h3 class="toast__title">${title}</h3>
-                        <p class="toast__msg">${msg}</p>
-                    </div>
-                    <div class="toast__close">
-                        <i class="fas fa-times"></i>
-                    </div>
-                `
+<div class="toast__icon">
+    <i class="${icon}"></i>
+</div>
+<div class="toast__body">
+    <h3 class="toast__title">${title}</h3>
+    <p class="toast__msg">${msg}</p>
+</div>
+<div class="toast__close">
+    <i class="fas fa-times"></i>
+</div>
+`
             // var m = toast.getElementsByClassName('toast__close')[0];
             // m.addEventListener('click', () => {
             // main.removeChild(toast);
