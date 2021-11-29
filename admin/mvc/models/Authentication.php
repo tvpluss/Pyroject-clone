@@ -58,7 +58,7 @@ class Authentication extends DB
                         $_SESSION['sessionUser'] = $row['Usename'];
                         $_SESSION['sessionAuth'] = $row['User_Type'];
                         //redirect user to homepage
-                        header("Location: ../Index?success=loggedin");
+                        header("Location: ../Contact?success=loggedin");
                         exit();
                     } else {
                         header("Location: ../Login?error=wrongpassword");

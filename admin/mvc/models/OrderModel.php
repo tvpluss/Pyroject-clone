@@ -1,5 +1,5 @@
 <?php
-class Order extends DB
+class OrderModel extends DB
 {
     public function getAllOrders()
     {
@@ -134,7 +134,6 @@ class Order extends DB
                             'total_amount_of_each_product' => $total  //total_amount_of_each_product = quantity * Sell_price
                         );
                         array_push($item_list, $item);
-
                     }
                 } else {  //neu gio hang trong, xoa don hang vua tao
                     $query3 = "DELETE FROM order_details WHERE order_details.ID = ?";
@@ -143,13 +142,13 @@ class Order extends DB
                     mysqli_stmt_execute($stmt);
                     return "giỏ hàng trống";
                 }
-                
+
                 $query4 = "INSERT INTO transaction(Order_ID, Product_ID, Quantity, Total_amount_of_each_product) VALUES (?,?,?,?)";
                 mysqli_stmt_prepare($stmt, $query4);
                 foreach ($item_list as $key => $value) {
                     mysqli_stmt_bind_param($stmt, "ssss", $value['order_ID'], $value['product_ID'], $value['quantity'], $value['total_amount_of_each_product']);
                     mysqli_stmt_execute($stmt);
-                    echo 'order_ID: ' . $value['order_ID'] .", product_ID: ". $value['product_ID'] .", quantity: ". $value['quantity'] .", total: ". $value['total_amount_of_each_product'] . PHP_EOL;
+                    echo 'order_ID: ' . $value['order_ID'] . ", product_ID: " . $value['product_ID'] . ", quantity: " . $value['quantity'] . ", total: " . $value['total_amount_of_each_product'] . PHP_EOL;
                 }
                 $rst = $rst . '-> insert product to transaction ' . count($item_list);
                 //tinh: Total_amount_of_each_product = Total_amount_of_each_product * Quantity
