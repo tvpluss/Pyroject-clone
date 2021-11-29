@@ -38,7 +38,7 @@
           <a href="./ShowProduct">Quản Lý Sản Phẩm</a>
         </li>
         <li>
-          <a href="">Blog</a>
+          <a href="./ShowNews">Quản Lý Blog</a>
         </li>
         <li>
           <a href="./Order">Orders</a>
