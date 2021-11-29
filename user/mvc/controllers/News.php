@@ -23,10 +23,17 @@ class News extends Controller
         // echo ($data);
         $model = $this->model("ArticleModel");
         $Article = $model->getArticle($data);
+
         if ($Article == false) {
-            echo "No Article Found";
+            header("Location: ./Index?error=noArticle");
+            // echo "No Article Found";
+            exit();
         } else {
-            $this->view("article", $Article);
+            $data = [];
+            $data['Article'] = $Article;
+            $data['Articles'] = $this->GetAllArticles();
+            print_r($data);
+            // $this->view("article", $data);
         };
     }
 }

@@ -32,15 +32,15 @@ require_once __DIR__ . './Layouts/Header.php';
         //$all_product = $product->get_all_product();
         foreach ($data as $result) {
         ?>
-        <div class="col-6 col-sm-4 col-md-3 col-md-2">
-          <div class="item">
-            <a href="./Details?ID=<?php echo $result['ID'] ?>">
-              <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
+          <div class="col-6 col-sm-4 col-md-3 col-md-2">
+            <div class="item">
+              <a href="./Details?ID=<?php echo $result['ID'] ?>">
+                <div class="img" style="background-image: url(<?php echo $result['Picture'] ?>);">
 
-              </div>
-            </a>
-            <div class="tag">
-              <?php
+                </div>
+              </a>
+              <div class="tag">
+                <?php
                 /*$productt = new ProductModel();
                                     $get_product_details = $productt->get_details_catalog($result['ID']);
                                     if ($get_product_details) {
@@ -49,16 +49,16 @@ require_once __DIR__ . './Layouts/Header.php';
                                         }
                                     }*/
                 ?>
+              </div>
+              <div>
+                <a href="./Details?ID=<?php echo $result['ID'] ?>" class="name">
+                  <?php echo $result['Nane'] ?>
+                </a>
+              </div>
+              <div class="price"><?php echo $fm->format_currency($result['Sell_price']) . " " . "VNĐ" ?></div>
+              <button class="btn" onclick="addProduct( <?php echo $result['ID'] ?>)">Thêm vào giỏ hàng</button>
             </div>
-            <div>
-              <a href="./Details?ID=<?php echo $result['ID'] ?>" class="name">
-                <?php echo $result['Nane'] ?>
-              </a>
-            </div>
-            <div class="price"><?php echo $fm->format_currency($result['Sell_price']) . " " . "VNĐ" ?></div>
-            <button class="btn" onclick="addProduct( <?php echo $result['ID'] ?>)">Thêm vào giỏ hàng</button>
           </div>
-        </div>
         <?php
         }
         ?>
@@ -72,25 +72,25 @@ require_once __DIR__ . './Layouts/Footer.php';
 ?>
 
 <script>
-function toast({
-  type = "",
-  title = "",
-  msg = "",
-  icon = ""
-}) {
-  var main = document.querySelector('#toast');
-  if (main) {
-    const toast = document.createElement('div');
-    toast.classList.add('toast', `${type}`);
-    toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 3s forwards";
-    const ex = setTimeout(() => main.removeChild(toast), 4000);
-    toast.onclick = function(e) {
-      if (e.target.closest('.toast__close')) {
-        main.removeChild(toast);
-        clearTimeout(ex);
-      };
-    }
-    toast.innerHTML = `
+  function toast({
+    type = "",
+    title = "",
+    msg = "",
+    icon = ""
+  }) {
+    var main = document.querySelector('#toast');
+    if (main) {
+      const toast = document.createElement('div');
+      toast.classList.add('toast', `${type}`);
+      toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 3s forwards";
+      const ex = setTimeout(() => main.removeChild(toast), 4000);
+      toast.onclick = function(e) {
+        if (e.target.closest('.toast__close')) {
+          main.removeChild(toast);
+          clearTimeout(ex);
+        };
+      }
+      toast.innerHTML = `
                     <div class="toast__icon">
                         <i class="${icon}"></i>
                     </div>
@@ -102,38 +102,38 @@ function toast({
                         <i class="fas fa-times"></i>
                     </div>
                 `
-    // var m = toast.getElementsByClassName('toast__close')[0];
-    // m.addEventListener('click', () => {
-    // main.removeChild(toast);
-    // clearTimeout(ex);
-    // })
-    main.appendChild(toast);
+      // var m = toast.getElementsByClassName('toast__close')[0];
+      // m.addEventListener('click', () => {
+      // main.removeChild(toast);
+      // clearTimeout(ex);
+      // })
+      main.appendChild(toast);
+    };
   };
-};
 
-function addProduct(productID) {
-  let cartId = '<?php echo $_SESSION['cartId']; ?>';
-  $.post("./Product/addToCart", {
-    productId: productID,
-    cartId: cartId
-  }, function(data, status) {
-    if (data) {
-      console.log(cartId, productID);
-      toast({
-        type: "toast--success",
-        title: "Success",
-        msg: "Gửi lời nhắn thành công, chúng tôi sẽ liên hệ lại với bạn qua email đã cung cấp",
-        icon: "far fa-bell"
-      });
+  function addProduct(productID) {
+    let cartId = '<?php echo $_SESSION['cartId']; ?>';
+    $.post("./Product/addToCart", {
+      productId: productID,
+      cartId: cartId
+    }, function(data, status) {
+      if (data) {
+        console.log(cartId, productID);
+        toast({
+          type: "toast--success",
+          title: "Success",
+          msg: "Thêm vào giỏ hàng thành công",
+          icon: "far fa-bell"
+        });
 
-    } else {
-      toast({
-        type: "toast--error",
-        title: "Error",
-        msg: "Gửi lời nhắn thất bại",
-        icon: "far fa-bell"
-      });
-    }
-  })
-}
+      } else {
+        toast({
+          type: "toast--error",
+          title: "Error",
+          msg: "Thêm vào giỏ hàng thất bại",
+          icon: "far fa-bell"
+        });
+      }
+    })
+  }
 </script>

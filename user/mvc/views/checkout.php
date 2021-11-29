@@ -147,7 +147,11 @@ require_once __DIR__ . "./Layouts/Header.php";
       Telephone: Telephone,
       ID: ID
     }, function(data, status) {
-      console.log(data);
+      if (data) {
+        window.location.assign("./Product?success=order");
+      } else {
+        window.location.assign("./Checkout?error=order");
+      }
     })
   }
 </script>

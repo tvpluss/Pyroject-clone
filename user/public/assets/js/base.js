@@ -124,6 +124,9 @@ function showSuccess() {
 }
 
 if (window.location.search.includes("success=registered")) {
+        let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
     toast({
         type: "toast--success",
         title: "Success",
@@ -132,6 +135,9 @@ if (window.location.search.includes("success=registered")) {
     });
 }
 if (window.location.search.includes("success=checkout")) {
+        let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
     toast({
         type: "toast--success",
         title: "Success",
@@ -140,10 +146,27 @@ if (window.location.search.includes("success=checkout")) {
     });
 }
 if (window.location.search.includes("success=order")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
+    console.log(url);
     toast({
         type: "toast--success",
         title: "Success",
         msg: "Đã đặt hàng thành công",
+        icon: "fas fa-check-circle"
+    });
+}
+
+if (window.location.search.includes("error=noArticle")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
+    console.log(newurl);
+    toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Không tìm thấy bài viết",
         icon: "fas fa-check-circle"
     });
 }
