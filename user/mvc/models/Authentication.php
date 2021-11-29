@@ -1,6 +1,41 @@
 <?php
 class Authentication extends DB
 {
+    public function changePassword($ID, $oldPassword, $newPassword)
+    {
+        $query = "SELECT Password FROM user WHERE ID = ?";
+        $stmt = mysqli_stmt_init($this->con);
+        if (!mysqli_stmt_prepare($stmt, $query)) {
+            return "sqlerror";
+        } else {
+            mysqli_stmt_bind_param($stmt, "s", $ID);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if ($row = mysqli_fetch_assoc($result)) {
+                $passCheck = password_verify($oldPassword, $row['Password']);
+                if ($passCheck == false) {
+                    return "wrongpassword";
+                } else {
+                    $hashPass = password_hash($newPassword, PASSWORD_DEFAULT);
+                    $query = "UPDATE user SET Password = ? WHERE ID = ?";
+                    if (!mysqli_stmt_prepare($stmt, $query)) {
+                        return "2sqlerror";
+                    } else {
+                        mysqli_stmt_bind_param($stmt, "ss", $hashPass, $ID);
+                        mysqli_stmt_execute($stmt);
+                        if (mysqli_stmt_affected_rows($stmt) > 0) {
+                            return "success";
+                        } else {
+                            return "failed";
+                        }
+                    }
+                    // return "rightpassword";
+                }
+            } else {
+                return "nouser";
+            }
+        }
+    }
     public function CheckUsename($Usename)
     {
         $query = "SELECT * FROM user WHERE Usename=? LIMIT 1";

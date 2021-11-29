@@ -19,6 +19,8 @@ class Details extends Controller
             $model = $this->model("ProductModel");
             $data = $model->get_details_catalog($id);
             $data2 = $model->get_details_tag($id);
+            print_r($data);
+            print_r($data2);
             $this->view("details", $data, $data2);
         } else {
             require_once "./mvc/controllers/Errors.php";

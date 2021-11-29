@@ -14,7 +14,7 @@ menu_icon.addEventListener('click', () => {
 function checkPassword(str) {
     var Regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (str.match(Regex)) {
-        // document.getElementById('warningPassword').innerHTML = 'This password can be used';
+        document.getElementById('warningPassword').innerHTML = '';
         return true;
     } else {
         document.getElementById('warningPassword').innerHTML = 'Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
@@ -208,7 +208,18 @@ if (window.location.search.includes("success=order")) {
         icon: "fas fa-check-circle"
     });
 }
-
+if (window.location.search.includes("error=nopermission")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Bạn không có quyền xem lịch sử mua hàng này",
+        icon: "fas fa-exclamation-circle"
+    });
+}
 if (window.location.search.includes("error=noArticle")) {
     let url = window.location.href;
     let newurl = url.split('?')[0];

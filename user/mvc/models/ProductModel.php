@@ -11,6 +11,36 @@ class ProductModel extends DB
         // $this->db = new DB();
         // $this->fm = new Format();
     }*/
+    public function getAllProductsBetter()
+    {
+        $this->db = new DB();
+        $this->fm = new Format();
+        $query = "SELECT ID, Nane, Picture, Quantity, Buy_price, Sell_price, Description, Last_modified_day FROM product";
+        $stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $items = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $catalog_query = "SELECT Name FROM catalog WHERE catalog.Product_ID = ?";
+                $catalog_stmt = mysqli_stmt_init($this->con);
+                mysqli_stmt_prepare($catalog_stmt, $catalog_query);
+                $item = array(
+                    'ID' => $row['ID'],
+                    'Nane' => $row['Nane'],
+                    'Picture' => $row['Picture'],
+                    'Quantity' => $row['Quantity'],
+                    'Buy_price' => $row['Buy_price'],
+                    'Sell_price' => $row['Sell_price'],
+                    'Description' => $row['Description'],
+                    'Last_modified_day' => $row['Last_modified_day'],
+                );
+                array_push($items, $item);
+            }
+        }
+        return $items;
+    }
     public function getAllProducts()
     {
         $this->db = new DB();

@@ -57,7 +57,7 @@
                         <img src=\"./public/assets/image/avatar.jpg\" alt=\"\"><span>" . $_SESSION['sessionUser'] . "</span></a>
                         <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">
                             <li><a class=\"dropdown-item\" href=\"./Profile\">Chỉnh sửa thông tin</a></li>
-                            <li><a class=\"dropdown-item\" href=\"#\">Lịch sử mua hàng</a></li>
+                            <li><a class=\"dropdown-item\" href=\"./History?ID=" . $_SESSION['sessionId'] . "\">Lịch sử mua hàng</a></li>
                             <li><a class=\"dropdown-item\" href=\"./changePassword\">Đổi mật khẩu</a></li>
                             <li><a class=\"dropdown-item\" href=\"./Profile/Logout\">Đăng xuất</a></li>
                         </ul>

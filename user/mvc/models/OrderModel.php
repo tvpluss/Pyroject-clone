@@ -3,7 +3,7 @@ class OrderModel extends DB
 {
     public function getBuyingHistory($UserID)
     {
-        $query = "SELECT User_ID, ID AS Order_ID, Created FROM order_details WHERE User_ID=? ORDER BY Created DESC;";
+        $query = "SELECT ID AS Order_ID, Created, Status FROM order_details WHERE User_ID=? ORDER BY Created DESC;";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
         mysqli_stmt_bind_param($stmt, "s", $UserID);
@@ -12,10 +12,31 @@ class OrderModel extends DB
         $BuyingHistory = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                $query1 = "SELECT Product_ID, Nane, Picture, transaction.Quantity AS Quantity, Total_amount_of_each_product  FROM transaction, product WHERE transaction.Product_ID = product.ID AND transaction.Order_ID = ? ";
+                $stmt1 = mysqli_stmt_init($this->con);
+                mysqli_stmt_prepare($stmt1, $query1);
+                mysqli_stmt_bind_param($stmt1, "s", $row['Order_ID']);
+                mysqli_stmt_execute($stmt1);
+                $result1 = mysqli_stmt_get_result($stmt1);
+                $Products = [];
+                if ($result1->num_rows > 0) {
+                    while ($row1 = $result1->fetch_assoc()) {
+                        $Product = array(
+                            'Product_ID' => $row1['Product_ID'],
+                            'Name' => $row1['Nane'],
+                            'Picture' => $row1['Picture'],
+                            'Quantity' => $row1['Quantity'],
+                            'Price' => $row1['Total_amount_of_each_product']
+                        );
+                        array_push($Products, $Product);
+                    }
+                    // return $Products;
+                }
                 $AnOrder = array(
-                    'User_ID' => $row['User_ID'],
                     'Order_ID' => $row['Order_ID'],
                     'Created' => $row['Created'],
+                    'Status' => $row['Status'],
+                    'Products' => $Products
                 );
                 array_push($BuyingHistory, $AnOrder);
             }

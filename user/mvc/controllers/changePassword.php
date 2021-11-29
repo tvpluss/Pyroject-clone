@@ -7,6 +7,11 @@ class changePassword extends Controller
     }
     public function Process()
     {
-        echo "change";
+        $ID = $_SESSION['sessionId'];
+        $oldPassword = $_POST['oldPassword'];
+        $newPassword = $_POST['newPassword'];
+        $model = $this->model("Authentication");
+        echo $model->changePassword($ID, $oldPassword, $newPassword);
+        // echo "change" . $ID . $oldPassword . $newPassword;
     }
 }
