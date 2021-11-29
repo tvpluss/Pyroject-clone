@@ -15,7 +15,7 @@ require_once __DIR__ . "./Layouts/Header.php";
     const localCheckUsename = checkUsename(username);
     const localCheckPassword = checkPassword(password);
     const localCheckConfirmPassword = checkConfirmPassword(confirmPassword, password);
-    const localCheckFirstname = checkLength(firstname, 10, "warningFirstname", "First name", 1);
+    const localCheckFirstname = checkLength(firstname, 20, "warningFirstname", "First name", 1);
     const localCheckLastname = checkLength(lastname, 20, "warningLastname", "Last name", 1);
     const localCheckEmail = checkEmail(email);
     return (localCheckConfirmPassword && localCheckPassword && localCheckFirstname && localCheckLastname && localCheckEmail);
