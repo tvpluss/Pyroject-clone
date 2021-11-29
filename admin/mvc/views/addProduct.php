@@ -4,7 +4,7 @@ require_once __DIR__ . "./Layouts/Header.php";
 ?>
 <div class="register ">
   <form method="post" style="max-width: 700px;" action="./AddProduct/Process">
-    <a href="./Index">
+    <a href="./Contact">
       <img src="./public/assets/image/logo-png2.png" alt="">
     </a>
     <h3>Thêm sản phẩm </h3>
