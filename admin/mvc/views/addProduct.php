@@ -8,12 +8,16 @@ require_once __DIR__ . "./Layouts/Header.php";
             <img src="./public/assets/image/logo-png2.png" alt="">
         </a>
         <h3>Thêm sản phẩm </h3>
+        
         <label for="Name">Name:</label>
         <input type="text" name="Name" id="Name" class="form-control" placeholder="Product Name" onkeyup="checkProduct(this.value)">
 
 
         <label for="Category">Category:</label>
         <input type="text" name="Category" id="Category" class="form-control" placeholder="Category" onkeyup="">
+
+        <label for="Category">Tag:</label>
+        <input type="text" name="Tag" id="Tag" class="form-control" placeholder="Tag" onkeyup="">
 
 
         <label for="Description">Description:</label>

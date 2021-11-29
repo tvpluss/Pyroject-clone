@@ -1,11 +1,7 @@
 <?php
-class Product extends Controller
+class EditProduct extends Controller
 {
     function Default()
-    {
-        $this->view("showProduct");
-    }
-    function Edit()
     {
         if (isset($_POST['ID'])) {
             $id = $_POST['ID'];
@@ -17,9 +13,17 @@ class Product extends Controller
             require_once "./mvc/controllers/Errors.php";
             $error = new Errors;
             $error->Default("No Product ID");
+        }
     }
-}
-    function ProcessEdit()
-    {
+    function Process(){
+        if($_GET["del"]==1){
+            $model = $this->model("ProductModel");
+            $model->del_product($_POST['ID']);
+        }
+        else{
+        print_r($_POST);
+        $model = $this->model("ProductModel");
+        $model->update_product($_POST,$_POST['ID']);
+        }
     }
 }
