@@ -40,23 +40,14 @@ th {
       </td>
       <td scope="col"><?php echo $fm->format_currency($result['Sell_price']) . " " . "VNĐ" ?></td>
       <td class="btnn">
-        <form action="EditProduct/Process?del=1" method="POST">
+        <form action="Product/Process?del=1" method="POST">
           <input type="text" value="<?php echo $result['ID']; ?>" name="ID" hidden>
           <button name="btnDel" type="submit" class="btn btn-lg btn-primary btn-block">Xóa</button>
         </form>
       </td>
       <td class="btnn" scope="col">
-        <form action="EditProduct" method="POST">
-          <input type="text" value="<?php echo $result['ID']; ?>" name="ID" hidden>
-          <input type="text" value="<?php echo $result['Nane']; ?>" name="Nane" hidden>
-          <input type="text" value="<?php echo $result['Picture']; ?>" name="Picture" hidden>
-          <input type="text" value="<?php echo $result['Quantity']; ?>" name="Quantity" hidden>
-          <input type="text" value="<?php echo $result['Buy_price']; ?>" name="Buy_price" hidden>
-          <input type="text" value="<?php echo $result['Sell_price']; ?>" name="Sell_price" hidden>
-          <input type="text" value="<?php echo $result['Description']; ?>" name="Description" hidden>
-
-          <button name="btnEdit" type="submit" class="btn btn-lg btn-primary btn-block">Sửa</button>
-        </form>
+        <a name="btnEdit" href="./Product?ID=<?php echo  $result['ID']; ?>"
+          class="btn btn-lg btn-primary btn-block">Sửa</a>
       </td>
     </tr>
     <?php } ?>

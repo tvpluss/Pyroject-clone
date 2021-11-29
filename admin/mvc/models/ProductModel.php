@@ -76,14 +76,11 @@ class ProductModel extends DB
         return $items;
     }
 
-    public function get_details_tag($id)
+    public function getProduct($id)
     {
-        $this->db = new DB();
-        $this->fm = new Format();
         $query = "
-        SELECT product.ID, product.Nane, product.Picture, product.Quantity, product.Buy_price, product.Sell_price, product.Description, product.Last_modified_day, tag.Name
-
-        FROM product INNER JOIN tag ON product.Id = tag.Product_ID WHERE product.ID = '$id'
+        SELECT product.ID, product.Nane, product.Picture, product.Quantity, product.Buy_price, product.Sell_price, product.Description, product.Last_modified_day
+        FROM product WHERE product.ID = " . $id . " 
         ";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
@@ -101,7 +98,6 @@ class ProductModel extends DB
                     'Sell_price' => $row['Sell_price'],
                     'Description' => $row['Description'],
                     'Last_modified_day' => $row['Last_modified_day'],
-                    'Name' => $row['Name']
                 );
                 array_push($items, $item);
             }
@@ -143,7 +139,7 @@ class ProductModel extends DB
                 $sql2 = "INSERT INTO tag(Name, product_ID) VALUES ('$Tag','$id')";
                 $result3 = $this->db->insert($sql2);
                 if ($result) {
-                    header("Location: ../ShowProduct?success=addproduct");
+                    header("Location: ../Product?success=addproduct");
                     exit();
                 } else {
                     $alert = "<span class='error'>Insert Product Not Success</span>";
@@ -190,7 +186,7 @@ class ProductModel extends DB
                 $result = $this->db->update($query);
                 print_r($result);
                 if ($result) {
-                    header("Location: ../ShowProduct?success=updateproduct");
+                    header("Location: ../Product?success=updateproduct");
                     exit();
                 } else {
                     $alert = "<span class='error'>Product Updated Not Success</span>";
@@ -210,7 +206,7 @@ class ProductModel extends DB
         $result2 = $this->db->delete($query2);
         $result3 = $this->db->delete($query3);
         if ($result3) {
-            header("Location: ../ShowProduct?success=updateproduct");
+            header("Location: ../Product?success=updateproduct");
             exit();
         } else {
             $alert = "<span class='error'>Product Deleted Not Success</span>";

@@ -3,23 +3,32 @@ class Product extends Controller
 {
     function Default()
     {
-        $this->view("showProduct");
-    }
-    function Edit()
-    {
-        if (isset($_POST['ID'])) {
-            $id = $_POST['ID'];
-            $model = $this->model("ProductModel");
-            $data = $model->get_details_catalog($id);
-            //$data2 = $model->get_details_tag($id);
-            $this->view("editProduct", $data[0]);
+
+        if (isset($_GET["ID"])) {
+            $this->EditProduct($_GET["ID"]);
         } else {
-            require_once "./mvc/controllers/Errors.php";
-            $error = new Errors;
-            $error->Default("No Product ID");
+            $model = $this->model("ProductModel");
+            $data = $model->getAllProducts();
+            $this->view("ShowProduct", $data);
+        }
     }
-}
-    function ProcessEdit()
+    function EditProduct($ID)
     {
+        $model = $this->model("ProductModel");
+        $data = $model->getProduct($ID);
+        // print_r($ID);
+        $this->view("editProduct", $data[0]);
+    }
+    function Save()
+    {
+        $model = $this->model("ProductModel");
+        $model->update_product($_POST, $_POST['ID']);
+    }
+    function Process()
+    {
+        if ($_GET["del"] == 1) {
+            $model = $this->model("ProductModel");
+            $model->del_product($_POST['ID']);
+        }
     }
 }
