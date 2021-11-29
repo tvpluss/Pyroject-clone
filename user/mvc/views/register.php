@@ -30,7 +30,7 @@ require_once __DIR__ . "./Layouts/Header.php";
       <img src="./public/assets/image/logo-png2.png" alt="">
     </a>
     <label for="username">Username*:</label>
-    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+    <input type="text" name="username" id="username" class="form-control" placeholder="Không được thay đổi">
     <span id="warningUsername" class="warning"></span>
     <label for="password">Password*:</label>
     <input type="password" name="password" id="password" class="form-control" placeholder="Password">
