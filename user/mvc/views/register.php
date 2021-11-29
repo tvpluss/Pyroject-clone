@@ -2,57 +2,55 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<<<<<<< HEAD
-=======
 
 <script>
-  function checkValidation() {
-    const email = document.getElementById("email").value;
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-    const firstname = document.getElementById("firstname").value;
-    const lastname = document.getElementById("lastname").value;
-    // console.log(checkUsename(username));
-    const localCheckUsename = checkUsename(username);
-    const localCheckPassword = checkPassword(password);
-    const localCheckConfirmPassword = checkConfirmPassword(confirmPassword, password);
-    const localCheckFirstname = checkLength(firstname, 20, "warningFirstname", "First name", 1);
-    const localCheckLastname = checkLength(lastname, 20, "warningLastname", "Last name", 1);
-    const localCheckEmail = checkEmail(email);
-    return (localCheckConfirmPassword && localCheckPassword && localCheckFirstname && localCheckLastname && localCheckEmail);
-    // console.log(document.getElementById('warningUsername').classList.contains('true'));
-    // console.log(email, username, password, confirmPassword, firstname, lastname, firstname);
+function checkValidation() {
+  const email = document.getElementById("email").value;
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const firstname = document.getElementById("firstname").value;
+  const lastname = document.getElementById("lastname").value;
+  // console.log(checkUsename(username));
+  const localCheckUsename = checkUsename(username);
+  const localCheckPassword = checkPassword(password);
+  const localCheckConfirmPassword = checkConfirmPassword(confirmPassword, password);
+  const localCheckFirstname = checkLength(firstname, 20, "warningFirstname", "First name", 1);
+  const localCheckLastname = checkLength(lastname, 20, "warningLastname", "Last name", 1);
+  const localCheckEmail = checkEmail(email);
+  return (localCheckConfirmPassword && localCheckPassword && localCheckFirstname && localCheckLastname &&
+    localCheckEmail);
+  // console.log(document.getElementById('warningUsername').classList.contains('true'));
+  // console.log(email, username, password, confirmPassword, firstname, lastname, firstname);
 
-  }
+}
 </script>
->>>>>>> c6fd16d6f3d1f9c93408a9051818740b9a985ea0
 <div class="register">
   <form onkeyup="checkValidation()">
     <a href="./Index">
       <img src="./public/assets/image/logo-png2.png" alt="">
     </a>
     <label for="username">Username*:</label>
-    <input type="text" name="username" id="username" class="form-control" placeholder="Không được thay đổi">
+    <input type="text" name="username" id="username" class="form-control" placeholder="Nhập username">
     <span id="warningUsername" class="warning"></span>
-    <label for="password">Password*:</label>
-    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+    <label for="password">Mật khẩu*:</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
     <span id="warningPassword" class="warning"></span>
-    <label for="confirmPassword">Confirm password*:</label>
+    <label for="confirmPassword">Mật khẩu xác nhận*:</label>
     <input id="confirmPassword" type="password" class="form-control" name="confirmPassword"
-      placeholder="Confirm Password">
+      placeholder="Nhập lại mật khẩu">
     <span id="warningConfirmPassword" class="warning"></span>
-    <label for="firstname">First Name*:</label>
-    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First name">
+    <label for="firstname">Họ*:</label>
+    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Nhập họ của bạn">
     <span id="warningFirstname" class="warning"></span>
-    <label for="lastname">Last Name*:</label>
-    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last name">
+    <label for="lastname">Tên*:</label>
+    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Nhập tên của bạn">
     <span id="warningLastname" class="warning"></span>
     <label for="email">Email:</label>
-    <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+    <input id="email" type="email" class="form-control" name="email" placeholder="Nhập email của bạn">
     <span id="warningEmail" class="warning"></span>
-    <button class="btn btn-lg btn-primary btn-block" type="button" id="register" name="submit" value="signup">Sign
-      up</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" id="register" name="submit" value="signup">Đăng
+      kí</button>
   </form>
 </div>
 <script>

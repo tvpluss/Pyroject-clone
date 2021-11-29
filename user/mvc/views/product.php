@@ -83,8 +83,9 @@ require_once __DIR__ . './Layouts/Footer.php';
 
 <script>
 var names = document.querySelectorAll('.name');
+var tags = document.querySelectorAll('.tag');
 var search = document.querySelector('#search');
-
+console.log(tags[1]);
 search.addEventListener('keyup', (e) => {
   console.log(e.target.value);
   if (e.target.value) {
