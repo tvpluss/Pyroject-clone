@@ -13,7 +13,7 @@ class Checkout extends Controller
     {
         // echo $_POST['ID'];
         $model = $this->model("OrderModel");
-        $result = $model->insertAnOrder($_POST['ID'], $_POST['LastName'], $_POST['FirstName'], $_POST['Email'], $_POST['Telephone'], $_POST['StreetAddress'], $_POST['TownCity'], $_POST['Account'], $_POST['BankName']);
+        $result = $model->insertAnOrder($_POST['ID'], $_POST['LastName'], $_POST['FirstName'], $_POST['Email'], $_POST['Telephone'], $_POST['StreetAddress'], $_POST['TownCity'], $_POST['Account'], $_POST['BankName'], $_POST['Note'], $_POST['Postcode']);
         echo $result;
     }
 }

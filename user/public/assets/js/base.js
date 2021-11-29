@@ -200,7 +200,7 @@ if (window.location.search.includes("success=order")) {
     let url = window.location.href;
     let newurl = url.split('?')[0];
     history.pushState("","",newurl);
-    console.log(url);
+    // console.log(url);
     toast({
         type: "toast--success",
         title: "Success",

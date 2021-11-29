@@ -50,14 +50,14 @@ class OrderModel extends DB
             empty($Status) || empty($UserID) || empty($LastName) || empty($FirstName) || empty($Email) || empty($Telephone) || empty($StreetAddress) ||
             empty($TownCity) || empty($Account) || empty($BankName)
         ) {
-            return false;
+            return "emptyfield";
         } else {
             $rst = 'Begin';
             $query = "INSERT INTO order_details(Status, User_ID, Last_Name, First_name, Email, Telephone, Street_address, Postcode_ZIP,Created ,Town_City, Account, Bank_Name, Note) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = mysqli_stmt_init($this->con);
             if (!mysqli_stmt_prepare($stmt, $query)) {
-                // return "false";
-                return false;
+                return "sqlerror";
+                // return false;
             }
             mysqli_stmt_bind_param($stmt, "sssssssssssss", $Status, $UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $PostcodeZIP, $Created, $TownCity, $Account, $BankName, $Note);
             mysqli_stmt_execute($stmt);
@@ -98,7 +98,7 @@ class OrderModel extends DB
                     mysqli_stmt_prepare($stmt, $query3);
                     mysqli_stmt_bind_param($stmt, "s", $last_id);
                     mysqli_stmt_execute($stmt);
-                    return "giỏ hàng trống";
+                    return "emptycart";
                 }
 
                 $query4 = "INSERT INTO transaction(Order_ID, Product_ID, Quantity, Total_amount_of_each_product) VALUES (?,?,?,?)";
@@ -106,7 +106,7 @@ class OrderModel extends DB
                 foreach ($item_list as $key => $value) {
                     mysqli_stmt_bind_param($stmt, "ssss", $value['order_ID'], $value['product_ID'], $value['quantity'], $value['total_amount_of_each_product']);
                     mysqli_stmt_execute($stmt);
-                    echo 'order_ID: ' . $value['order_ID'] . ", product_ID: " . $value['product_ID'] . ", quantity: " . $value['quantity'] . ", total: " . $value['total_amount_of_each_product'] . PHP_EOL;
+                    // echo 'order_ID: ' . $value['order_ID'] . ", product_ID: " . $value['product_ID'] . ", quantity: " . $value['quantity'] . ", total: " . $value['total_amount_of_each_product'] . PHP_EOL;
                 }
                 $rst = $rst . '-> insert product to transaction ' . count($item_list);
                 //tinh: Total_amount_of_each_product = Total_amount_of_each_product * Quantity
@@ -119,11 +119,11 @@ class OrderModel extends DB
                 mysqli_stmt_execute($stmt);
                 // echo '<script>alert("Tạo đơn hàng thành công.")</script>';
                 // echo $rst;
-                return true;
+                return "success";
             } else {
                 // echo '<script>alert("Lỗi: Hệ thống bận, không thể tạo đơn hàng lúc này.")</script>';
                 // return "here";
-                return false;
+                return "failed";
             }
         }
     }

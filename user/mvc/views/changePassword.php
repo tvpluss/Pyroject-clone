@@ -38,7 +38,7 @@ require_once __DIR__ . "./Layouts/Header.php";
       });
     }
     // console.log(oldPassword, newPassword);
-    $.post("./changePassword/Process", {
+    $.post("./Profile/changePassword", {
       oldPassword: oldPassword,
       newPassword: newPassword
     }, function(data, status) {
