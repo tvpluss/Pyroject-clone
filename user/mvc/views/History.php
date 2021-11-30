@@ -16,7 +16,7 @@ require_once __DIR__ . './Layouts/Header.php';
         max-width: 70px;
     }
 </style>
-<div class="container-lg">
+<div class="container-lg" style="margin-bottom: 200px;">
     <table class="table table-striped table-hover">
         <tr>
             <!-- <th scope="col">ID</th> -->
@@ -32,7 +32,8 @@ require_once __DIR__ . './Layouts/Header.php';
                 <td scope="col"><?php echo $item['Status'] ?></td>
                 <td scope="col"><?php echo $item['Created'] ?></td>
                 <td scope="col" style="min-width: 160px;">
-                    <a class="btn" href="?action=vieworder&userId=<?php echo $_SESSION['sessionId'] ?>&orderId=<?php echo $item["Order_ID"] ?>">Xem chi
+                    <a class="btn" href="?action=vieworder&userId=<?php echo $_SESSION['sessionId'] ?>&orderId=<?php echo $item["Order_ID"] ?>">Xem
+                        chi
                         tiết
                     </a>
                 </td>

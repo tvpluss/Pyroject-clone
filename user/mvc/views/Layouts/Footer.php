@@ -1,4 +1,4 @@
-<div class="footer" style="margin-top: calc(100% - 850px);">
+<div class="footer">
   <div class="container-sm">
     <div class="row">
       <div class="col-12 col-md-6">

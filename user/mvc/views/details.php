@@ -41,69 +41,92 @@ include_once __DIR__ . "../Layouts/Header.php";
           </form>
           <button class="btn" type="button" onclick="addProduct(<?php echo $data['ID'] ?>)">Thêm vào giỏ
             hàng</button>
-          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Đánh giá
-          </a>
         </div>
       </div>
     </div>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Mô tả</button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Đánh giá</button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="description">
+          <?php
+          echo $data['Description']
+          ?>
+          <h3>Thông số kỹ thuật</h3>
+          <p>Nguồn cấp: <strong>10~30 VDC – 0.5W</strong></p>
+          <p>Truyền thông: <strong>Ethernet / Wifi</strong></p>
+          <p>Giao thức: <strong>Modbus TCP/IP</strong></p>
+          <p>Tốc độ: <strong>1,200bps to 115,200 bps</strong></p>
+          <p>Kết nối: Terminal screw block</p>
+          <p>Watchdog Timer: Có</p>
+          <p>Ngõ vào Analog: <strong>4 kênh</strong>, có khả năng chuyển đổi giữa dòng ngõ vào và điện áp ngõ
+            vào.</p>
+          <p>Độ phân giải: <strong>16-bit</strong></p>
+          <p>Dòng điện ngõ vào<br>
+            <strong>Ngõ vào: mA</strong><br>
+            Giá trị ngõ vào: 0-20mA, 4-20mA<br>
+            Sai số: 0.1%
+          </p>
+          <p>Điện áp ngõ vào<br>
+            <strong>Ngõ vào: V</strong><br>
+            Giá trị ngõ vào: 0-5V, 0-10V<br>
+            Sai số: 0.2%
+          </p>
+          <p><strong>Khác</strong></p>
+          <p>Đèn LED báo: Trạng thái nguồn</p>
+          <p>Lắp đặt DIN Ray</p>
+          <p>Khối lượng 0.5Kg</p>
+          <p>Kích thước 120x100x20mm</p>
+          <p>Điều kiện môi trường</p>
+          <p>Nhiệt độ hoạt động 0 – 70 độ C</p>
+          <p>Nhiệt độ bảo quản -25 – 85 độ C</p>
+          <p>Độ ẩm 15 – 80%</p>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div>
+          <?php
+          if (count($data["review"]) == 0) {
+            echo '<h3 style="margin: 20px 0;">Chưa có đánh giá nào cho sản phẩm này</h3>';
+          }
+          foreach ($data["review"] as $result) {
+            echo '
+                  <div class="mb-3">
+                  <label for="exampleFormControlTextarea3" class="form-label">' . $result["Name"] . '</label>
+                  <p class="form-control" name="content" id="exampleFormControlTextarea3" >' . $result["Content"] . '</p>
+                  </div>
+                  ';
+          }
+          ?>
+        </div>
+        <div class="card card-body">
+          <form action="./Details/addReview" method="POST">
+            <input type="text" class="form-control" name="productID" value="<?php echo $data["ID"] ?>" hidden>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Họ và tên</label>
+              <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Nhập họ và tên">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput2" class="form-label">Địa chỉ email</label>
+              <input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="Nhập địa chỉ email">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea3" class="form-label">Nội dung</label>
+              <textarea class="form-control" name="content" id="exampleFormControlTextarea3" rows="3"></textarea>
+            </div>
+            <button class="btn" type="submit" name="addReview">Gửi đánh giá</button>
+          </form>
+        </div>
 
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body" style="max-width: 900px; margin: 0 auto;">
-        <form action="./Details/addReview" method="POST">
-          <input type="text" class="form-control" name="productID" value="<?php echo $data["ID"] ?>" hidden>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Họ và tên</label>
-            <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Nhập họ và tên">
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput2" class="form-label">Địa chỉ email</label>
-            <input type="email" class="form-control" name="email" id="exampleFormControlInput2" placeholder="Nhập địa chỉ email">
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea3" class="form-label">Nội dung</label>
-            <textarea class="form-control" name="content" id="exampleFormControlTextarea3" rows="3"></textarea>
-          </div>
-          <button class="btn" type="submit" name="addReview">Gửi đánh giá</button>
-        </form>
       </div>
     </div>
-    <div class="description">
-      <h2>Mô tả</h2>
-      <?php
-      echo $data['Description']
-      ?>
-      <h3>Thông số kỹ thuật</h3>
-      <p>Nguồn cấp: <strong>10~30 VDC – 0.5W</strong></p>
-      <p>Truyền thông: <strong>Ethernet / Wifi</strong></p>
-      <p>Giao thức: <strong>Modbus TCP/IP</strong></p>
-      <p>Tốc độ: <strong>1,200bps to 115,200 bps</strong></p>
-      <p>Kết nối: Terminal screw block</p>
-      <p>Watchdog Timer: Có</p>
-      <p>Ngõ vào Analog: <strong>4 kênh</strong>, có khả năng chuyển đổi giữa dòng ngõ vào và điện áp ngõ
-        vào.</p>
-      <p>Độ phân giải: <strong>16-bit</strong></p>
-      <p>Dòng điện ngõ vào<br>
-        <strong>Ngõ vào: mA</strong><br>
-        Giá trị ngõ vào: 0-20mA, 4-20mA<br>
-        Sai số: 0.1%
-      </p>
-      <p>Điện áp ngõ vào<br>
-        <strong>Ngõ vào: V</strong><br>
-        Giá trị ngõ vào: 0-5V, 0-10V<br>
-        Sai số: 0.2%
-      </p>
-      <p><strong>Khác</strong></p>
-      <p>Đèn LED báo: Trạng thái nguồn</p>
-      <p>Lắp đặt DIN Ray</p>
-      <p>Khối lượng 0.5Kg</p>
-      <p>Kích thước 120x100x20mm</p>
-      <p>Điều kiện môi trường</p>
-      <p>Nhiệt độ hoạt động 0 – 70 độ C</p>
-      <p>Nhiệt độ bảo quản -25 – 85 độ C</p>
-      <p>Độ ẩm 15 – 80%</p>
-    </div>
+
   </div>
+
 </div>
 <script>
   var subtractQuantity = document.querySelector('#subtractQuantity');

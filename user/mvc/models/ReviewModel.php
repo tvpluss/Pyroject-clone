@@ -32,8 +32,8 @@ class ReviewModel extends DB
                     'Name' => $row['Name'],
                     'Status' => $row['Status']
                 );
+                array_push($reviews, $review);
             }
-            array_push($reviews, $review);
         }
         return $reviews;
     }
