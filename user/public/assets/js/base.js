@@ -196,6 +196,18 @@ if (window.location.search.includes("success=checkout")) {
         icon: "fas fa-check-circle"
     });
 }
+if (window.location.search.includes("success=addedreview")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
+    // console.log(url);
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Thêm đánh giá thành công",
+        icon: "fas fa-check-circle"
+    });
+}
 if (window.location.search.includes("success=order")) {
     let url = window.location.href;
     let newurl = url.split('?')[0];
