@@ -18,14 +18,6 @@
     rel="stylesheet">
   <link rel="stylesheet" href="./public/assets/css/main.css?key=<?php echo time(); ?>">
   <style>
-  body {
-    display: flex;
-    justify-content: space-between;
-    min-height: 100vh;
-    flex-direction: column;
-    min-width: 320px;
-  }
-
   @media (max-width:700px) {
     #none {
       display: none;
