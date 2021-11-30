@@ -83,13 +83,13 @@ if (isset($_SESSION['sessionId'])) {
             <h3>Công ty TNHH Pyroject</h3>
             <ul>
               <li>
-                <span>13/35 Thành Mỹ, P08, Q.Tân Bình, TP.HCM</span>
+                <span>446 Phường Linh Trung, Quận Tô Hoà, TP.HCM</span>
               </li>
               <li>
-                <a href="">contact@pyroject.com</a>
+                <a href="">contactpyroject@gmail.com</a>
               </li>
               <li>
-                <a href="">(+84) 906 51 51 05</a>
+                <a href="">(+84) 909 51 51 23</a>
               </li>
             </ul>
           </div>

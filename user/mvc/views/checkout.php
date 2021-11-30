@@ -231,7 +231,7 @@ require_once __DIR__ . "./Layouts/Header.php";
       if (data) {
         console.log("here");
         if (data == "success") {
-          window.location.assign("./Product?success=order");
+          window.location.assign("./Product?page=1&success=order");
         } else if (data == "sqlerror") {
           toast({
             type: "toast--error",

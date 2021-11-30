@@ -14,19 +14,19 @@
           <ul>
             <li>
               <i class="fas fa-search-location"></i>
-              <span>Địa chỉ: 13/35 Thành Mỹ, phường 8, quận Tân Bình</span>
+              <span>Địa chỉ: 446 Phường Linh Trung, Quận Tô Hoà, TP.HCM</span>
             </li>
             <li>
               <i class="fas fa-phone"></i>
-              <span>SĐT: 0906515105 - 0914763634</span>
+              <span>SĐT: 0909515123 - 0909763763</span>
             </li>
             <li>
               <i class="far fa-envelope"></i>
-              <span>Email: contact@pyroject.com</span>
+              <span>Email: contactpyroject@gmail.com</span>
             </li>
             <li>
               <i class="fas fa-clock"></i>
-              <span>Thời gian làm việc:: T2 - T7 / 8:00 AM - 5:30 PM</span>
+              <span>Thời gian làm việc:: T2 - T7 / 8:00 AM - 6:30 PM</span>
             </li>
           </ul>
         </div>
