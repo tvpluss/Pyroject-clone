@@ -14,7 +14,7 @@ class App
 
         $arr = $this->UrlProcess();
         if (empty($arr)) {
-            $arr[0] = "Index";
+            $arr[0] = "Contact";
         }
         // print_r($arr);
         // Controller

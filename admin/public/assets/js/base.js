@@ -14,9 +14,11 @@ menu_icon.addEventListener('click', () => {
 function checkPassword(str) {
     var Regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (str.match(Regex)) {
-        document.getElementById('warningPassword').innerHTML = 'This password can be used';
+        document.getElementById('warningPassword').innerHTML = '';
+        return true;
     } else {
         document.getElementById('warningPassword').innerHTML = 'Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
+        return false;
     }
 }
 
@@ -41,35 +43,73 @@ function checkUsename(str) {
     }
 }
 
-function checkConfirmPassword(str) {
+function checkConfirmPassword(str, password) {
     if (str.length == 0) {
         document.getElementById('warningConfirmPassword').innerHTML = '';
+        return false;
     } else {
-        const Password = document.getElementById('Password').value;
-        if (str != Password) {
+        if (str != password) {
             document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password do not match password';
+            return false;
         } else {
             document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password match password';
+            return true;
         }
     }
 }
+function checkLength(str, length, id, type, minlength = 0) {
+    if (str.length > length) {
+        document.getElementById(id).innerHTML = `${type} limit excess`;
+        return false;
+    } else if (str.length < minlength) {
+        document.getElementById(id).innerHTML = `${type} minimum ${minlength} characters`;
+        return false;
+    }
+    else {
+        document.getElementById(id).innerHTML = "";
+        return true;
+    }
 
+}
+function checkTelephone(str) {
+    const regex = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+    if (str.match(regex) && str.length >= 10 && str.length <= 11) {
+        document.getElementById("warningTelephone").innerHTML = "";
+        return true;
+    }
+    else {
+        document.getElementById("warningTelephone").innerHTML = "Invalid phone number";
+        return false;
+    }
+}
+function checkEmail(str) {
+    const re =
+        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (str.match(re)) {
+        document.getElementById('warningEmail').innerHTML = '';
+        return true;
+    }
+    else {
+        document.getElementById('warningEmail').innerHTML = 'This is not a valid Email';
+        return false;
+    }
+}
 function checkBuyPrice(num) {
     if (num < 0) {
         document.getElementById('warningBuyPrice').innerHTML = 'This value is not be less than 0';
-    
+
     }
 }
 function checkSellPrice(num) {
     if (num < 0) {
-        
+
         document.getElementById('warningSellPrice').innerHTML = 'This value is not be less than 0';
-        
+
     }
 }
 function checkQuantity(num) {
     if (num < 0) {
-        
+
         document.getElementById('warningQuantity').innerHTML = 'This value is not be less than 0';
     }
 }
@@ -85,8 +125,8 @@ function toast({
     if (main) {
         const toast = document.createElement('div');
         toast.classList.add('toast', `${type}`);
-        toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 3s forwards";
-        const ex = setTimeout(() => main.removeChild(toast), 4000);
+        toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 1s forwards";
+        const ex = setTimeout(() => main.removeChild(toast), 2000);
         toast.onclick = function (e) {
             if (e.target.closest('.toast__close')) {
                 main.removeChild(toast);
@@ -122,12 +162,101 @@ function showSuccess() {
         icon: "fas fa-check-circle"
     });
 }
+if (window.location.search.includes("success=loggedin")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Đăng nhập thành công",
+        icon: "fas fa-check-circle"
+    });
+}
 
 if (window.location.search.includes("success=registered")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
     toast({
         type: "toast--success",
         title: "Success",
         msg: "Đăng ký thành công",
+        icon: "fas fa-check-circle"
+    });
+}
+if (window.location.search.includes("success=checkout")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Chuyển sang checkout",
+        icon: "fas fa-check-circle"
+    });
+}
+if (window.location.search.includes("success=order")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    // console.log(url);
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Đã đặt hàng thành công",
+        icon: "fas fa-check-circle"
+    });
+}
+if (window.location.search.includes("error=nopermission")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Bạn không có quyền xem lịch sử mua hàng này",
+        icon: "fas fa-exclamation-circle"
+    });
+}
+if (window.location.search.includes("error=noArticle")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Không tìm thấy bài viết",
+        icon: "fas fa-exclamation-circle"
+    });
+}
+if (window.location.search.includes("success=updateProfile")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--success",
+        title: "Success",
+        msg: "Cập nhật thông tin thành công",
+        icon: "fas fa-check-circle"
+    });
+}
+
+
+
+if (window.location.search.includes("error=NaemptyfieldsOrinvalidvalue")) {
+    console.log("ádasdsa")
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Vui lòng điền đầy đủ thông tin",
         icon: "fas fa-check-circle"
     });
 }

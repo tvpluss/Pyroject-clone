@@ -110,7 +110,7 @@ class ProductModel extends DB
 
         $this->db = new DB();
         if (empty($data['Name']) || empty($data['Category']) || empty($data['Tag']) || empty($data['Description']) || empty($data['Quantity']) || empty($data['Sell_price']) || empty($data['Buy_price']) || empty($data['Picture']) || $data['Buy_price'] < 0 || $data['Sell_price'] < 0 || $data['Quantity'] < 0) {
-            header("Location: ../addProduct?error=emptyfieldsOrinvalidvalue&Name=" . $data['Name']);
+            header("Location: ../addProduct?error=NaemptyfieldsOrinvalidvalue");
             exit();
         }
 
