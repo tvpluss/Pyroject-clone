@@ -27,7 +27,7 @@ require_once __DIR__ . './Layouts/Header.php';
           <img src='<?php echo $article['Picture'] ?>'>
           <h3> <?php echo $article['Title'] ?></h3>
           <p> <?php echo $article['Author'] ?></p>
-          <p> Post Date: <?php echo $article['Post_Date'] ?></p>
+          <p> Ngày cập nhật cuối: <?php echo $article['Post_Date'] ?></p>
         </a>
       </div>
     <?php
