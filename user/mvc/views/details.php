@@ -41,7 +41,34 @@ include_once __DIR__ . "../Layouts/Header.php";
           </form>
           <button class="btn" type="button" onclick="addProduct(<?php echo $data['ID'] ?>)">Thêm vào giỏ
             hàng</button>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            Đánh giá
+          </a>
         </div>
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body" style="max-width: 900px; margin: 0 auto;">
+        <form action="./Details/addReview" method="POST">
+          <input type="text" class="form-control" name="ID" value="<?php echo $data["ID"] ?>" hidden>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Họ và tên</label>
+            <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
+              placeholder="Nhập họ và tên">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Địa chỉ email</label>
+            <input type="email" class="form-control" name="email" id="exampleFormControlInput2"
+              placeholder="Nhập địa chỉ email">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea3" class="form-label">Nội dung</label>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea3" rows="3"></textarea>
+          </div>
+          <button class="btn" type="submit" name="addReview">Gửi đánh giá</button>
+        </form>
       </div>
     </div>
     <div class="description">
@@ -82,41 +109,41 @@ include_once __DIR__ . "../Layouts/Header.php";
   </div>
 </div>
 <script>
-  var subtractQuantity = document.querySelector('#subtractQuantity');
-  var addQuantity = document.querySelector('#addQuantity');
-  var quantity = document.querySelector('#quantity');
-  console.log(subtractQuantity, addQuantity, quantity);
-  subtractQuantity.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (quantity.value > 0) {
-      quantity.value--;
+var subtractQuantity = document.querySelector('#subtractQuantity');
+var addQuantity = document.querySelector('#addQuantity');
+var quantity = document.querySelector('#quantity');
+console.log(subtractQuantity, addQuantity, quantity);
+subtractQuantity.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (quantity.value > 0) {
+    quantity.value--;
+  }
+})
+
+addQuantity.addEventListener('click', (e) => {
+  e.preventDefault();
+  quantity.value++;
+})
+
+function toast({
+  type = "",
+  title = "",
+  msg = "",
+  icon = ""
+}) {
+  var main = document.querySelector('#toast');
+  if (main) {
+    const toast = document.createElement('div');
+    toast.classList.add('toast', `${type}`);
+    toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 3s forwards";
+    const ex = setTimeout(() => main.removeChild(toast), 4000);
+    toast.onclick = function(e) {
+      if (e.target.closest('.toast__close')) {
+        main.removeChild(toast);
+        clearTimeout(ex);
+      };
     }
-  })
-
-  addQuantity.addEventListener('click', (e) => {
-    e.preventDefault();
-    quantity.value++;
-  })
-
-  function toast({
-    type = "",
-    title = "",
-    msg = "",
-    icon = ""
-  }) {
-    var main = document.querySelector('#toast');
-    if (main) {
-      const toast = document.createElement('div');
-      toast.classList.add('toast', `${type}`);
-      toast.style.animation = "slideInleft ease .3s, fadeOut linear 1s 3s forwards";
-      const ex = setTimeout(() => main.removeChild(toast), 4000);
-      toast.onclick = function(e) {
-        if (e.target.closest('.toast__close')) {
-          main.removeChild(toast);
-          clearTimeout(ex);
-        };
-      }
-      toast.innerHTML = `
+    toast.innerHTML = `
                     <div class="toast__icon">
                         <i class="${icon}"></i>
                     </div>
@@ -128,58 +155,58 @@ include_once __DIR__ . "../Layouts/Header.php";
                         <i class="fas fa-times"></i>
                     </div>
                 `
-      // var m = toast.getElementsByClassName('toast__close')[0];
-      // m.addEventListener('click', () => {
-      // main.removeChild(toast);
-      // clearTimeout(ex);
-      // })
-      main.appendChild(toast);
-    };
+    // var m = toast.getElementsByClassName('toast__close')[0];
+    // m.addEventListener('click', () => {
+    // main.removeChild(toast);
+    // clearTimeout(ex);
+    // })
+    main.appendChild(toast);
   };
+};
 
-  function addProduct(productID) {
-    let cartId = '<?php
+function addProduct(productID) {
+  let cartId = '<?php
                   if (isset($_SESSION['cartId'])) {
                     echo ($_SESSION['cartId']);
                   } else {
                     echo "false";
                   }
                   ?>';
-    if (cartId == "false") {
-      toast({
-        type: "toast--error",
-        title: "Error",
-        msg: "Vui lòng đăng nhập",
-        icon: "far fa-exclamation-circle"
-      });
-    } else {
-      let quantity = document.getElementById("quantity").value;
-      console.log(productID, cartId, quantity);
-      $.post("./Product/addToCart", {
-        productId: productID,
-        cartId: cartId,
-        quantity: quantity
-      }, function(data, status) {
-        if (data) {
-          console.log(cartId, productID);
-          toast({
-            type: "toast--success",
-            title: "Success",
-            msg: "Thêm vào giỏ hàng thành công",
-            icon: "far fa-bell"
-          });
+  if (cartId == "false") {
+    toast({
+      type: "toast--error",
+      title: "Error",
+      msg: "Vui lòng đăng nhập",
+      icon: "far fa-exclamation-circle"
+    });
+  } else {
+    let quantity = document.getElementById("quantity").value;
+    console.log(productID, cartId, quantity);
+    $.post("./Product/addToCart", {
+      productId: productID,
+      cartId: cartId,
+      quantity: quantity
+    }, function(data, status) {
+      if (data) {
+        console.log(cartId, productID);
+        toast({
+          type: "toast--success",
+          title: "Success",
+          msg: "Thêm vào giỏ hàng thành công",
+          icon: "far fa-bell"
+        });
 
-        } else {
-          toast({
-            type: "toast--error",
-            title: "Error",
-            msg: "Thêm vào giỏ hàng thất bại",
-            icon: "far fa-bell"
-          });
-        }
-      })
-    }
+      } else {
+        toast({
+          type: "toast--error",
+          title: "Error",
+          msg: "Thêm vào giỏ hàng thất bại",
+          icon: "far fa-bell"
+        });
+      }
+    })
   }
+}
 </script>
 <?php
 include_once __DIR__ . "./Layouts/Footer.php";

@@ -39,4 +39,8 @@ class Details extends Controller
         $result = $model->addToCart($productId, $cartId, $quantity);
         echo $result;
     }
+
+    public function addReview()
+    {
+    }
 }
