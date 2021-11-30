@@ -36,6 +36,7 @@ require_once __DIR__ . "./Layouts/Header.php";
         msg: "Đã xảy ra lỗi, vui lòng kiểm tra lại",
         icon: "fas fa-exclamation-circle"
       });
+      return false;
     }
     // console.log(oldPassword, newPassword);
     $.post("./Profile/changePassword", {

@@ -15,16 +15,16 @@ class EditNews extends Controller
             $error->Default("No Product ID");
         }
     }
-    function Process(){
-        if($_GET["del"]==1){
+    function Process()
+    {
+        if ($_GET["del"] == 1) {
             $model = $this->model("ProductModel");
             $model->del_product($_POST['ID']);
-        }
-        else{
-        print_r($_POST);
-        $model = $this->model("ArticleModel");
-        $data = $model->updateArticle($_POST['ID'],$_POST['Title'],$_POST['Author'],$_POST['Post_Date'],$_POST['Content'],$_POST['Picture']);
-        $this->view('EditNews', $data);
+        } else {
+            print_r($_POST);
+            $model = $this->model("ArticleModel");
+            $data = $model->updateArticle($_POST['ID'], $_POST['Title'], $_POST['Author'], $_POST['Post_Date'], $_POST['Content'], $_POST['Picture']);
+            // $this->view('EditNews', $data);
         }
     }
 }

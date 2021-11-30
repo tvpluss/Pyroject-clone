@@ -2,13 +2,13 @@
 // require_once './mvc/views/Layouts/Header.php';
 require_once __DIR__ . "./Layouts/Header.php";
 ?>
-<div class="register container-sm">
-    <form method="post" action="./AddNews/Process">
+<div class="register">
+    <form method="post" style="max-width:1000px" action="./AddNews/Process">
         <a href="./Index">
             <img src="./public/assets/image/logo-png2.png" alt="">
         </a>
         <h3>Thêm bài viết </h3>
-        
+
         <label for="Title">Tiêu đề*:</label>
         <input type="text" name="Title" id="Title" class="form-control" placeholder="Title">
 

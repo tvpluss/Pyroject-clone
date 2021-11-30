@@ -113,7 +113,7 @@ class ArticleModel extends DB
             mysqli_stmt_bind_param($stmt, "sssss", $Title, $Author, $Post_Date, $Content, $Picture);
             mysqli_stmt_execute($stmt);
             if (mysqli_affected_rows($this->con) > 0) {
-                header("Location: ../ShowNews?success=addNews");
+                header("Location: ../Blogs?success=addNews");
                 exit();
             } else {
                 return false;
@@ -132,7 +132,7 @@ class ArticleModel extends DB
             mysqli_stmt_bind_param($stmt, "ssssss", $Title, $Author, $Post_Date, $Content, $Picture, $ID);
             mysqli_stmt_execute($stmt);
             if (mysqli_affected_rows($this->con) > 0) {
-                header("Location: ../ShowNews?success=update");
+                header("Location: ../Blogs?success=update");
                 exit();
             } else {
                 return false;
@@ -147,7 +147,7 @@ class ArticleModel extends DB
         mysqli_stmt_bind_param($stmt, "s", $ID);
         mysqli_stmt_execute($stmt);
         if (mysqli_affected_rows($this->con) > 0) {
-            header("Location: ../ShowNews?success=deleteNews");
+            header("Location: ../Blogs?success=deleteNews");
             exit();
         } else {
             return false;

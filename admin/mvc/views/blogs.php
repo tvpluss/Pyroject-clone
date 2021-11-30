@@ -61,7 +61,7 @@ require_once __DIR__ . './Layouts/Header.php';
         <td scope="col"><?php echo $article['Author'] ?></td>
         <td scope="col"><?php echo $article['Post_Date'] ?></td>
         <td scope="col" class="btnn">
-          <form action="ShowNews/Process?del=1" method="POST">
+          <form action="Blogs/Process?del=1" method="POST">
             <input type="text" value="<?php echo $article['ID']; ?>" name="ID" hidden>
             <button name="btnDel" type="submit" class="btn btn-lg btn-primary btn-block">Xóa</button>
           </form>
