@@ -13,7 +13,7 @@ require_once __DIR__ . "./Layouts/Header.php";
       <th scope="col">Email</th>
       <th scope="col">Nội dung</th>
     </tr>
-    <?php foreach ($data as $result) { ?>
+    <?php foreach ($data['contacts'] as $result) { ?>
       <tr>
         <td scope="col"><?php echo $result['ID'] ?></td>
         <td scope="col">
@@ -54,6 +54,19 @@ require_once __DIR__ . "./Layouts/Header.php";
         }
       </script>
   </table>
+  <nav id="paging" aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="./Contact?page=1">Trang đầu</a></li>
+      <li class="page-item"><a class="page-link" href="./Contact?page=<?php echo ($data['currentPage'] - 1) ?>">
+          << </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#"><?php echo ($data['currentPage']) ?></a></li>
+      <li class="page-item"><a class="page-link" href="./Contact?page=<?php echo ($data['currentPage'] + 1) ?>"> >>
+        </a></li>
+      <li class="page-item"><a class="page-link" href="./Contact?page=<?php echo ($data['totalPages']) ?>">Trang
+          cuối</a></li>
+    </ul>
+  </nav>
 </div>
 <?php
 require_once __DIR__ . './Layouts/Footer.php';

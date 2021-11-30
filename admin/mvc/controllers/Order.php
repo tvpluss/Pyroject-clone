@@ -31,17 +31,6 @@ class Order extends Controller
       }
       $data['orders'] = $model->getAllOrdersWLimit(($data['currentPage'] - 1) * $limit, $limit);
 
-      // echo json_encode($result);
-
-      // print_r($data['totalPages']);
-      // $this->view("Order", $data);
-      // $this->model("OrderModel");
-      // $this->view("Order");
-      // $model = $this->model("OrderModel");
-      // $data = $model->getAllOrders();
-      // $this->view("ShowOrder", $data);
-      // $model = $this->model("OrderModel");
-      // $data = $model->getAllOrders();
       $this->view("order", $data);
     }
   }

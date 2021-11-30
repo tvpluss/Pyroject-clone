@@ -1,6 +1,40 @@
 <?php
 class ArticleModel extends DB
 {
+    public function getTotalArticles()
+    {
+        $query = "SELECT COUNT(ID) FROM news WHERE 1";
+        $stmt = mysqli_stmt_init($this->con);
+
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result)['COUNT(ID)'];
+    }
+    public function getAllArticlesWLimit($offset, $limit)
+    {
+        $query = "SELECT * FROM news ORDER BY Post_Date DESC LIMIT ? OFFSET ?";
+        $stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_bind_param($stmt, "ss", $limit, $offset);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $articles = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $article = array(
+                    'ID' => $row['ID'],
+                    'Title' => $row['Title'],
+                    'Author' => $row['Author'],
+                    'Post_Date' => $row['Post_Date'],
+                    'Content' => $row['Content'],
+                    'Picture' => $row['Picture'],
+                );
+                array_push($articles, $article);
+            }
+        }
+        return $articles;
+    }
     public function getAllArticles()
     {
         $query = "SELECT ID, Title, Author, Post_Date, Content, Picture FROM news";
@@ -32,7 +66,7 @@ class ArticleModel extends DB
         // mysqli_stmt_execute($stmt);
         // $result = mysqli_stmt_get_result($stmt);
         // $articles = [];
-        
+
         //         $article = array(
         //             'ID' => $result['ID'],
         //             'Title' => $result['Title'],
@@ -40,41 +74,39 @@ class ArticleModel extends DB
         //             'Post_Date' => $result['Post_Date'],
         //             'Picture' => $result['Picture']
         //         );
-                
-        
+
+
         // return $article;
         $this->db = new DB();
         //$this->fm = new Format();
         $query = "SELECT ID, Title, Author, Post_Date, Content, Picture FROM news WHERE ID=?";
         $stmt = mysqli_stmt_init($this->db->con);
         mysqli_stmt_prepare($stmt, $query);
-        mysqli_stmt_bind_param($stmt,'s',$ID);
+        mysqli_stmt_bind_param($stmt, 's', $ID);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
         $items = [];
-        
-            $row = $result->fetch_assoc();
-                $item = array(
-                    'ID' => $row['ID'],
-                    'Title' => $row['Title'],
-                    'Author' => $row['Author'],
-                    'Post_Date' => $row['Post_Date'],
-                    'Content' => $row['Content'],
-                    'Picture' => $row['Picture']
-                );
-                array_push($items, $item);
-    
-        
-        return $item;
 
+        $row = $result->fetch_assoc();
+        $item = array(
+            'ID' => $row['ID'],
+            'Title' => $row['Title'],
+            'Author' => $row['Author'],
+            'Post_Date' => $row['Post_Date'],
+            'Content' => $row['Content'],
+            'Picture' => $row['Picture']
+        );
+        array_push($items, $item);
+
+
+        return $item;
     }
     public function insertArticle($Title, $Author, $Post_Date, $Content, $Picture)
     {
-        if(empty($Title) || empty($Author) || empty($Post_Date) || empty($Content) || empty($Picture)){
+        if (empty($Title) || empty($Author) || empty($Post_Date) || empty($Content) || empty($Picture)) {
             return false;
-        }
-        else{
+        } else {
             $query = "INSERT INTO news(Title, Author, Post_Date, Content, Picture) VALUES (?,?,?,?,?)";
             $stmt = mysqli_stmt_init($this->con);
             mysqli_stmt_prepare($stmt, $query);
@@ -82,7 +114,7 @@ class ArticleModel extends DB
             mysqli_stmt_execute($stmt);
             if (mysqli_affected_rows($this->con) > 0) {
                 header("Location: ../ShowNews?success=addNews");
-                    exit();
+                exit();
             } else {
                 return false;
             }
@@ -91,10 +123,9 @@ class ArticleModel extends DB
     public function updateArticle($ID, $Title, $Author, $Post_Date, $Content, $Picture)
     {
         echo $ID;
-        if(empty($ID) || empty($Title) || empty($Author) || empty($Post_Date) || empty($Content) || empty($Picture)){
+        if (empty($ID) || empty($Title) || empty($Author) || empty($Post_Date) || empty($Content) || empty($Picture)) {
             return false;
-        }
-        else{
+        } else {
             $query = "UPDATE news SET Title=?, Author=?, Post_Date=?, Content=?, Picture=? WHERE ID=?";
             $stmt = mysqli_stmt_init($this->con);
             mysqli_stmt_prepare($stmt, $query);
@@ -102,7 +133,7 @@ class ArticleModel extends DB
             mysqli_stmt_execute($stmt);
             if (mysqli_affected_rows($this->con) > 0) {
                 header("Location: ../ShowNews?success=update");
-                    exit();
+                exit();
             } else {
                 return false;
             }
@@ -117,7 +148,7 @@ class ArticleModel extends DB
         mysqli_stmt_execute($stmt);
         if (mysqli_affected_rows($this->con) > 0) {
             header("Location: ../ShowNews?success=deleteNews");
-                    exit();
+            exit();
         } else {
             return false;
         }
