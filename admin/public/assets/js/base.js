@@ -245,10 +245,22 @@ if (window.location.search.includes("success=updateProfile")) {
     });
 }
 
-
+if (window.location.search.includes("error=intransaction")) {
+    // console.log("ádasdsa")
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("", "", newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Product đã được order",
+        icon: "fas fa-exclamation-circle"
+    });
+}
 
 if (window.location.search.includes("error=NaemptyfieldsOrinvalidvalue")) {
-    console.log("ádasdsa")
+    // console.log("ádasdsa")
     let url = window.location.href;
     let newurl = url.split('?')[0];
     history.pushState("", "", newurl);
@@ -257,6 +269,6 @@ if (window.location.search.includes("error=NaemptyfieldsOrinvalidvalue")) {
         type: "toast--error",
         title: "Error",
         msg: "Vui lòng điền đầy đủ thông tin",
-        icon: "fas fa-check-circle"
+        icon: "fas fa-exclamation-circle"
     });
 }

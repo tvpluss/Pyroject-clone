@@ -180,7 +180,7 @@ class ProductModel extends DB
 
         $this->db = new DB();
         if (empty($data['Name']) || empty($data['Category']) || empty($data['Tag']) || empty($data['Description']) || empty($data['Quantity']) || empty($data['Sell_price']) || empty($data['Buy_price']) || empty($data['Picture']) || $data['Buy_price'] < 0 || $data['Sell_price'] < 0 || $data['Quantity'] < 0) {
-            header("Location: ../addProduct?error=NaemptyfieldsOrinvalidvalue");
+            header("Location: ../addProduct?page=1&error=NaemptyfieldsOrinvalidvalue");
             exit();
         }
 
@@ -209,7 +209,7 @@ class ProductModel extends DB
                 $sql2 = "INSERT INTO tag(Name, product_ID) VALUES ('$Tag','$id')";
                 $result3 = $this->db->insert($sql2);
                 if ($result) {
-                    header("Location: ../Product?success=addproduct");
+                    header("Location: ../Product?page=1&success=addproduct");
                     exit();
                 } else {
                     $alert = "<span class='error'>Insert Product Not Success</span>";
@@ -256,7 +256,7 @@ class ProductModel extends DB
                 $result = $this->db->update($query);
                 print_r($result);
                 if ($result) {
-                    header("Location: ../Product?success=updateproduct");
+                    header("Location: ../Product?page=1&success=updateproduct");
                     exit();
                 } else {
                     $alert = "<span class='error'>Product Updated Not Success</span>";
@@ -269,6 +269,16 @@ class ProductModel extends DB
     public function del_product($id)
     {
         $this->db = new DB();
+        $query = "SELECT COUNT(Order_ID) FROM transaction WHERE Product_ID = ? ";
+        $stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_fetch_assoc($result)['COUNT(Order_ID)'] > 0) {
+            header("Location: ../Product?page=1&error=intransaction");
+            return;
+        }
         $query1 = "DELETE FROM catalog where Product_ID = '$id'";
         $query2 = "DELETE FROM tag where Product_ID = '$id'";
         $query3 = "DELETE FROM product where ID = '$id'";
@@ -276,7 +286,7 @@ class ProductModel extends DB
         $result2 = $this->db->delete($query2);
         $result3 = $this->db->delete($query3);
         if ($result3) {
-            header("Location: ../Product?success=updateproduct");
+            header("Location: ../Product?page=1&success=updateproduct");
             exit();
         } else {
             $alert = "<span class='error'>Product Deleted Not Success</span>";
