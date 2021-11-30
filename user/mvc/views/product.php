@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . './Layouts/Header.php';
-print_r($data['currentPage']);
 ?>
 <div class="products">
   <div class="top">
@@ -32,6 +31,7 @@ print_r($data['currentPage']);
         </div>
       </div>
       <div class="row">
+        <div id="result"></div>
         <?php
         /*$product = new ProductModel();*/
         $fm = new Format();
@@ -72,13 +72,17 @@ print_r($data['currentPage']);
         }
         ?>
       </div>
-      <nav aria-label="Page navigation example">
+      <nav id="paging" aria-label="Page navigation example">
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="./Product?page=1">First</a></li>
-          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['currentPage'] - 1) ?>">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="./Product?page=1">Trang đầu</a></li>
+          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['currentPage'] - 1) ?>">
+              << </a>
+          </li>
           <li class="page-item"><a class="page-link" href="#"><?php echo ($data['currentPage']) ?></a></li>
-          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['currentPage'] + 1) ?>">Next</a></li>
-          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['totalPages']) ?>">Last</a></li>
+          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['currentPage'] + 1) ?>"> >>
+            </a></li>
+          <li class="page-item"><a class="page-link" href="./Product?page=<?php echo ($data['totalPages']) ?>">Trang
+              cuối</a></li>
         </ul>
       </nav>
     </div>
@@ -90,30 +94,34 @@ require_once __DIR__ . './Layouts/Footer.php';
 ?>
 
 <script>
-  var names = document.querySelectorAll('.name');
-  var tags = document.querySelectorAll('.tag');
   var search = document.querySelector('#search');
   // console.log(tags[1]);
   search.addEventListener('keyup', (e) => {
-    // console.log(e.target.value);
     if (e.target.value) {
-      var value = e.target.value.split(" ");
-      names.forEach(name => {
-        if (!name.parentNode.parentNode.parentNode.classList.contains("d-none")) {
-          name.parentNode.parentNode.parentNode.classList.add("d-none")
-        };
-      })
-      names.forEach(name => {
-        value.forEach((item) => {
-          if (name.outerText.toLowerCase().includes(item.toLowerCase())) {
-            name.parentNode.parentNode.parentNode.classList.remove("d-none");
-          }
-        })
-      })
-    } else {
-      names.forEach(name => {
-        name.parentNode.parentNode.parentNode.classList.remove("d-none");
-      })
+      if (e.key == 'Enter') {
+        window.location.assign('./Product?page=1&&limit=nolimit');
+        sessionStorage.setItem("search", e.target.value);
+
+        // if (e.target.value) {
+        //   var value = e.target.value.split(" ");
+        //   names.forEach(name => {
+        //     if (!name.parentNode.parentNode.parentNode.classList.contains("d-none")) {
+        //       name.parentNode.parentNode.parentNode.classList.add("d-none")
+        //     };
+        //   })
+        //   names.forEach(name => {
+        //     value.forEach((item) => {
+        //       if (name.outerText.toLowerCase().includes(item.toLowerCase())) {
+        //         name.parentNode.parentNode.parentNode.classList.remove("d-none");
+        //       }
+        //     })
+        //   })
+        // } else {
+        //   names.forEach(name => {
+        //     name.parentNode.parentNode.parentNode.classList.remove("d-none");
+        //   })
+        // }
+      }
     }
   })
 
@@ -154,6 +162,46 @@ require_once __DIR__ . './Layouts/Footer.php';
             icon: "far fa-exclamation-circle"
           });
         }
+      })
+    }
+  }
+
+  window.onload = function() {
+    var search = sessionStorage.getItem("search");
+    var names = document.querySelectorAll('.name');
+    if (search) {
+      sessionStorage.removeItem("search");
+      var paging = document.querySelector('#paging');
+      paging.classList.add("d-none");
+      var value = search.split(" ");
+      var tags = document.querySelectorAll('.tag');
+      names.forEach(name => {
+        if (!name.parentNode.parentNode.parentNode.classList.contains("d-none")) {
+          name.parentNode.parentNode.parentNode.classList.add("d-none")
+        };
+      })
+      var noResult = true;
+      names.forEach(name => {
+        var check = true;
+        value.forEach((item) => {
+          if (!name.outerText.toLowerCase().includes(item.toLowerCase())) {
+            check = false;
+          }
+        })
+        if (check) {
+          name.parentNode.parentNode.parentNode.classList.remove("d-none");
+          noResult = false;
+        }
+      })
+      if (noResult) {
+        var result = document.querySelector('#result');
+        result.innerHTML = `<h1 style="margin: 50px 0;">Không có kết quả tìm kiếm phù hợp</h1>`
+      }
+    } else {
+      var paging = document.querySelector('#paging');
+      paging.classList.remove("d-none");
+      names.forEach(name => {
+        name.parentNode.parentNode.parentNode.classList.remove("d-none");
       })
     }
   }

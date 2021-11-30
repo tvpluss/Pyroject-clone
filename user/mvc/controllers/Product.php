@@ -37,10 +37,14 @@ class Product extends Controller
     }
     public function Default()
     {
-        $limit = 3;
+        $limit = 4;
+
         if (!isset($_GET['page'])) {
             header("Location: ./Product?page=1");
             exit();
+        }
+        if (isset($_GET["limit"])) {
+            $limit = 100;
         }
         $model = $this->model("ProductModel");
         $data = [];
