@@ -4,7 +4,7 @@ class Contact extends Controller
 {
     public function Default()
     {
-        $limit = 1;
+        $limit = 5;
         if (!isset($_GET['page'])) {
             header("Location: ./Contact?page=1");
             exit();

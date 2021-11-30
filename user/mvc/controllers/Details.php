@@ -24,7 +24,7 @@ class Details extends Controller
             // print_r($data);
             // $data = $model->get_details_catalog($id);
             // $data2 = $model->get_details_tag($id);
-            print_r($data);
+            // print_r($data);
             // print_r($data2);
             $this->view("details", $data);
         } else {
