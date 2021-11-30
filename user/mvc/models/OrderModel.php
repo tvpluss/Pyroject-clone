@@ -56,7 +56,7 @@ class OrderModel extends DB
         }
         return $BuyingHistory;
     }
-    public function insertAnOrder($UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $TownCity, $Account, $BankName, $Note = "", $PostcodeZIP = "", $Status = "Đang chờ")
+    public function insertAnOrder($UserID, $LastName, $FirstName, $Email, $Telephone, $StreetAddress, $TownCity, $Account, $BankName, $Note = "", $PostcodeZIP = "", $Status = "Chờ xác nhận")
     {
         $Created = date("Y-m-d");
         if (
