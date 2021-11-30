@@ -35,7 +35,7 @@ require_once __DIR__ . "./Layouts/Header.php";
       <th scope="col">Chi tiết đơn hàng</th>
     </tr>
 
-    <?php foreach ($data as $result) { ?>
+    <?php foreach ($data['orders'] as $result) { ?>
       <tr>
         <!-- <td scope="col"><?php echo $result['User_ID'] ?></td> -->
         <td scope="col"><?php echo $result['Last_Name'] ?></td>
@@ -45,7 +45,7 @@ require_once __DIR__ . "./Layouts/Header.php";
             <option value="Thành công" <?php if ($result['Status'] == "Thành công") echo ' selected="selected"'; ?>>Thành
               công
             </option>
-            <option value="Chờ xác nhân" <?php if ($result['Status'] == "Chờ xác nhận") echo ' selected="selected"'; ?>>
+            <option value="Chờ xác nhận" <?php if ($result['Status'] == "Chờ xác nhận") echo ' selected="selected"'; ?>>
               Chờ xác nhận
             </option>
 
@@ -65,6 +65,7 @@ require_once __DIR__ . "./Layouts/Header.php";
             tiết</a></td>
       <?php }
       ?>
+
       <script>
         var selects = document.querySelectorAll('select');
         selects.forEach(select => {
@@ -91,6 +92,15 @@ require_once __DIR__ . "./Layouts/Header.php";
         }
       </script>
   </table>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="./Order?page=1">First</a></li>
+      <li class="page-item"><a class="page-link" href="./Order?page=<?php echo ($data['currentPage'] - 1) ?>">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#"><?php echo ($data['currentPage']) ?></a></li>
+      <li class="page-item"><a class="page-link" href="./Order?page=<?php echo ($data['currentPage'] + 1) ?>">Next</a></li>
+      <li class="page-item"><a class="page-link" href="./Order?page=<?php echo ($data['totalPages']) ?>">Last</a></li>
+    </ul>
+  </nav>
 </div>
 <?php
 require_once __DIR__ . './Layouts/Footer.php';

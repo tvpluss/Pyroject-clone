@@ -26,9 +26,51 @@ class OrderModel extends DB
         }
         return $orders;
     }
+    public function getTotalOrders()
+    {
+        $query = "SELECT COUNT(ID) FROM order_details WHERE 1";
+        $stmt = mysqli_stmt_init($this->con);
+
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result)['COUNT(ID)'];
+    }
+    public function getAllOrdersWLimit($offset, $limit)
+    {
+        $query = "SELECT * FROM order_details ORDER BY Status, Created DESC LIMIT ? OFFSET ?";
+        $stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_bind_param($stmt, "ss", $limit, $offset);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $orders = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $order = array(
+                    'ID' => $row['ID'],
+                    'Status' => $row['Status'],
+                    'User_ID' => $row['User_ID'],
+                    'Last_Name' => $row['Last_Name'],
+                    'First_name' => $row['First_name'],
+                    'Email' => $row['Email'],
+                    'Telephone' => $row['Telephone'],
+                    'Street_address' => $row['Street_address'],
+                    'Postcode_ZIP' => $row['Postcode_ZIP'],
+                    'Town_City' => $row['Town_City'],
+                    'Created' => $row['Created'],
+                    'Account' => $row['Account'],
+                    'Bank_Name' => $row['Bank_Name'],
+                    'Note' => $row['Note']
+                );
+                array_push($orders, $order);
+            }
+        }
+        return $orders;
+    }
     public function getAllOrders()
     {
-        $query = "SELECT * FROM order_details";
+        $query = "SELECT * FROM order_details ORDER BY Status, Created DESC";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
         mysqli_stmt_execute($stmt);

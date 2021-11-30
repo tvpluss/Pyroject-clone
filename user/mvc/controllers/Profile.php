@@ -21,8 +21,9 @@ class Profile extends Controller
         $data['totalOrders'] = $model->getNumOfOrder($sessionId);
         $data['totalPages'] = ceil($data['totalOrders'] / $limit);
         if ($data['totalPages'] == 0) {
-            header("Location: ./Profile?error=nohistory");
-            exit();
+            $data['totalPages'] = 1;
+            // header("Location: ./Profile?error=nohistory");
+            // exit();
         }
         $data['currentPage'] = $_GET['page'];
         if ($data['currentPage'] <= 0) {
