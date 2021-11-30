@@ -208,6 +208,18 @@ if (window.location.search.includes("success=order")) {
         icon: "fas fa-check-circle"
     });
 }
+if (window.location.search.includes("error=nohistory")) {
+    let url = window.location.href;
+    let newurl = url.split('?')[0];
+    history.pushState("","",newurl);
+    // console.log(newurl);
+    toast({
+        type: "toast--error",
+        title: "Error",
+        msg: "Bạn chưa có lịch sử mua hàng nào",
+        icon: "fas fa-exclamation-circle"
+    });
+}
 if (window.location.search.includes("error=nopermission")) {
     let url = window.location.href;
     let newurl = url.split('?')[0];
