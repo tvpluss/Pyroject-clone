@@ -18,12 +18,16 @@ require_once __DIR__ . "./Layouts/Header.php";
     const localCheckFirstname = checkLength(firstname, 15, "warningFirstname", "First name", 1);
     const localCheckLastname = checkLength(lastname, 25, "warningLastname", "Last name", 1);
     const localCheckEmail = checkEmail(email);
-    const localCheckTelephone = checkTelephone(telephone);
-    const localCheckStreetAddress = checkLength(streetAddress, 70, "warningStreetAddress", "Street address", 0);
-    const localCheckTownCity = checkLength(townCity, 25, "warningTownCity", "Town City", 0);
+    let localCheckTelephone = checkTelephone(telephone);
+    if (telephone.length == 0) {
+      localCheckTelephone = true;
+      document.getElementById("warningTelephone").innerHTML = "";
+    }
+    const localCheckStreetAddress = checkLength(streetAddress, 70, "warningStreetAddress", "Địa chỉ", 0);
+    const localCheckTownCity = checkLength(townCity, 25, "warningTownCity", "Tỉnh/thành phố", 0);
     const localCheckPostcode = checkLength(postcode, 10, "warningPostcode", "Post code", 0);
-    const localCheckAccount = checkLength(account, 20, "warningAccount", "Account", 0);
-    const localCheckBankName = checkLength(bankName, 20, "warningBankName", "Bank Name", 0);
+    const localCheckAccount = checkLength(account, 20, "warningAccount", "Tài khoản", 0);
+    const localCheckBankName = checkLength(bankName, 20, "warningBankName", "Tên ngân hàng", 0);
     return (localCheckFirstname && localCheckLastname && localCheckEmail && localCheckTelephone && localCheckStreetAddress && localCheckTownCity && localCheckPostcode && localCheckAccount && localCheckBankName);
   }
 </script>
@@ -35,38 +39,38 @@ require_once __DIR__ . "./Layouts/Header.php";
       <div class="col-sm-6 col-12">
         <label for="username">Username:</label>
         <input disabled class="form-control" type="text" name="username" id="username" value="<?php echo $_SESSION['sessionUser'] ?>">
-        <label for="firstname">First Name:</label>
-        <input class="form-control" type="text" value='<?php echo $_SESSION["sessionFirstName"] ?>' id="firstname" name="firstname" placeholder="First name">
-        <span class="warning" id="warningFirstname"></span>
-        <label for="lastname">Last Name:</label>
-        <input value='<?php echo $_SESSION["sessionLastName"] ?>' class="form-control" type="text" id="lastname" name="lastname" placeholder="Last name">
+        <label for="lastname">Họ:</label>
+        <input value='<?php echo $_SESSION["sessionLastName"] ?>' class="form-control" type="text" id="lastname" name="lastname" placeholder="Họ của bạn">
         <span class="warning" id="warningLastname"></span>
+        <label for="firstname">Tên:</label>
+        <input class="form-control" type="text" value='<?php echo $_SESSION["sessionFirstName"] ?>' id="firstname" name="firstname" placeholder="Tên của bạn">
+        <span class="warning" id="warningFirstname"></span>
         <label for="email">Email:</label>
         <input value='<?php echo $_SESSION["sessionEmail"] ?>' class="form-control" type="email" id="email" name="email" placeholder="Email">
         <span class="warning" id="warningEmail"></span>
-        <label for="telephone">Telephone:</label>
+        <label for="telephone">Số điện thoại:</label>
         <input value='<?php echo $_SESSION["sessionTelephone"] ?>' class="form-control" type="text" id="telephone" name="telephone" placeholder="Optional">
         <span class="warning" id="warningTelephone"></span>
       </div>
       <div class="col-sm-6 col-12">
-        <label for="streetAddress">Address:</label>
+        <label for="streetAddress">Địa chỉ:</label>
         <input class="form-control" type="text" name="streetAddress" id="streetAddress" value='<?php echo $_SESSION['sessionStreetAddress'] ?>' placeholder="Optional">
         <span class="warning" id="warningStreetAddress"></span>
-        <label for="townCity">Town/City:</label>
+        <label for="townCity">Tỉnh/Thành phố</label>
         <input class="form-control" type="text" name="townCity" id="townCity" value='<?php echo $_SESSION['sessionTownCity'] ?>' placeholder="Optional">
         <span class="warning" id="warningTownCity"></span>
         <label for="postcode">Post Code:</label>
         <input class="form-control" class="form-control" type="text" id="postcode" value='<?php echo $_SESSION['sessionPostcode'] ?>' name="postcode" placeholder="Optional">
         <span class="warning" id="warningPostcode"></span>
-        <label for="account">Bank Account:</label>
+        <label for="account">Tài khoản ngân hàng:</label>
         <input class="form-control" type="text" name="account" id="account" value='<?php echo $_SESSION['sessionAccount'] ?>' placeholder="Optional">
         <span class="warning" id="warningAccount"></span>
-        <label for="bankName">Bank Name:</label>
+        <label for="bankName">Tên ngân hàng:</label>
         <input class="form-control" type="text" name="bankName" id="bankName" value='<?php echo $_SESSION['sessionBankName'] ?>' id="bankName" placeholder="Optional">
         <span class="warning" id="warningBankName"></span>
       </div>
     </div>
-    <button type="button" id="saveProfile" class="btn btn-primary">Save</button>
+    <button type="button" id="saveProfile" class="btn btn-primary">Lưu</button>
   </form>
 </div>
 

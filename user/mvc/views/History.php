@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . './Layouts/Header.php';
-print_r($data);
+// print_r($data);
 ?>
 <style>
     td,
@@ -26,7 +26,7 @@ print_r($data);
             <th scope="col">Chi tiết đơn hàng</th>
         </tr>
 
-        <?php foreach ($data as $item) { ?>
+        <?php foreach ($data['Orders'] as $item) { ?>
             <tr>
                 <td scope="col"><?php echo $item['Order_ID'] ?></td>
                 <td scope="col"><?php echo $item['Status'] ?></td>
@@ -39,6 +39,15 @@ print_r($data);
             <?php }
             ?>
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="./Profile?action=viewhistory&page=1">First</a></li>
+            <li class="page-item"><a class="page-link" href="./Profile?action=viewhistory&page=<?php echo ($data['currentPage'] - 1) ?>">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#"><?php echo ($data['currentPage']) ?></a></li>
+            <li class="page-item"><a class="page-link" href="./Profile?action=viewhistory&page=<?php echo ($data['currentPage'] + 1) ?>">Next</a></li>
+            <li class="page-item"><a class="page-link" href="./Profile?action=viewhistory&page=<?php echo ($data['totalPages']) ?>">Last</a></li>
+        </ul>
+    </nav>
 </div>
 
 <?php

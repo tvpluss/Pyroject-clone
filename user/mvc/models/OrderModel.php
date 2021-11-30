@@ -2,6 +2,16 @@
 require_once "./mvc/core/Format.php";
 class OrderModel extends DB
 {
+    public function getNumOfOrder($userId)
+    {
+        $query = "SELECT COUNT(ID) FROM order_details WHERE User_ID = ?";
+        $stmt = mysqli_stmt_init($this->con);
+        mysqli_stmt_prepare($stmt, $query);
+        mysqli_stmt_bind_param($stmt, "s", $userId);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result)['COUNT(ID)'];
+    }
     public function getOrder($orderId)
     {
         $query = "SELECT transaction.Quantity, Product_ID, Nane, Picture, Total_amount_of_each_product AS Price  FROM transaction, product WHERE transaction.Product_ID = product.ID AND transaction.Order_ID = ?";
@@ -25,12 +35,12 @@ class OrderModel extends DB
         }
         return $products;
     }
-    public function getBuyingHistory($UserID)
+    public function getBuyingHistory($UserID, $offset, $limit)
     {
-        $query = "SELECT ID AS Order_ID, Created, Status FROM order_details WHERE User_ID=? ORDER BY Created DESC;";
+        $query = "SELECT ID AS Order_ID, Created, Status FROM order_details WHERE User_ID=? ORDER BY Created DESC LIMIT ? OFFSET ?";
         $stmt = mysqli_stmt_init($this->con);
         mysqli_stmt_prepare($stmt, $query);
-        mysqli_stmt_bind_param($stmt, "s", $UserID);
+        mysqli_stmt_bind_param($stmt, "sss", $UserID, $limit, $offset);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $BuyingHistory = array();

@@ -9,6 +9,30 @@ class Profile extends Controller
             $error->Default("No profile");
         }
     }
+    public function viewHistory()
+    {
+        $limit = 5;
+        if (!isset($_GET['page'])) {
+            header("Location: ./Profile?action=viewhistory&page=1");
+        }
+        $data = [];
+        $sessionId = $_SESSION['sessionId'];
+        $model = $this->model("OrderModel");
+        $data['totalOrders'] = $model->getNumOfOrder($sessionId);
+        $data['totalPages'] = ceil($data['totalOrders'] / $limit);
+        $data['currentPage'] = $_GET['page'];
+        if ($data['currentPage'] <= 0) {
+            header("Location: ./Profile?action=viewhistory&page=1");
+            exit();
+        }
+        if ($data['currentPage'] > $data['totalPages']) {
+            header("Location: ./Profile?action=viewhistory&page=" . $data['totalPages']);
+            exit();
+        }
+        $data['Orders'] = $model->getBuyingHistory($sessionId, ($data['currentPage'] - 1) * $limit, $limit);
+        // print_r($data);
+        $this->view("history", $data);
+    }
     public function Default()
     {
         if (isset($_GET['action'])) {
@@ -17,10 +41,7 @@ class Profile extends Controller
             } else if ($_GET['action'] == "changepassword") {
                 $this->view("changePassword");
             } else if ($_GET['action'] == "viewhistory") {
-                $sessionId = $_SESSION['sessionId'];
-                $model = $this->model("OrderModel");
-                $data = $model->getBuyingHistory($sessionId);
-                $this->view("history", $data);
+                $this->viewHistory();
             } else if ($_GET['action'] = "vieworder") {
                 $sessionId = $_SESSION['sessionId'];
                 if ($_GET['userId'] != $sessionId) {

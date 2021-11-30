@@ -6,12 +6,12 @@ require_once __DIR__ . "./Layouts/Header.php";
     <a href="./Index">
       <img src="./public/assets/image/logo-png2.png" alt="">
     </a>
-    <label for="oldPassword">Old password</label>
-    <input type="password" name="oldPassword" id="oldPassword" class="form-control" placeholder="oldPassword" required autofocus value="111111">
-    <label for="newPassword">New Password</label>
-    <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="newPassword" required>
+    <label for="oldPassword">Mật khẩu cũ</label>
+    <input type="password" name="oldPassword" id="oldPassword" class="form-control" placeholder="Nhập lại mật khẩu cũ" required autofocus value="111111">
+    <label for="newPassword">Mật khẩu mới</label>
+    <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="Nhập mật khẩu mới" required>
     <span class="warning" id="warningPassword"></span>
-    <button class="btn btn-lg btn-primary btn-block" type="button" id="change" name="submit" value="change">Change password</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" id="change" name="submit" value="change">Đổi mật khẩu</button>
   </form>
 </div>
 <script>
@@ -19,7 +19,7 @@ require_once __DIR__ . "./Layouts/Header.php";
     const oldPassword = document.getElementById("oldPassword").value;
     const newPassword = document.getElementById("newPassword").value;
     if (oldPassword == newPassword) {
-      document.getElementById("warningPassword").innerHTML = "New password must be different from old password";
+      document.getElementById("warningPassword").innerHTML = "Mật khẩu mới phải khác mật khẩu cũ";
       return false;
     }
     return checkPassword(newPassword);

@@ -31,9 +31,9 @@ function checkUsename(str) {
             if (this.readyState == 4 && this.status == 200) {
                 const response = JSON.parse(this.response)
                 if (response.result == true) {
-                    document.getElementById('warningUsername').innerHTML = 'This Username is already used';
+                    document.getElementById('warningUsername').innerHTML = 'Tên đăng nhập này đã được sử dụng';
                 } else {
-                    document.getElementById('warningUsername').innerHTML = 'This Username can be used';
+                    document.getElementById('warningUsername').innerHTML = 'Tên đăng nhập hợp lệ';
                 }
             }
         }
@@ -49,20 +49,20 @@ function checkConfirmPassword(str, password) {
         return false;
     } else {
         if (str != password) {
-            document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password do not match password';
+            document.getElementById('warningConfirmPassword').innerHTML = 'Mật khẩu xác nhận không chính xác';
             return false;
         } else {
-            document.getElementById('warningConfirmPassword').innerHTML = 'Confirm password match password';
+            document.getElementById('warningConfirmPassword').innerHTML = 'Mật khẩu xác nhận chính xác';
             return true;
         }
     }
 }
 function checkLength(str, length, id, type, minlength = 0){
     if (str.length > length){
-        document.getElementById(id).innerHTML =`${type} limit excess`;
+        document.getElementById(id).innerHTML =`${type} vượt quá giới hạn số kí tự`;
         return false;
     } else if(str.length < minlength){
-        document.getElementById(id).innerHTML =`${type} minimum ${minlength} characters`;
+        document.getElementById(id).innerHTML =`${type} cần đạt ít nhất ${minlength} kí tự`;
         return false;
     }
     else{
@@ -78,7 +78,7 @@ function checkTelephone(str){
         return true;
     }
     else{
-        document.getElementById("warningTelephone").innerHTML = "Invalid phone number";
+        document.getElementById("warningTelephone").innerHTML = "Số điện thoại không hợp lệ";
         return false;
     }
 }
@@ -90,7 +90,7 @@ function checkEmail(str){
       return true;
     }
     else{
-      document.getElementById('warningEmail').innerHTML = 'This is not a valid Email';
+      document.getElementById('warningEmail').innerHTML = 'Đây không phải là một email hợp lệ';
       return false;
   }
 }
