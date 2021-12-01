@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 08:01 AM
+-- Generation Time: Dec 01, 2021 at 01:12 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -54,7 +54,9 @@ INSERT INTO `buying_history` (`ID`, `User_ID`, `Order_ID`) VALUES
 (11, 4, 12),
 (12, 4, 13),
 (13, 4, 14),
-(14, 4, 15);
+(14, 4, 15),
+(15, 15, 16),
+(16, 16, 17);
 
 -- --------------------------------------------------------
 
@@ -83,7 +85,9 @@ INSERT INTO `cart` (`ID`, `User_ID`) VALUES
 (16, 11),
 (17, 12),
 (18, 13),
-(19, 14);
+(19, 14),
+(20, 15),
+(21, 16);
 
 -- --------------------------------------------------------
 
@@ -105,7 +109,6 @@ CREATE TABLE `cart_item_list` (
 INSERT INTO `cart_item_list` (`cart_ID`, `product_ID`, `quantity`) VALUES
 (6, 1, 1),
 (6, 2, 2),
-(6, 6, 4),
 (7, 4, 3),
 (7, 7, 2),
 (16, 3, 1),
@@ -164,10 +167,15 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`ID`, `Name`, `Telephone`, `Email`, `Message_content`, `Status`, `Created`) VALUES
-(11, 'Phước', 123456789, 'Phuoc@gmail.com', 'Đây là tin nhắn 1', 'Mới', '2021-11-30 00:00:00'),
+(11, 'Phước', 123456789, 'Phuoc@gmail.com', 'Đây là tin nhắn 1', 'Xác nhận', '2021-11-30 00:00:00'),
 (12, 'Phước', 123456789, 'Phuoc@gmail.com', 'Đây là tin nhắn 2', 'Xác nhận', '2021-11-30 00:00:00'),
 (13, 'Phước', 123456789, 'Phuoc@gmail.com', 'Đây là tin nhắn 3', 'Mới', '2021-11-30 05:02:57'),
-(14, 'Phuowsc', 213456789, 'phuoc@gmail.com', 'Xin chafo', 'Mới', '2021-11-30 07:20:14');
+(14, 'Phuowsc', 213456789, 'phuoc@gmail.com', 'Xin chafo', 'Mới', '2021-11-30 07:20:14'),
+(15, 'Hoà', 123456789, 'example@mail.com', 'Xin chào pyroject\n', 'Mới', '2021-11-30 08:09:48'),
+(16, 'Đạt', 123456789, 'example@mail.com', 'Tạm biệt Pyroject, khóc xong rồi thì thôi cất gọn poster anh vào góc, mình tạm thời không nhìn nhau anh nhé. Mỗi lần nhìn thấy anh em sợ lại làm tim mình đau hơn. Em không biết em có vượt qua cú sốc này không nữa. Chờ anh nửa năm, để rồi nhận trái đắng như vậy. Album đặt rồi cũng không muốn lấy về nữa. Em chưa đủ chín chắn để chấp nhận sự thật này, chắc là vậy, nên em đành ích kỷ vậy thôi. Chưa được 2 năm mà, anh có cần vội vã hẹn hò vậy không? Cắt đứt liên lạc với mọi người để không liên lụy tới họ nhưng vẫn hẹn hò được ạ? Em cảm thấy như bị lừa vậy, công sức lo lắng cho anh thừa rồi vì anh chắc vẫn luôn hạnh phúc bên ai kia. Vừa showcase gặp fan xong đã đi gặp bạn gái luôn, tình yêu của fan với anh chắc không đủ. Anh thừa biết fan girl là ntn mà ????, vậy mà anh vẫn như vậy. \nTạm biệt anh, cho em ích kỷ lần này nhé. Hẹn gặp lại khi em đã mạnh mẽ hơn, em không quay lưng đi nhưng em sẽ dừng lại.', 'Xác nhận', '2021-11-30 08:10:33'),
+(17, 'Phước', 123456789, 'phuoc@gmail.com', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'Mới', '2021-11-30 08:46:56'),
+(18, 'Phuc', 123456789, 'toan@gmail.com', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'Xác nhận', '2021-11-30 08:49:12'),
+(19, 'Trương Vĩnh Phước', 123456789, 'truongphuocst310301@gmail.com', 's simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with des', 'Mới', '2021-11-30 09:19:34');
 
 -- --------------------------------------------------------
 
@@ -192,8 +200,9 @@ CREATE TABLE `news` (
 INSERT INTO `news` (`ID`, `Title`, `Author`, `Post_Date`, `Content`, `Picture`) VALUES
 (1, 'INTERNET OF THINGS (IOT) : CHO NGƯỜI MỚI BẮT ĐẦU', 'Trương Vĩnh Phước', '2021-11-25', '                    <h2>Giao thức MQTT với ESP32 và Node-red: Người mới bắt đầu cần nắm bắt điều gì?</h2>\r\n                    <h3>Giới thiệu nội dung :</h3>\r\n                    <p>\r\n                        <strong>MQTT (Message Queuing Telemetry Transport)</strong> là một giao thức truyền thông sử dụng cho các thiết bị IoT, giao thức này có độ tin cậy cao và khả năng được sử dụng trong các đường tuyền không ổn định bởi vì giao thức này chỉ sử dụng băng thông thấp trong môi trường có độ trễ cao nên nói là một giao thức lý tưởng cho các ứng dụng M2M và IoT.\r\n                        MQTT cũng là giao thức sử dụng trong Facebook Messenger.\r\n                        Bài viết này cung cấp các kiến thức cơ bản, đủ để người đọc hiểu về MQTT, xung quanh các yếu tố cốt lõi của giao thức này, bao gồm “subscribe“, “publish“, “qos“, “retain“, “last will and testament (lwt)“.\r\n                    </p>\r\n                    <h4>Publish, subcribe</h4>\r\n                    <img src=\"https://pyroject.com/wp-content/uploads/2021/09/Publish-subcribe.webp\" alt=\"\">\r\n                    <p>Hệ thống MQTT bao gồm các node trạm ( MQTT client ) và một MQTT Server (gọi là Broker). Các client kết nối với Broker, mỗi client sẽ đăng ký một hoặc nhiều kênh (topic), ví dụ “/esp32/humidity” , “house/money ”. Khi một client đăng ký tới một topic, điều này gọi là subcribe, điều này tương tự như khi ta đăng ký một kênh Youtube\r\n                        <strong>Lưu ý: </strong>Nếu có nhiều client subcribe tới một topic, khi một client publish một dữ liệu lên topic thì tất cả các client subcribe tới topic đều sẽ nhận được thông báo về dữ liệu này.\r\n                    </p>\r\n                    <h4>QoS</h4>\r\n                    <p>QoS (Quality of service) là tùy chọn đường tuyền quyết định độ trễ và độ chính xác của thông tin khi “publish” và “subcribe”.\r\n                        – QoS 0: Broker/Client sẽ gửi dữ liệu đúng 1 lần, thông qua giao thức TCP/IP, không cần xác nhận bởi điểm nhân, giống như người giao báo, chỉ cần đặt báo trước cửa chứ không cần quan tâm người nhận có nhận được hay không.\r\n                        – QoS 1: Broker/Client sẽ gửi dữ liệu và cần ít nhất 1 lần xác nhận từ điểm nhận.\r\n                        – QoS 2: Broker/Client sẽ gửi dữ liệu và cần đúng 1 lần xác nhận từ đầu kia, quá trình này phải trải qua 4 bước bắt tay.\r\n                        Đọc thêm: <a href=\"https://code.google.com/archive/p/mqtt4erl/wikis/QualityOfServiceUseCases.wiki\">Code Archive – Long-term storage for Google Code Project Hosting</a> .\r\n                        Một gói tin có thể được gởi ở bất kỳ QoS nào, các Client cũng có thể subcribe tới topic với bất kỳ QoS nào. Nếu một client subcribe tới 1 topic với QoS 2, thì QoS tối đa của các gói tin được gửi/nhận bởi client đó là QoS 2.</p>\r\n                    <h4>Retain</h4>\r\n                    <p>Nếu Retain = 1, khi Client publish 1 gói tin, Broker bắt buộc phải lưu trữ lại gói tin với QoS. Khi một Client kết nối tới Broker và subcribe một topic, nó sẽ nhận được gói tin cuối cùng có Retain = 1 của topic đó.\r\n                        – Khi một Client subcribe tới một topic, Broker sẽ gửi một gói tin có Retain = 1 như là một xác nhận cho việc subcribe thanh công của Client.</p>\r\n                    <h4>LWT</h4>\r\n                    <p>Khi một Client subcribe tới một topic A và có đăng ký LWT tới 1 topic B một tin nhắn lwt. Trong trường hợp người dùng cũng đăng ký tới topic này, nếu vì một lý do gì đó, Client này rơi vào trạng thái ngoại tuyến, vì Client đã đăng kí LWT, người dùng sẽ nhận được một gói tin từ Broker là ID của Client ngoại tuyến trên topic B.</p>\r\n                    <h4>ESP32 MQTT Client</h4>\r\n                    <p> Ta đã biết 2 thành phần chinh của giao thức MQTT là Broker và Client, thông thường, vai trò của ESP32 trong giao thức MQTT là Client.</p>\r\n                    <h3>PubSubClient</h3>\r\n                    <p>1. Thư viện này cho phép ESP32 tương tác với Broker MQTT node – red.\r\n                        2. Tải file zip thư viện PubSubClient: <a href=\"https://github.com/knolleary/pubsubclient\">https://github.com/knolleary/pubsubclient</a>\r\n                        3. Bạn cũng có thể cài đặt qua mục quản lý thư viện của Arduino IDE.</p>4\r\n                    <h3>Thư viện cho cảm biến DHT</h3>\r\n                    <p>\r\n                        – Phần này gồm 2 thư viện DHT sensor library & Adafruit Unified Sensor\r\n                    </p>\r\n                    <img src=\"https://pyroject.com/wp-content/uploads/2021/09/Thu-vien-cho-cam-bien-DHT-1.webp\" alt=\"\">\r\n                    <img src=\"https://pyroject.com/wp-content/uploads/2021/09/Thu-vien-cho-cam-bien-DHT-2.webp\" alt=\"\">', 'https://pyroject.com/wp-content/uploads/2021/09/IOT-cho-nguoi-moi-bat-dau-pyroject.webp'),
 (2, 'TẠI SAO CÁC DỰ ÁN IOT KHÔNG THÀNH CÔNG?', 'Nguyễn Quốc Hoà', '2021-11-28', '<h2>Giao thức MQTT với ESP32 và Node-red: Người mới bắt đầu cần nắm bắt điều gì?</h2>\r\n                    <h3>Giới thiệu nội dung :</h3>\r\n                    <p>\r\n                        <strong>MQTT (Message Queuing Telemetry Transport)</strong> là một giao thức truyền thông sử dụng cho các thiết bị IoT, giao thức này có độ tin cậy cao và khả năng được sử dụng trong các đường tuyền không ổn định bởi vì giao thức này chỉ sử dụng băng thông thấp trong môi trường có độ trễ cao nên nói là một giao thức lý tưởng cho các ứng dụng M2M và IoT.\r\n                        MQTT cũng là giao thức sử dụng trong Facebook Messenger.\r\n                        Bài viết này cung cấp các kiến thức cơ bản, đủ để người đọc hiểu về MQTT, xung quanh các yếu tố cốt lõi của giao thức này, bao gồm “subscribe“, “publish“, “qos“, “retain“, “last will and testament (lwt)“.\r\n                    </p>\r\n                    <h4>Publish, subcribe</h4>\r\n                    <img src=\"https://pyroject.com/wp-content/uploads/2021/09/Publish-subcribe.webp\" alt=\"\">\r\n                    <p>Hệ thống MQTT bao gồm các node trạm ( MQTT client ) và một MQTT Server (gọi là Broker). Các client kết nối với Broker, mỗi client sẽ đăng ký một hoặc nhiều kênh (topic), ví dụ “/esp32/humidity” , “house/money ”. Khi một client đăng ký tới một topic, điều này gọi là subcribe, điều này tương tự như khi ta đăng ký một kênh Youtube\r\n                        <strong>Lưu ý: </strong>Nếu có nhiều client subcribe tới một topic, khi một client publish một dữ liệu lên topic thì tất cả các client subcribe tới topic đều sẽ nhận được thông báo về dữ liệu này.\r\n                    </p>\r\n                    <h4>QoS</h4>\r\n                    <p>QoS (Quality of service) là tùy chọn đường tuyền quyết định độ trễ và độ chính xác của thông tin khi “publish” và “subcribe”.\r\n                        – QoS 0: Broker/Client sẽ gửi dữ liệu đúng 1 lần, thông qua giao thức TCP/IP, không cần xác nhận bởi điểm nhân, giống như người giao báo, chỉ cần đặt báo trước cửa chứ không cần quan tâm người nhận có nhận được hay không.\r\n                        – QoS 1: Broker/Client sẽ gửi dữ liệu và cần ít nhất 1 lần xác nhận từ điểm nhận.\r\n                        – QoS 2: Broker/Client sẽ gửi dữ liệu và cần đúng 1 lần xác nhận từ đầu kia, quá trình này phải trải qua 4 bước bắt tay.\r\n                        Đọc thêm: <a href=\"https://code.google.com/archive/p/mqtt4erl/wikis/QualityOfServiceUseCases.wiki\">Code Archive – Long-term storage for Google Code Project Hosting</a> .\r\n                        Một gói tin có thể được gởi ở bất kỳ QoS nào, các Client cũng có thể subcribe tới topic với bất kỳ QoS nào. Nếu một client subcribe tới 1 topic với QoS 2, thì QoS tối đa của các gói tin được gửi/nhận bởi client đó là QoS 2.</p>\r\n                    <h4>Retain</h4>\r\n                    <p>Nếu Retain = 1, khi Client publish 1 gói tin, Broker bắt buộc phải lưu trữ lại gói tin với QoS. Khi một Client kết nối tới Broker và subcribe một topic, nó sẽ nhận được gói tin cuối cùng có Retain = 1 của topic đó.\r\n                        – Khi một Client subcribe tới một topic, Broker sẽ gửi một gói tin có Retain = 1 như là một xác nhận cho việc subcribe thanh công của Client.</p>\r\n                    <h4>LWT</h4>\r\n                    <p>Khi một Client subcribe tới một topic A và có đăng ký LWT tới 1 topic B một tin nhắn lwt. Trong trường hợp người dùng cũng đăng ký tới topic này, nếu vì một lý do gì đó, Client này rơi vào trạng thái ngoại tuyến, vì Client đã đăng kí LWT, người dùng sẽ nhận được một gói tin từ Broker là ID của Client ngoại tuyến trên topic B.</p>\r\n                    <h4>ESP32 MQTT Client</h4>\r\n                    <p> Ta đã biết 2 thành phần chinh của giao thức MQTT là Broker và Client, thông thường, vai trò của ESP32 trong giao thức MQTT là Client.</p>\r\n                    <h3>PubSubClient</h3>\r\n                    <p>1. Thư viện này cho phép ESP32 tương tác với Broker MQTT node – red.\r\n                        2. Tải file zip thư viện PubSubClient: <a href=\"https://github.com/knolleary/pubsubclient\">https://github.com/knolleary/pubsubclient</a>\r\n                        3. Bạn cũng có thể cài đặt qua mục quản lý thư viện của Arduino IDE.</p>4\r\n                    <h3>Thư viện cho cảm biến DHT</h3>\r\n                    <p>\r\n                        – Phần này gồm 2 thư viện DHT sensor library & Adafruit Unified Sensor\r\n                    </p>', 'https://pyroject.com/wp-content/uploads/2021/10/Tai-sao-IOT-that-bai-_-Pyroject.webp'),
-(6, 'TẠI SAO TÀU LẠI NỔI ĐƯỢC TRÊN MẶT NƯỚC', 'Tô Hoà', '2021-11-30', 'TH cũng không biết', 'https://cf.shopee.vn/file/a20395a741241ad0ab5749747f814727'),
-(7, 'Tại sao máy bay lại bay được', 'Tô Hoà', '2021-11-30', 'Một lần nữa, tô hoà cũng không biết', 'https://cf.shopee.vn/file/a20395a741241ad0ab5749747f814727');
+(11, 'Tại sao mèo có 9 mạng', 'Tô Hoà', '2021-11-30', 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lore', 'https://cf.shopee.vn/file/eb49688650606b3bdb51e9dfa147c2a9'),
+(13, 'Tại sao mèo có 9 mạng', 'Tô Hoà', '2021-11-30', 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lore', 'https://cf.shopee.vn/file/eb49688650606b3bdb51e9dfa147c2a9'),
+(14, 'Tại sao mèo có 10 mạng', 'Tô Hoà', '2021-11-30', 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining ', 'https://cf.shopee.vn/file/eb49688650606b3bdb51e9dfa147c2a9');
 
 -- --------------------------------------------------------
 
@@ -236,8 +245,10 @@ INSERT INTO `order_details` (`ID`, `Status`, `User_ID`, `Last_Name`, `First_name
 (11, 'Chờ xác nhận', 4, 'Trương Vĩnh', 'Phước', 'phuocvinh@gmail.com', '2147483647', '62, Cộng Hòa, phường 13, quận Tân Bình', 123141, 'Thành phố Hồ Chí Minh', '2021-11-29', 1233434242342, 'BIDV', ''),
 (12, 'Chờ xác nhận', 4, 'Trương Vĩnh', 'Phước', 'phuocvinh@gmail.com', '2147483647', '62, Cộng Hòa, phường 13, quận Tân Bình', 123141, 'Thành phố Hồ Chí Minh', '2021-11-29', 1233434242342, 'BIDV', ''),
 (13, 'Chờ xác nhận', 4, 'Trương Vĩnh', 'Phước', 'phuocvinh@gmail.com', '2147483647', '62, Cộng Hòa, phường 13, quận Tân Bình', 123141, 'Thành phố Hồ Chí Minh', '2021-11-29', 1233434242342, 'BIDV', 'Đây là 1 lời nhắn vu vơ'),
-(14, 'Chờ xác nhận', 4, 'Trương Vĩnh', 'Hạnh', 'phuocvinh@gmail.com', '0123456789', '62, Cộng Hòa, phường 13, quận Tân Bình', 123141, 'Thành phố Sóc Trăng', '2021-11-30', 1233434242342, 'BIDV', ''),
-(15, 'Chờ xác nhận', 4, 'Trương Vĩnh', 'Hạnh', '2@mgial.com', '0123456789', '62, Cộng Hòa, phường 13, quận Tân Bình', 1231411, 'Thành phố Sóc Trăng', '2021-11-30', 1233434242342, 'BIDV', 'Không có lời nhắn');
+(14, 'Thành công', 4, 'Trương Vĩnh', 'Hạnh', 'phuocvinh@gmail.com', '0123456789', '62, Cộng Hòa, phường 13, quận Tân Bình', 123141, 'Thành phố Sóc Trăng', '2021-11-30', 1233434242342, 'BIDV', ''),
+(15, 'Chờ xác nhận', 4, 'Trương Vĩnh', 'Hạnh', '2@mgial.com', '0123456789', '62, Cộng Hòa, phường 13, quận Tân Bình', 1231411, 'Thành phố Sóc Trăng', '2021-11-30', 1233434242342, 'BIDV', 'Không có lời nhắn'),
+(16, 'Chờ xác nhận', 15, 'Phúc', 'Toàn', 'toan@gmail.com', '0123456789', '12 ĐBP', 12345, 'ST', '2021-11-30', 121121232, 'BIDV', 'TEst'),
+(17, 'Chờ xác nhận', 16, 'Phước', 'Trương', 'phuoc@gmail.com', '0123456789', '12 ĐBP', 123121, 'ST', '2021-11-30', 123213123, 'BIDV', 's sfefeeffe');
 
 --
 -- Triggers `order_details`
@@ -307,7 +318,10 @@ CREATE TABLE `review` (
 INSERT INTO `review` (`ID`, `ProductID`, `Content`, `Email`, `Name`, `Status`) VALUES
 (1, 2, 'Text review', 'Phuoc@gmail.com', 'Phước', 'Xác nhận'),
 (2, 2, 'text review2', 'hoa@gmail.com', 'Hoà', 'Xác nhận'),
-(3, 2, 'Sản phẩm tốt', 'phuoc@gmail.com', 'Phước', 'Xác nhận');
+(3, 2, 'Sản phẩm tốt', 'phuoc@gmail.com', 'Phước', 'Xác nhận'),
+(4, 3, 'Test', 'phuoc@gmail.com', 'Phuoc', 'Xác nhận'),
+(5, 3, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one ', 'Phuoc@gmail.com', 'Phuoc', 'Xác nhận'),
+(6, 2, 's simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not on', 'phuoc@gmail.com', 'Phước', 'Xác nhận');
 
 -- --------------------------------------------------------
 
@@ -383,7 +397,10 @@ INSERT INTO `transaction` (`Order_ID`, `Product_ID`, `Quantity`, `Total_amount_o
 (13, 2, 3, 4500000),
 (13, 5, 1, 8900000),
 (14, 2, 1, 1500000),
-(15, 3, 1, 3250000);
+(15, 3, 1, 3250000),
+(16, 2, 4, 6000000),
+(17, 2, 2, 3000000),
+(17, 3, 4, 13000000);
 
 -- --------------------------------------------------------
 
@@ -423,7 +440,9 @@ INSERT INTO `user` (`ID`, `Last_Name`, `First_Name`, `Usename`, `Password`, `Ema
 (11, 'Thanh', 'Toàn', 'Toan', '$2y$10$On.NTaYjoA.4WVlfG1G7GuFPrEOKtEK.dJJT1mjZN.8I30CNGj90q', 'toan@gmail.com', '', '', '', 0, 0, '', 'member'),
 (12, '', '', 'Hue', '$2y$10$HuZRm0BCBjd5jmMGilfTe.aTvJYAcD7clS5g.HqjNQWPakE0nGKVO', 'hue@gmail.com', NULL, '', '', NULL, 0, '', 'member'),
 (13, 'lam', 'lan', 'lan', '$2y$10$4u6P859SgakBZMncTDE3tOtxNsho/y1OAYBMVa6RNXRcfWHDH/mE2', 'lan@gmail.com', NULL, '', '', NULL, 0, '', 'member'),
-(14, 'Phuocws', 'Truowng', 'tvplus', '$2y$10$qp/DjcZW458yTGNSMlZoheUEO.cg08PCpyqL9AMKMwhQwTldta3M6', 'vinhphuoc@gmail.com', '0123456789', '', '', 0, 9223372036854775807, '', 'member');
+(14, 'Phuocws', 'Truowng', 'tvplus', '$2y$10$qp/DjcZW458yTGNSMlZoheUEO.cg08PCpyqL9AMKMwhQwTldta3M6', 'vinhphuoc@gmail.com', '0123456789', '', '', 0, 9223372036854775807, '', 'member'),
+(15, 'Phúc', 'Toàn', 'Phuc', '$2y$10$db1ypmcjnnp1A7xNLhHxce93m1z2UCGHHnCbY.lo.TtungAtxojNW', 'toan@gmail.com', '0123456789', '12 ĐBP', 'ST', 0, 0, '', 'member'),
+(16, 'Phước', 'Trương', 'Phuocc', '$2y$10$d3ezFS2qDZ3JSJ0WVCYmBu4dIhLS3tFLqrQSaPT514enTND.RjIbu', 'phuoc@gmail.com', '0123456789', '', '', 0, 0, '', 'member');
 
 --
 -- Triggers `user`
@@ -528,61 +547,61 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `buying_history`
 --
 ALTER TABLE `buying_history`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `catalog`
 --
 ALTER TABLE `catalog`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
