@@ -2,7 +2,7 @@
 
 # Notion
 
-Link [Notion].(https://ribbon-isthmus-afb.notion.site/06598515ed10434993b7579e11b30f34?v=3689d311c8ec49c1a374411747880f0f)  để mọi người dễ quản lý công việc + raise problems nếu có
+Link [Notion](https://ribbon-isthmus-afb.notion.site/06598515ed10434993b7579e11b30f34?v=3689d311c8ec49c1a374411747880f0f)  để mọi người dễ quản lý công việc + raise problems nếu có
 
 # TUTORIAL NẾU CẦN THIẾT
 
