@@ -1,0 +1,5 @@
+CREATE TRIGGER `after_order_details_insert` AFTER INSERT ON `order_details`
+ FOR EACH ROW INSERT INTO buying_history(buying_history.User_ID, buying_history.Order_ID) VALUES (NEW.User_ID, NEW.ID)
+
+CREATE TRIGGER `after_user_insert` AFTER INSERT ON `user`
+ FOR EACH ROW INSERT INTO cart SET cart.User_ID = NEW.ID

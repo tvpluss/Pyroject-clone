@@ -1,0 +1,29 @@
+.login,
+.register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+    flex-direction: column;
+    form {
+        padding: 40px 60px;
+        width: 100%;
+        max-width: 400px;
+        img {
+            height: 80px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+        border: 1px solid rgb(231, 231, 231);
+    }
+    span {
+        font-size: 13px;
+        color: rgb(0, 22, 218);
+        display: block;
+        margin-bottom: 6px;
+    }
+}
